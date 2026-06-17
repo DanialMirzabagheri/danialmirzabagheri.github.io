@@ -849,19 +849,23 @@
         // RENDER FUNCTIONS
         // ============================================================
         function renderReviews() {
-            const c = document.getElementById('reviewsContainer');
-            if (!c) return;
-            if (!data) return;
-            c.innerHTML = data.reviews.map(r => `
-                <div class="review-card" onclick="openReview('${r.id}')">
-                    <img src="${r.cover}" alt="${r.title}">
-                    <div class="info">
-                        <h3>${r.title}</h3>
-                        <div class="meta"><span>${r.date}</span><span class="score-badge">★ ${r.finalScore}/100</span></div>
-                    </div>
+    const c = document.getElementById('reviewsContainer');
+    if (!c) return;
+    if (!data) return;
+    c.innerHTML = data.reviews.map(r => `
+        <div class="review-card" onclick="openReview('${r.id}')">
+            <img src="${r.cover}" alt="${r.title}">
+            <div class="info">
+                <h3>${r.title}</h3>
+                ${r.subtitle ? `<p style="color:#aaa;font-size:0.9rem;margin:2px 0 6px 0;font-style:italic;">${r.subtitle}</p>` : ''}
+                <div class="meta">
+                    <span>${r.date}</span>
+                    <span class="score-badge">★ ${r.finalScore}/100</span>
                 </div>
-            `).join('');
-        }
+            </div>
+        </div>
+    `).join('');
+}
 
         function renderPortfolio() {
             const c = document.getElementById('portfolioContainer');
