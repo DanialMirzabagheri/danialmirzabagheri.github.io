@@ -523,6 +523,8 @@
                 <span style="color:#e94560;cursor:pointer;font-size:1.8rem;" onclick="closeAddReview()">&times;</span>
             </h2>
             <label>عنوان بازی:</label><input type="text" id="arTitle" placeholder="عنوان">
+<label>زیرعنوان (اختیاری):</label>
+<input type="text" id="arSubtitle" placeholder="مثلاً: گم شدن در خانه‌ای که هرگز تو را رها نمی‌کند">
             <label>کاور (لینک یا آپلود):</label>
             <div class="drop-zone" id="coverDropZone">
                 <i class="fas fa-cloud-upload-alt" style="font-size:1.5rem;color:#f0a500;"></i>
@@ -915,7 +917,11 @@
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
             document.getElementById('review-detail').classList.add('active');
             const c = document.getElementById('detailContent');
-            let html = `<div class="detail-header"><h2>${r.title}</h2><div class="detail-meta">${r.date} | نمره نهایی: ${r.finalScore}/100</div></div><div class="detail-body">`;
+              let html = `<div class="detail-header">
+        <h2>${r.title}</h2>
+        ${r.subtitle ? `<p style="color:#f0a500;font-size:1.1rem;font-style:italic;margin-top:-8px;margin-bottom:8px;">${r.subtitle}</p>` : ''}
+        <div class="detail-meta">${r.date} | نمره نهایی: ${r.finalScore}/100</div>
+    </div class="detail-body">`;
             if (r.intro) html += `<div class="block"><h3>شناخت اولیه</h3><div class="block-text">${nl2br(r.intro)}</div></div>`;
             r.sections.forEach(s => {
                 html += `<div class="block"><h3>${s.title}</h3><div class="block-text">${nl2br(s.text)}</div>`;
@@ -1253,6 +1259,7 @@
             const cover = document.getElementById('arCover').value.trim() || 'https://via.placeholder.com/300x180/1a1a2e/f0a500?text=' + encodeURIComponent(title);
             const newReview = {
                 id, title, cover,
+subtitle: document.getElementById('arSubtitle').value.trim() || '', // اضافه شد
                 date: document.getElementById('arDate').value.trim() || new Date().toLocaleDateString('fa-IR'),
                 finalScore: parseInt(document.getElementById('arFinalScore').value) || 80,
                 intro: document.getElementById('arIntro').value.trim() || '',
