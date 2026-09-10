@@ -43,34 +43,40 @@
 
         /* ===== HERO ===== */
         .hero {
-            min-height: 100vh;
-            min-height: 100dvh;
+            /* The hero image keeps its native 16:9 ratio and can extend below
+               the first viewport. This prevents both top/bottom cropping. */
+            min-height: max(100vh, calc(70px + 56.25vw));
+            min-height: max(100dvh, calc(70px + 56.25vw));
+            padding-top: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
-            padding: 0;
+            overflow: visible;
             text-align: center;
         }
         .hero-bg {
             position: absolute;
-            top: 0;
+            top: 70px;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center center;
+            height: 56.25vw;
+            min-height: 0;
+            background-size: 100% auto;
+            background-position: center top;
             background-repeat: no-repeat;
+            background-color: #0a0a0f;
             z-index: 0;
             opacity: 0.35;
             filter: grayscale(0.3);
             transition: opacity 0.5s;
+            pointer-events: none;
         }
         .hero-bg video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background:#0a0a0f;
         }
         .hero .container {
             position: relative;
@@ -209,10 +215,35 @@
         .review-card .info .meta, .article-card .info .meta {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 0.8rem;
             color: #888;
             margin-top: 6px;
         }
+        .review-card .info .meta.review-meta-row {
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+        .review-card .info .meta.review-meta-row > span:first-child {
+            flex: 1 1 auto;
+            min-width: 0;
+            white-space: nowrap;
+        }
+        .review-card .info .review-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: #888;
+            white-space: nowrap;
+        }
+        .review-card .info .review-stats span {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .review-card .info .review-stats i { margin-left: 4px; }
         .review-card .info .score-badge {
             display: inline-block;
             background: rgba(240,165,0,0.15);
@@ -959,6 +990,8 @@
         }
         .article-nav-list .nav-item .nav-item-content {
             display: flex;
+            direction: rtl;
+            text-align: right;
             align-items: center;
             justify-content: space-between;
             padding: 4px 8px;
@@ -968,6 +1001,13 @@
             color: #ccc;
             font-size: 0.85rem;
             border-right: 2px solid transparent;
+        }
+        .article-nav-list .nav-item .nav-item-title {
+            direction: rtl;
+            text-align: right;
+            unicode-bidi: plaintext;
+            overflow-wrap: anywhere;
+            flex: 1;
         }
         .article-nav-list .nav-item .nav-item-content:hover {
             background: rgba(240,165,0,0.08);
@@ -1018,10 +1058,30 @@
         .article-nav-list .nav-sublist.open {
             display: block;
         }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4,
+        .article-content .block, .article-content .article-quote {
+            scroll-margin-top: 105px;
+        }
+        .admin-panel {
+            padding: 0;
+        }
+        .admin-box {
+            max-width: none;
+            width: 100%;
+            height: 100%;
+            max-height: none;
+            border-radius: 0;
+            padding: 28px clamp(18px, 4vw, 48px);
+        }
         .article-nav-toggle-btn {
             display: none;
         }
         @media (max-width: 768px) {
+            .cms-editor-modal .modal-box { padding: 20px 14px 34px; }
+            .cms-editor-modal .modal-header { margin: -20px -14px 18px; padding: 14px; }
+            .hero-bg { top: 62px; height: 56.25vw; }
+            .hero { min-height: max(100dvh, calc(62px + 56.25vw)); }
+            .hero .container { padding-top: 100px; }
             .article-nav-wrapper {
                 top: auto;
                 bottom: 80px;
@@ -1211,6 +1271,62 @@
         .admin-box .btn-admin.danger:hover { background:#c0392b; }
         .admin-box .admin-item { background:#0a0a0f; padding:10px 14px; border-radius:10px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(255,255,255,0.04); }
         .admin-box .admin-item .del-btn { color:#e94560; cursor:pointer; background:none; border:none; font-size:1rem; margin-left:6px; }
+
+        /* ===== PUBLISH / DRAFT TOGGLE ===== */
+        .publish-toggle {
+            display: flex;
+            width: 100%;
+            background: #0a0a0f;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 4px;
+            gap: 4px;
+            margin: 6px 0 14px;
+        }
+        .publish-toggle button {
+            flex: 1;
+            border: none;
+            border-radius: 10px;
+            padding: 9px 12px;
+            background: transparent;
+            color: #777;
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+        .publish-toggle button.active {
+            background: rgba(76,175,80,0.14);
+            color: #4caf50;
+            box-shadow: inset 0 0 0 1px rgba(76,175,80,0.2);
+        }
+        .publish-toggle button.active.draft-option {
+            background: rgba(240,165,0,0.14);
+            color: #f0a500;
+            box-shadow: inset 0 0 0 1px rgba(240,165,0,0.2);
+        }
+        .publish-toggle button:hover { color: #fff; }
+
+        /* ===== FULL-SCREEN CMS ===== */
+        .admin-panel {
+            align-items: stretch;
+            justify-content: stretch;
+            padding: 0;
+        }
+        .admin-box {
+            width: 100vw;
+            max-width: none;
+            height: 100vh;
+            max-height: none;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            border-bottom: none;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
 
         .gallery-manager {
             border: 1px solid rgba(255,255,255,0.06);
@@ -1450,6 +1566,72 @@
         }
         .modal-box .btn-admin:hover { background: #e94560; color: #fff; }
 
+        /* ===== FULL-SCREEN CONTENT EDITORS ===== */
+        .cms-editor-modal {
+            padding: 0;
+            background: rgba(4,4,8,0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .cms-editor-modal .modal-box {
+            width: 100%;
+            max-width: none;
+            min-height: 100vh;
+            margin: 0;
+            border-radius: 0;
+            border: none;
+            padding: 28px clamp(18px, 4vw, 56px) 44px;
+            background: linear-gradient(180deg, #151522 0%, #111119 100%);
+            box-shadow: none;
+        }
+        .cms-editor-modal .modal-header {
+            position: sticky;
+            top: -28px;
+            z-index: 20;
+            margin: -28px calc(-1 * clamp(18px, 4vw, 56px)) 22px;
+            padding: 18px clamp(18px, 4vw, 56px);
+            background: rgba(18,18,26,0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(240,165,0,0.10);
+        }
+        .cms-editor-modal .modal-header h2 {
+            letter-spacing: -0.2px;
+        }
+        .cms-editor-modal .modal-header .close-modal {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(233,69,96,0.08);
+            transition: 0.2s ease;
+        }
+        .cms-editor-modal .modal-header .close-modal:hover {
+            background: rgba(233,69,96,0.16);
+            transform: none;
+        }
+        .cms-editor-modal > .modal-box > label,
+        .cms-editor-modal > .modal-box > .publish-toggle,
+        .cms-editor-modal > .modal-box > input,
+        .cms-editor-modal > .modal-box > textarea,
+        .cms-editor-modal > .modal-box > select {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cms-editor-modal .admin-section-item {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cms-editor-modal .editor-toolbar {
+            border-radius: 10px;
+            background: rgba(255,255,255,0.025);
+            padding: 4px;
+        }
+
         .admin-section-item {
             background: #1a1a2e;
             padding: 10px 12px;
@@ -1641,7 +1823,57 @@
             .admin-toggle{padding:6px 14px;font-size:0.7rem;bottom:16px;right:16px;}
             .latest-grid { grid-template-columns: 1fr; }
         }
-    </style>
+    
+        /* Restore the original non-fullscreen editor modal. The main CMS panel remains fullscreen. */
+        .cms-editor-modal {
+            padding: 30px 16px;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+        .cms-editor-modal .modal-box {
+            width: auto;
+            max-width: 820px;
+            min-height: 0;
+            margin: 0 auto;
+            border-radius: 24px;
+            border: 1px solid rgba(240,165,0,0.15);
+            padding: 24px;
+            background: #12121a;
+            box-shadow: none;
+        }
+        .cms-editor-modal .modal-header {
+            position: static;
+            margin-bottom: 16px;
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .cms-editor-modal { padding: 30px 16px; }
+            .cms-editor-modal .modal-box {
+                width: auto;
+                max-width: 820px;
+                min-height: 0;
+                margin: 0 auto;
+                border-radius: 24px;
+                padding: 20px 14px 34px;
+            }
+            .cms-editor-modal .modal-header {
+                position: static;
+                margin: -20px -14px 18px;
+                padding: 14px;
+                background: transparent;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                border-bottom: none;
+            }
+        }
+</style>
 </head>
 <body>
     <header>
@@ -1856,7 +2088,7 @@
     </div>
 
     <!-- ===== REVIEW MODAL ===== -->
-    <div class="modal-overlay" id="reviewModal">
+    <div class="modal-overlay cms-editor-modal" id="reviewModal">
         <div class="modal-box">
             <div class="modal-header">
                 <h2 id="reviewModalTitle">افزودن/ویرایش نقد</h2>
@@ -1867,6 +2099,12 @@
             <label>کاور (لینک):</label><input type="text" id="rCover">
             <label>تاریخ:</label><input type="text" id="rDate" placeholder="مثلاً ۱۳ خرداد ۱۴۰۵">
             <label>نمره نهایی (۰-۱۰۰):</label><input type="number" id="rFinalScore" min="0" max="100">
+            <label style="margin:10px 0 4px;color:#aaa;font-size:0.9rem;">وضعیت انتشار:</label>
+            <div class="publish-toggle" id="rDraftToggle">
+                <button type="button" data-value="published" onclick="setDraftState('rDraft', false)">● منتشر شود</button>
+                <button type="button" class="draft-option" data-value="draft" onclick="setDraftState('rDraft', true)">● پیش‌نویس</button>
+            </div>
+            <input type="checkbox" id="rDraft" hidden>
             <label>مقدمه:</label><textarea id="rIntro" rows="2"></textarea>
             <div id="rSectionsContainer">
                 <h4 style="color:#aaa;margin:8px 0;">بخش‌های نقد</h4>
@@ -1882,13 +2120,14 @@
     </div>
 
     <!-- ===== ARTICLE MODAL ===== -->
-    <div class="modal-overlay" id="articleModal">
+    <div class="modal-overlay cms-editor-modal" id="articleModal">
         <div class="modal-box">
             <div class="modal-header">
                 <h2 id="articleModalTitle">افزودن/ویرایش مقاله</h2>
                 <span class="close-modal" onclick="closeModal('articleModal')">&times;</span>
             </div>
             <label>عنوان مقاله:</label><input type="text" id="aTitle">
+            <label>Slug / آدرس مقاله (اختیاری):</label><input type="text" id="aSlug" placeholder="مثلاً video-games-mental-health">
             <label>زیرعنوان:</label><input type="text" id="aSubtitle">
             <label>کاور (لینک):</label><input type="text" id="aCover">
             <label>دسته‌بندی:</label>
@@ -1897,6 +2136,13 @@
                 <option value="analytical">تحلیلی/تحقیقی</option>
             </select>
             <label>تاریخ:</label><input type="text" id="aDate" placeholder="مثلاً ۲۰ خرداد ۱۴۰۵">
+
+            <label style="margin:10px 0 4px;color:#aaa;font-size:0.9rem;">وضعیت انتشار:</label>
+            <div class="publish-toggle" id="aDraftToggle">
+                <button type="button" data-value="published" onclick="setDraftState('aDraft', false)">● منتشر شود</button>
+                <button type="button" class="draft-option" data-value="draft" onclick="setDraftState('aDraft', true)">● پیش‌نویس</button>
+            </div>
+            <input type="checkbox" id="aDraft" hidden>
 
             <label style="display:flex;align-items:center;gap:8px;margin:10px 0;color:#aaa;font-size:0.9rem;">
                 <input type="checkbox" id="aNavigationEnabled" style="width:18px;height:18px;accent-color:#f0a500;cursor:pointer;">
@@ -1932,13 +2178,19 @@
     </div>
 
     <!-- ===== PORTFOLIO MODAL ===== -->
-    <div class="modal-overlay" id="portfolioModal">
+    <div class="modal-overlay cms-editor-modal" id="portfolioModal">
         <div class="modal-box">
             <div class="modal-header">
                 <h2 id="portfolioModalTitle">افزودن/ویرایش پروژه</h2>
                 <span class="close-modal" onclick="closeModal('portfolioModal')">&times;</span>
             </div>
             <label>عنوان پروژه:</label><input type="text" id="pTitle">
+            <label style="margin:10px 0 4px;color:#aaa;font-size:0.9rem;">وضعیت انتشار:</label>
+            <div class="publish-toggle" id="pDraftToggle">
+                <button type="button" data-value="published" onclick="setDraftState('pDraft', false)">● منتشر شود</button>
+                <button type="button" class="draft-option" data-value="draft" onclick="setDraftState('pDraft', true)">● پیش‌نویس</button>
+            </div>
+            <input type="checkbox" id="pDraft" hidden>
             <label>توضیحات:</label><textarea id="pDesc" rows="3"></textarea>
             <label>تگ‌ها (با کاما):</label><input type="text" id="pTags">
             <label>لینک‌های مرتبط (هر خط یک لینک با متن):</label>
@@ -2028,6 +2280,11 @@
         const ADMIN_PASS = 'dn@.84_98bg';
         const STORE_KEY = 'mainData';
         const DATA_URL = 'daniyal_site_data.json';
+        const OPTIMIZED_INDEX_URL = 'data/site-index.json';
+        const OPTIMIZED_ADMIN_URL = 'data/admin-data.json';
+        const OPTIMIZED_CONTENT_BASE = 'data';
+        let optimizedDataMode = false;
+        let adminDataLoaded = false;
 
         const defaultData = {
             heroBg: '',
@@ -2133,35 +2390,184 @@
             return { wordCount, readTime };
         }
 
+        function calculateReviewStats(review) {
+            if (!review) return { wordCount: 0, readTime: 0 };
+            const parts = [];
+            if (review.title) parts.push(review.title);
+            if (review.subtitle) parts.push(review.subtitle);
+            if (review.intro) parts.push(review.intro);
+            (review.sections || []).forEach(section => {
+                if (section.title) parts.push(section.title);
+                if (section.text) parts.push(section.text);
+                    (section.positives || []).forEach(item => parts.push(item));
+                (section.negatives || []).forEach(item => parts.push(item));
+            });
+            if (review.conclusion) parts.push(review.conclusion);
+            const wordCount = countWords(parts.join(' '));
+            const readTime = wordCount > 0 ? Math.max(1, Math.ceil(wordCount / 200)) : 0;
+            return { wordCount, readTime };
+        }
+
+        function slugify(value) {
+            if (!value) return '';
+            let s = String(value).trim().toLowerCase();
+            const faMap = {
+                'ا':'a','آ':'a','ب':'b','پ':'p','ت':'t','ث':'s','ج':'j','چ':'ch','ح':'h','خ':'kh',
+                'د':'d','ذ':'z','ر':'r','ز':'z','ژ':'zh','س':'s','ش':'sh','ص':'s','ض':'z','ط':'t','ظ':'z',
+                'ع':'a','غ':'gh','ف':'f','ق':'gh','ک':'k','گ':'g','ل':'l','م':'m','ن':'n','و':'v','ه':'h','ی':'y','ي':'y','ک':'k','ك':'k'
+            };
+            s = Array.from(s).map(ch => faMap[ch] || ch).join('');
+            s = s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+            s = s.replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            return s || ('item-' + Date.now());
+        }
+
+        function ensureItemSlugs() {
+            if (!data) return;
+            const used = new Set();
+            ['articles','reviews','portfolio'].forEach(type => {
+                (data[type] || []).forEach(item => {
+                    let base = item.slug || slugify(item.title || item.id);
+                    let slug = base;
+                    let n = 2;
+                    while (used.has(slug)) slug = `${base}-${n++}`;
+                    item.slug = slug;
+                    used.add(slug);
+                });
+            });
+        }
+
+        function publicArticleList() {
+            return (data && data.articles ? data.articles : []).filter(a => !a.draft);
+        }
+
+        function publicReviewList() {
+            return (data && data.reviews ? data.reviews : []).filter(r => !r.draft);
+        }
+
+        function publicPortfolioList() {
+            return (data && data.portfolio ? data.portfolio : []).filter(p => !p.draft);
+        }
+
+        function setDraftState(inputId, isDraft) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            input.checked = !!isDraft;
+            const toggle = document.getElementById(inputId + 'Toggle');
+            if (!toggle) return;
+            toggle.querySelectorAll('button').forEach(btn => {
+                btn.classList.toggle('active', (btn.dataset.value === 'draft') === !!isDraft);
+            });
+        }
+
+        function syncDraftToggle(inputId) {
+            const input = document.getElementById(inputId);
+            setDraftState(inputId, !!(input && input.checked));
+        }
+
+        async function fetchOptimizedItem(type, slug) {
+            const folder = type === 'article' ? 'articles' : type === 'review' ? 'reviews' : 'portfolio';
+            const response = await fetch(`${OPTIMIZED_CONTENT_BASE}/${folder}/${encodeURIComponent(slug)}.json?${Date.now()}`);
+            if (!response.ok) throw new Error('محتوای موردنظر پیدا نشد.');
+            return await response.json();
+        }
+
+        async function ensureAdminDataLoaded() {
+            if (!optimizedDataMode || adminDataLoaded) return true;
+            try {
+                const response = await fetch(OPTIMIZED_ADMIN_URL + '?t=' + Date.now());
+                if (!response.ok) return false;
+                const fullData = await response.json();
+                if (!fullData || !fullData.articles || !fullData.reviews || !fullData.portfolio || !fullData.about) return false;
+                data = fullData;
+                migrateData();
+                ensureItemSlugs();
+                adminDataLoaded = true;
+                await db.save(STORE_KEY, data);
+                renderAll();
+                return true;
+            } catch (e) {
+                console.warn('بارگیری داده کامل مدیریت ناموفق بود:', e);
+                return false;
+            }
+        }
+
+        function applySeoMeta(item, type) {
+            if (!item) return;
+            const prefix = type === 'article' ? 'مقاله' : type === 'review' ? 'نقد' : 'پروژه';
+            const title = `${item.title || prefix} | دانیال میرزاباقری`;
+            const description = (item.subtitle || item.desc || item.intro || '').replace(/\s+/g, ' ').trim().slice(0, 160);
+            document.title = title;
+            let meta = document.querySelector('meta[name="description"]');
+            if (!meta) { meta = document.createElement('meta'); meta.name = 'description'; document.head.appendChild(meta); }
+            meta.content = description || 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
+            const og = (property, content) => {
+                let el = document.querySelector(`meta[property="${property}"]`);
+                if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el); }
+                el.content = content || '';
+            };
+            og('og:title', title);
+            og('og:description', meta.content);
+            og('og:type', 'article');
+            og('og:url', location.href);
+            if (item.cover) og('og:image', item.cover);
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
+            canonical.href = `${location.origin}${location.pathname}${location.search}`;
+        }
+
         async function loadAppData() {
             try {
                 await db.init();
-                let serverData = null;
+                let optimizedIndex = null;
                 try {
-                    const response = await fetch(DATA_URL + '?t=' + Date.now());
-                    if (response.ok) {
-                        serverData = await response.json();
-                        console.log('✅ داده‌ها از سرور بارگیری شدند.');
-                    }
-                } catch (e) { console.warn('⚠️ بارگیری از سرور ناموفق:', e); }
-                if (serverData && serverData.reviews && serverData.articles && serverData.portfolio && serverData.about) {
-                    data = serverData;
-                    await db.save(STORE_KEY, data);
+                    const response = await fetch(OPTIMIZED_INDEX_URL + '?t=' + Date.now());
+                    if (response.ok) optimizedIndex = await response.json();
+                } catch (e) { /* optimized files are optional */ }
+
+                if (optimizedIndex && optimizedIndex.articles && optimizedIndex.reviews && optimizedIndex.portfolio) {
+                    optimizedDataMode = true;
+                    adminDataLoaded = false;
+                    data = {
+                        heroBg: optimizedIndex.heroBg || '',
+                        heroBadge: optimizedIndex.heroBadge || '🎮 فعال در صنعت بازی',
+                        heroDescription: optimizedIndex.heroDescription || '',
+                        headerSubtitle: optimizedIndex.headerSubtitle || 'توسعه‌دهنده بازی | منتقد',
+                        about: optimizedIndex.about || { bio: '', social: [] },
+                        reviews: optimizedIndex.reviews,
+                        articles: optimizedIndex.articles,
+                        portfolio: optimizedIndex.portfolio
+                    };
+                    ensureItemSlugs();
+                    console.log('✅ حالت بهینه فعال شد: فهرست‌ها سبک هستند و محتوای کامل هنگام نیاز دریافت می‌شود.');
                 } else {
-                    const loaded = await db.load(STORE_KEY);
-                    if (loaded && loaded.reviews && loaded.articles && loaded.portfolio && loaded.about) {
-                        data = loaded;
-                    } else {
-                        data = JSON.parse(JSON.stringify(defaultData));
+                    optimizedDataMode = false;
+                    let serverData = null;
+                    try {
+                        const response = await fetch(DATA_URL + '?t=' + Date.now());
+                        if (response.ok) serverData = await response.json();
+                    } catch (e) { console.warn('⚠️ بارگیری از فایل داده اصلی ناموفق:', e); }
+                    if (serverData && serverData.reviews && serverData.articles && serverData.portfolio && serverData.about) {
+                        data = serverData;
                         await db.save(STORE_KEY, data);
+                    } else {
+                        const loaded = await db.load(STORE_KEY);
+                        if (loaded && loaded.reviews && loaded.articles && loaded.portfolio && loaded.about) data = loaded;
+                        else {
+                            data = JSON.parse(JSON.stringify(defaultData));
+                            await db.save(STORE_KEY, data);
+                        }
                     }
+                    migrateData();
+                    ensureItemSlugs();
                 }
-                migrateData();
             } catch (e) {
                 console.error('❌ خطا در بارگیری داده‌ها:', e);
                 data = JSON.parse(JSON.stringify(defaultData));
+                optimizedDataMode = false;
             }
             renderAll();
+            handleInitialDeepLink();
         }
 
         function migrateData() {
@@ -2179,6 +2585,8 @@
                         });
                     }
                     if (!r.gallery) r.gallery = [];
+                    if (r.draft === undefined) r.draft = false;
+                    if (!r.slug) r.slug = slugify(r.title || r.id);
                     return r;
                 });
             }
@@ -2206,10 +2614,17 @@
                     if (a.hasReferences === undefined) a.hasReferences = false;
                     if (a.referencesText === undefined) a.referencesText = '';
                     if (a.specialThanks === undefined) a.specialThanks = '';
+                    if (a.draft === undefined) a.draft = false;
+                    if (!a.slug) a.slug = slugify(a.title || a.id);
                     return a;
                 });
             }
             if (!data.portfolio) data.portfolio = [];
+            data.portfolio = data.portfolio.map(p => {
+                if (p.draft === undefined) p.draft = false;
+                if (!p.slug) p.slug = slugify(p.title || p.id);
+                return p;
+            });
             if (!data.about) data.about = { bio: '', social: [] };
             if (!data.heroBg) data.heroBg = '';
             if (!data.heroBadge) data.heroBadge = '🎮 فعال در صنعت بازی';
@@ -2651,6 +3066,7 @@
                 document.querySelectorAll(`#navWrapper_${articleId} .nav-item`).forEach(el => el.classList.remove('active'));
                 const navItem = document.querySelector(`#navWrapper_${articleId} .nav-item[data-target="${elementId}"]`);
                 if (navItem) navItem.classList.add('active');
+                if (history.replaceState) history.replaceState({ type: 'section', id: elementId }, '', `${location.pathname}${location.search}#${elementId}`);
             }
         }
 
@@ -2813,32 +3229,40 @@
             const c = document.getElementById('reviewsContainer');
             if (!c || !data) return;
             const sort = document.getElementById('reviewSort').value;
-            let list = [...data.reviews];
+            let list = [...publicReviewList()];
             if (sort === 'newest') list.sort((a,b) => new Date(b.date) - new Date(a.date) || b.id.localeCompare(a.id));
             else if (sort === 'oldest') list.sort((a,b) => new Date(a.date) - new Date(b.date) || a.id.localeCompare(b.id));
             else if (sort === 'highest') list.sort((a,b) => b.finalScore - a.finalScore);
             const start = 0, end = (reviewPage + 1) * PER_PAGE;
             const shown = list.slice(start, end);
-            c.innerHTML = shown.map(r => `
+            c.innerHTML = shown.map(r => {
+                const stats = calculateReviewStats(r);
+                r.wordCount = stats.wordCount;
+                r.readTime = stats.readTime;
+                return `
                 <div class="review-card" onclick="openDetail('review','${r.id}')">
                     <img src="${r.cover}" alt="${r.title}">
                     <div class="info">
                         <h3>${r.title}</h3>
                         ${r.subtitle ? `<span class="subtitle">${r.subtitle}</span>` : ''}
-                        <div class="meta">
+                        <div class="meta review-meta-row">
                             <span>${r.date}</span>
                             <span class="score-badge">★ ${r.finalScore}/100</span>
                         </div>
+                        <div class="review-stats">
+                            <span><i class="fas fa-file-alt"></i> ${stats.wordCount.toLocaleString()} کلمه</span>
+                            <span><i class="fas fa-clock"></i> ${stats.readTime} دقیقه مطالعه</span>
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
             document.getElementById('reviewsLoadMore').style.display = (list.length > end) ? 'block' : 'none';
         }
 
         function renderArticles(filter = 'all') {
             const c = document.getElementById('articlesContainer');
             if (!c || !data) return;
-            let list = [...data.articles];
+            let list = publicArticleList();
             if (filter !== 'all') list = list.filter(a => a.category === filter);
             const sort = document.getElementById('articleSort').value;
             if (sort === 'newest') list.sort((a,b) => new Date(b.date) - new Date(a.date) || b.id.localeCompare(a.id));
@@ -2873,7 +3297,7 @@
             const c = document.getElementById('portfolioContainer');
             if (!c || !data) return;
             const sort = document.getElementById('portfolioSort').value;
-            let list = [...data.portfolio];
+            let list = [...publicPortfolioList()];
             if (sort === 'newest') list.sort((a,b) => b.id.localeCompare(a.id));
             else list.sort((a,b) => a.id.localeCompare(b.id));
             const start = 0, end = (portfolioPage + 1) * PER_PAGE;
@@ -2908,9 +3332,9 @@
         function renderLatest() {
             const c = document.getElementById('latestContent');
             if (!c || !data) return;
-            const latestReviews = data.reviews.slice(0, 4);
-            const latestArticles = data.articles.slice(0, 4);
-            const latestPortfolio = data.portfolio.slice(0, 4);
+            const latestReviews = publicReviewList().slice(0, 4);
+            const latestArticles = publicArticleList().slice(0, 4);
+            const latestPortfolio = publicPortfolioList().slice(0, 4);
             let html = '';
             if (latestReviews.length) {
                 html += `<div class="latest-section"><h3 class="section-title">📝 آخرین نقدها</h3><div class="latest-grid">`;
@@ -2950,7 +3374,7 @@
             if (rList) {
                 rList.innerHTML = data.reviews.map(r => `
                     <div class="admin-item"><span>${r.title} (${r.finalScore}/100)</span>
-                    <div><button class="del-btn" onclick="editReview('${r.id}')"><i class="fas fa-edit"></i></button>
+                    <div><span style="font-size:0.7rem;color:${r.draft ? '#f0a500' : '#4caf50'};margin-left:8px;">${r.draft ? 'پیش‌نویس' : 'منتشر شده'}</span><button class="del-btn" onclick="editReview('${r.id}')"><i class="fas fa-edit"></i></button>
                     <button class="del-btn" onclick="deleteReview('${r.id}')"><i class="fas fa-trash"></i></button></div></div>
                 `).join('');
             }
@@ -2958,7 +3382,7 @@
             if (aList) {
                 aList.innerHTML = data.articles.map(a => `
                     <div class="admin-item"><span>${a.title} (${a.category === 'research' ? 'پژوهشی' : 'تحلیلی'})</span>
-                    <div><button class="del-btn" onclick="editArticle('${a.id}')"><i class="fas fa-edit"></i></button>
+                    <div><span style="font-size:0.7rem;color:${a.draft ? '#f0a500' : '#4caf50'};margin-left:8px;">${a.draft ? 'پیش‌نویس' : 'منتشر شده'}</span><button class="del-btn" onclick="editArticle('${a.id}')"><i class="fas fa-edit"></i></button>
                     <button class="del-btn" onclick="deleteArticle('${a.id}')"><i class="fas fa-trash"></i></button></div></div>
                 `).join('');
             }
@@ -2966,7 +3390,7 @@
             if (pList) {
                 pList.innerHTML = data.portfolio.map(p => `
                     <div class="admin-item"><span>${p.title}</span>
-                    <div><button class="del-btn" onclick="editPortfolio('${p.id}')"><i class="fas fa-edit"></i></button>
+                    <div><span style="font-size:0.7rem;color:${p.draft ? '#f0a500' : '#4caf50'};margin-left:8px;">${p.draft ? 'پیش‌نویس' : 'منتشر شده'}</span><button class="del-btn" onclick="editPortfolio('${p.id}')"><i class="fas fa-edit"></i></button>
                     <button class="del-btn" onclick="deletePortfolio('${p.id}')"><i class="fas fa-trash"></i></button></div></div>
                 `).join('');
             }
@@ -3000,15 +3424,24 @@
             const el = document.querySelector(`nav ul li a[data-page="${page}"]`);
             if (el) el.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (!document.getElementById('detail-page').classList.contains('active')) {
+                history.replaceState({}, '', location.pathname);
+                document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
+            }
         }
 
-        function openDetail(type, id) {
+        async function openDetail(type, id) {
             if (!data) return;
             let item = null;
             if (type === 'review') item = data.reviews.find(x => x.id === id);
             else if (type === 'article') item = data.articles.find(x => x.id === id);
             else if (type === 'portfolio') item = data.portfolio.find(x => x.id === id);
             if (!item) return;
+            if (item.draft) return;
+            if (optimizedDataMode && item.slug) {
+                try { item = await fetchOptimizedItem(type, item.slug); }
+                catch (e) { console.error(e); alert('❌ محتوای کامل این مورد بارگیری نشد.'); return; }
+            }
 
             lastPage = type + 's';
 
@@ -3023,12 +3456,15 @@
 
             if (type === 'review') {
                 const r = item;
+                const stats = calculateReviewStats(r);
+                r.wordCount = stats.wordCount;
+                r.readTime = stats.readTime;
                 html = `
                     <img src="${r.cover}" class="detail-cover" alt="${r.title}">
                     <div class="detail-header">
                         <h2>${r.title}</h2>
                         ${r.subtitle ? `<span class="subtitle">${r.subtitle}</span>` : ''}
-                        <div class="detail-meta">${r.date} | نمره نهایی: ${r.finalScore}/100</div>
+                        <div class="detail-meta">${r.date} | <i class="fas fa-file-alt"></i> ${r.wordCount.toLocaleString()} کلمه | <i class="fas fa-clock"></i> ${r.readTime} دقیقه مطالعه | نمره نهایی: ${r.finalScore}/100</div>
                     </div>
                     <div class="detail-body">`;
                 if (r.intro) html += `<div class="block"><h3>شناخت اولیه</h3><div class="block-text">${nl2br(r.intro)}</div></div>`;
@@ -3143,6 +3579,12 @@
             }
 
             c.innerHTML = html;
+            applySeoMeta(item, type);
+            if (item.slug) {
+                const deepUrl = `${location.pathname}?type=${encodeURIComponent(type)}&slug=${encodeURIComponent(item.slug)}`;
+                history.replaceState({type, slug:item.slug}, '', deepUrl);
+                applySeoMeta(item, type);
+            }
             document.getElementById('detailBackBtn').onclick = function() {
                 closeDetail();
             };
@@ -3156,11 +3598,25 @@
                     }
                 }, 300);
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const hashTarget = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+            if (hashTarget) setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+            else window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleInitialDeepLink() {
+            const params = new URLSearchParams(location.search);
+            const type = params.get('type');
+            const slug = params.get('slug');
+            if (!type || !slug || !data) return;
+            const list = type === 'article' ? data.articles : type === 'review' ? data.reviews : type === 'portfolio' ? data.portfolio : [];
+            const item = list.find(x => x.slug === slug);
+            if (item && !item.draft) openDetail(type, item.id);
         }
 
         function closeDetail() {
             document.getElementById('detail-page').classList.remove('active');
+            history.replaceState({}, '', location.pathname);
+            document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
             document.getElementById('latestSection').style.display = 'none';
             if (lastPage === 'reviews' || lastPage === 'review') {
@@ -3210,8 +3666,9 @@
                 } else {
                     bgContainer.innerHTML = '';
                     bgContainer.style.backgroundImage = `url(${url})`;
-                    bgContainer.style.backgroundSize = 'cover';
-                    bgContainer.style.backgroundPosition = 'center center';
+                    bgContainer.style.backgroundSize = '100% auto';
+                    bgContainer.style.backgroundPosition = 'center top';
+                    bgContainer.style.backgroundRepeat = 'no-repeat';
                 }
             } else {
                 bgContainer.innerHTML = '';
@@ -3229,10 +3686,16 @@
 
         async function saveHeroSettings() {
             if (!data) return;
+            await ensureAdminDataLoaded();
             data.heroBadge = document.getElementById('heroBadgeInput').value.trim() || '🎮 فعال در صنعت بازی';
             data.heroDescription = document.getElementById('heroDescInput').value.trim() || '';
             data.headerSubtitle = document.getElementById('headerSubInput').value.trim() || '';
-            data.heroBg = document.getElementById('heroBgInput').value.trim() || '';
+            const heroValue = document.getElementById('heroBgInput').value.trim() || '';
+            if (heroValue.startsWith('data:image/') || heroValue.startsWith('data:video/')) {
+                alert('لطفاً برای بک‌گراند از لینک مستقیم فایل استفاده کنید تا حجم JSON سایت زیاد نشود.');
+                return;
+            }
+            data.heroBg = heroValue;
             await saveAppData();
             updateHeroUI();
             alert('✅ تنظیمات صفحه اصلی ذخیره شد.');
@@ -3249,6 +3712,7 @@
 
         async function saveAbout() {
             if (!data) return;
+            await ensureAdminDataLoaded();
             data.about.bio = document.getElementById('adminBio').value;
             const lines = document.getElementById('adminSocial').value.split('\n').filter(l => l.trim());
             data.about.social = lines.map(l => {
@@ -3271,8 +3735,9 @@
             initGalleryManager('rGalleryManager', []);
         }
 
-        function editReview(id) {
+        async function editReview(id) {
             if (!data) return;
+            await ensureAdminDataLoaded();
             const r = data.reviews.find(x => x.id === id);
             if (!r) return;
             document.getElementById('reviewModalTitle').textContent = 'ویرایش نقد';
@@ -3282,6 +3747,8 @@
             document.getElementById('rCover').value = r.cover || '';
             document.getElementById('rDate').value = r.date || '';
             document.getElementById('rFinalScore').value = r.finalScore || 80;
+            document.getElementById('rDraft').checked = !!r.draft;
+            syncDraftToggle('rDraft');
             document.getElementById('rIntro').value = r.intro || '';
             document.getElementById('rConclusion').value = r.conclusion || '';
             document.getElementById('rSectionsList').innerHTML = '';
@@ -3292,11 +3759,14 @@
 
         function clearReviewForm() {
             ['rTitle','rSubtitle','rCover','rDate','rFinalScore','rIntro','rConclusion','rEditId'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('rDraft').checked = false;
+            syncDraftToggle('rDraft');
             document.getElementById('rSectionsList').innerHTML = '';
         }
 
         async function deleteReview(id) {
             if (!data) return;
+            await ensureAdminDataLoaded();
             requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این نقد را حذف کنید؟', async () => {
                 data.reviews = data.reviews.filter(r => r.id !== id);
                 await saveAppData();
@@ -3309,42 +3779,56 @@
             if (!list) return;
             const div = document.createElement('div');
             div.className = 'admin-section-item';
-            const i = list.children.length;
+            const uid = 'rsec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
             const t = s ? s.title : '';
             const tx = s ? s.text : '';
             const sc = (s && s.score !== undefined) ? s.score : 80;
             const pos = s && s.positives ? s.positives : [];
             const neg = s && s.negatives ? s.negatives : [];
             const gallery = s && s.gallery ? s.gallery : [];
+            const initiallyCollapsed = !!s;
+
             div.innerHTML = `
-                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
-                    <input placeholder="عنوان بخش" value="${t}" style="flex:2;min-width:100px;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;">
-                    <input placeholder="نمره (0-100)" value="${sc}" style="width:70px;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;" type="number" min="0" max="100">
+                <div class="section-header">
+                    <button type="button" class="collapse-btn${initiallyCollapsed ? ' collapsed' : ''}" onclick="event.stopPropagation(); toggleCollapse(this)">${initiallyCollapsed ? '▶' : '▼'}</button>
+                    <span style="color:#f0a500;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${t || '(بدون عنوان)'}</span>
                 </div>
-                <textarea rows="2" placeholder="متن بخش..." style="width:100%;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${tx}</textarea>
-                <div style="margin:4px 0;">
-                    <label style="font-size:0.75rem;color:#aaa;">نکات مثبت:</label>
-                    <div id="posList_${i}" style="margin:2px 0;"></div>
-                    <button onclick="addNoteField(this, 'pos')" style="background:rgba(76,175,80,0.12);color:#4caf50;border:1px solid rgba(76,175,80,0.15);border-radius:16px;padding:1px 10px;font-size:0.65rem;cursor:pointer;">➕ نکته</button>
-                </div>
-                <div style="margin:4px 0;">
-                    <label style="font-size:0.75rem;color:#aaa;">نکات منفی:</label>
-                    <div id="negList_${i}" style="margin:2px 0;"></div>
-                    <button onclick="addNoteField(this, 'neg')" style="background:rgba(233,69,96,0.12);color:#e94560;border:1px solid rgba(233,69,96,0.15);border-radius:16px;padding:1px 10px;font-size:0.65rem;cursor:pointer;">➖ نکته</button>
-                </div>
-                <label style="font-size:0.75rem;color:#aaa;display:block;margin-top:4px;">گالری تصاویر این بخش:</label>
-                <div id="secGallery_${i}" class="gallery-manager"></div>
-                <div class="sec-actions">
-                    <button class="del" onclick="requestDeleteElement(this.closest('.admin-section-item'), 'این بخش')"><i class="fas fa-trash"></i> حذف</button>
+                <div class="section-content${initiallyCollapsed ? ' collapsed' : ''}">
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
+                        <input placeholder="عنوان بخش" value="${t}" style="flex:2;min-width:100px;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;">
+                        <input placeholder="نمره (0-100)" value="${sc}" style="width:70px;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;" type="number" min="0" max="100">
+                    </div>
+                    <textarea rows="2" placeholder="متن بخش..." style="width:100%;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${tx}</textarea>
+                    <div style="margin:4px 0;">
+                        <label style="font-size:0.75rem;color:#aaa;">نکات مثبت:</label>
+                        <div id="posList_${uid}" style="margin:2px 0;"></div>
+                        <button type="button" onclick="addNoteField(this, 'pos')" style="background:rgba(76,175,80,0.12);color:#4caf50;border:1px solid rgba(76,175,80,0.15);border-radius:16px;padding:1px 10px;font-size:0.65rem;cursor:pointer;">➕ نکته</button>
+                    </div>
+                    <div style="margin:4px 0;">
+                        <label style="font-size:0.75rem;color:#aaa;">نکات منفی:</label>
+                        <div id="negList_${uid}" style="margin:2px 0;"></div>
+                        <button type="button" onclick="addNoteField(this, 'neg')" style="background:rgba(233,69,96,0.12);color:#e94560;border:1px solid rgba(233,69,96,0.15);border-radius:16px;padding:1px 10px;font-size:0.65rem;cursor:pointer;">➖ نکته</button>
+                    </div>
+                    <label style="font-size:0.75rem;color:#aaa;display:block;margin-top:4px;">گالری تصاویر این بخش:</label>
+                    <div id="secGallery_${uid}" class="gallery-manager"></div>
+                    <div class="sec-actions">
+                        <button type="button" class="del" onclick="requestDeleteElement(this.closest('.admin-section-item'), 'این بخش')"><i class="fas fa-trash"></i> حذف</button>
+                    </div>
                 </div>
             `;
             list.appendChild(div);
 
-            const galleryContainer = div.querySelector(`#secGallery_${i}`);
+            const titleInput = div.querySelector('.section-content input');
+            titleInput.addEventListener('input', function() {
+                const titleSpan = div.querySelector('.section-header span');
+                if (titleSpan) titleSpan.textContent = this.value.trim() || '(بدون عنوان)';
+            });
+
+            const galleryContainer = div.querySelector(`#secGallery_${uid}`);
             initGalleryManager(galleryContainer.id, gallery);
 
-            const posList = div.querySelector(`#posList_${i}`);
-            const negList = div.querySelector(`#negList_${i}`);
+            const posList = div.querySelector(`#posList_${uid}`);
+            const negList = div.querySelector(`#negList_${uid}`);
             pos.forEach(n => addNoteInput(posList, n));
             neg.forEach(n => addNoteInput(negList, n));
         }
@@ -3376,6 +3860,7 @@
 
         async function saveReviewFromForm() {
             if (!data) return;
+            await ensureAdminDataLoaded();
             const id = document.getElementById('rEditId').value || 'review' + Date.now();
             const title = document.getElementById('rTitle').value.trim();
             if (!title) { alert('عنوان بازی الزامی است.'); return; }
@@ -3402,6 +3887,8 @@
             const gallery = getGalleryItems('rGalleryManager');
             const newReview = {
                 id, title,
+                slug: slugify(title),
+                draft: document.getElementById('rDraft').checked,
                 subtitle: document.getElementById('rSubtitle').value.trim() || '',
                 cover,
                 date: document.getElementById('rDate').value.trim() || new Date().toLocaleDateString('fa-IR'),
@@ -3431,17 +3918,21 @@
             document.getElementById('articleModal').classList.add('active');
         }
 
-        function editArticle(id) {
+        async function editArticle(id) {
             if (!data) return;
+            await ensureAdminDataLoaded();
             const a = data.articles.find(x => x.id === id);
             if (!a) return;
             document.getElementById('articleModalTitle').textContent = 'ویرایش مقاله';
             document.getElementById('aEditId').value = id;
             document.getElementById('aTitle').value = a.title || '';
+            document.getElementById('aSlug').value = a.slug || slugify(a.title || id);
             document.getElementById('aSubtitle').value = a.subtitle || '';
             document.getElementById('aCover').value = a.cover || '';
             document.getElementById('aCategory').value = a.category || 'research';
             document.getElementById('aDate').value = a.date || '';
+            document.getElementById('aDraft').checked = !!a.draft;
+            syncDraftToggle('aDraft');
             document.getElementById('aNavigationEnabled').checked = a.navigationEnabled || false;
             document.getElementById('aHasFootnote').checked = a.hasFootnote || false;
             document.getElementById('aFootnoteText').value = a.footnoteText || '';
@@ -3458,8 +3949,10 @@
         }
 
         function clearArticleForm() {
-            ['aTitle','aSubtitle','aCover','aDate','aEditId'].forEach(id => document.getElementById(id).value = '');
+            ['aTitle','aSlug','aSubtitle','aCover','aDate','aEditId'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('aCategory').value = 'research';
+            document.getElementById('aDraft').checked = false;
+            syncDraftToggle('aDraft');
             document.getElementById('aNavigationEnabled').checked = false;
             document.getElementById('aHasFootnote').checked = false;
             document.getElementById('aFootnoteText').value = '';
@@ -3471,6 +3964,7 @@
 
         async function deleteArticle(id) {
             if (!data) return;
+            await ensureAdminDataLoaded();
             requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این مقاله را حذف کنید؟', async () => {
                 data.articles = data.articles.filter(a => a.id !== id);
                 await saveAppData();
@@ -3869,6 +4363,7 @@
 
         async function saveArticleFromForm() {
             if (!data) return;
+            await ensureAdminDataLoaded();
             const id = document.getElementById('aEditId').value || 'article' + Date.now();
             const title = document.getElementById('aTitle').value.trim();
             if (!title) { alert('عنوان مقاله الزامی است.'); return; }
@@ -3892,8 +4387,11 @@
             const wordCount = stats.wordCount;
             const readTime = stats.readTime;
             
+            const enteredSlug = document.getElementById('aSlug').value.trim();
             const newArticle = {
                 id, title,
+                slug: slugify(enteredSlug || title),
+                draft: document.getElementById('aDraft').checked,
                 subtitle: document.getElementById('aSubtitle').value.trim() || '',
                 cover,
                 category: document.getElementById('aCategory').value,
@@ -3931,13 +4429,16 @@
             initGalleryManager('pGalleryManager', []);
         }
 
-        function editPortfolio(id) {
+        async function editPortfolio(id) {
             if (!data) return;
+            await ensureAdminDataLoaded();
             const p = data.portfolio.find(x => x.id === id);
             if (!p) return;
             document.getElementById('portfolioModalTitle').textContent = 'ویرایش پروژه';
             document.getElementById('pEditId').value = id;
             document.getElementById('pTitle').value = p.title || '';
+            document.getElementById('pDraft').checked = !!p.draft;
+            syncDraftToggle('pDraft');
             document.getElementById('pDesc').value = p.desc || '';
             document.getElementById('pTags').value = (p.tags || []).join(', ');
             document.getElementById('pLinks').value = (p.links || []).join('\n');
@@ -3947,10 +4448,13 @@
 
         function clearPortfolioForm() {
             ['pTitle','pDesc','pTags','pLinks','pEditId'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('pDraft').checked = false;
+            syncDraftToggle('pDraft');
         }
 
         async function deletePortfolio(id) {
             if (!data) return;
+            await ensureAdminDataLoaded();
             requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این پروژه را حذف کنید؟', async () => {
                 data.portfolio = data.portfolio.filter(p => p.id !== id);
                 await saveAppData();
@@ -3960,12 +4464,15 @@
 
         async function savePortfolioFromForm() {
             if (!data) return;
+            await ensureAdminDataLoaded();
             const id = document.getElementById('pEditId').value || 'port' + Date.now();
             const title = document.getElementById('pTitle').value.trim();
             if (!title) { alert('عنوان پروژه الزامی است.'); return; }
             const gallery = getGalleryItems('pGalleryManager');
             const newP = {
                 id, title,
+                slug: slugify(title),
+                draft: document.getElementById('pDraft').checked,
                 desc: document.getElementById('pDesc').value.trim() || '',
                 tags: document.getElementById('pTags').value.split(',').map(s => s.trim()).filter(Boolean),
                 links: document.getElementById('pLinks').value.split('\n').map(s => s.trim()).filter(Boolean),
@@ -4021,6 +4528,8 @@
 
                     if (imported.reviews) {
                         imported.reviews = imported.reviews.map(r => {
+                            if (r.draft === undefined) r.draft = false;
+                            if (!r.slug) r.slug = slugify(r.title || r.id);
                             if (r.sections) {
                                 r.sections = r.sections.map(s => {
                                     if (s.images && Array.isArray(s.images) && s.images.length && typeof s.images[0] === 'string') {
@@ -4034,6 +4543,13 @@
                             }
                             if (!r.gallery) r.gallery = [];
                             return r;
+                        });
+                    }
+                    if (imported.portfolio) {
+                        imported.portfolio = imported.portfolio.map(p => {
+                            if (p.draft === undefined) p.draft = false;
+                            if (!p.slug) p.slug = slugify(p.title || p.id);
+                            return p;
                         });
                     }
                     if (imported.articles) {
@@ -4129,9 +4645,7 @@
             if (adminLoggedIn) {
                 document.getElementById('adminPanel').classList.toggle('active');
                 if (document.getElementById('adminPanel').classList.contains('active')) {
-                    loadAboutForm();
-                    loadHeroForm();
-                    renderAdminLists();
+                    ensureAdminDataLoaded().then(() => { loadAboutForm(); loadHeroForm(); renderAdminLists(); });
                 }
             } else {
                 document.getElementById('secretLogin').classList.add('active');
@@ -4169,8 +4683,12 @@
                         el.style.borderRadius = '6px';
                         el.style.border = '1px solid #333';
                         el.style.margin = '4px';
+                        preview.innerHTML = '';
                         preview.appendChild(el);
-                        document.getElementById('heroBgInput').value = dataUrl;
+                        // Do not store Base64 in site data. Upload the file to GitHub
+                        // (or another public host) first, then paste its URL in the field.
+                        document.getElementById('heroBgInput').value = '';
+                        alert('پیش‌نمایش آماده شد. برای ذخیره دائمی، فایل را روی GitHub آپلود کنید و لینک مستقیم آن را در کادر بک‌گراند وارد کنید.');
                     };
                     reader.readAsDataURL(f);
                 }
