@@ -142,7 +142,6 @@
         }
         .hero-shortcuts .shortcut-btn i { margin-left: 6px; }
 
-        /* ===== SCROLL DOWN ===== */
         .scroll-down {
             position: absolute;
             bottom: 30px;
@@ -162,13 +161,11 @@
             60% { transform: translateX(-50%) translateY(-6px); }
         }
 
-        /* ===== SECTIONS ===== */
         .section-title { font-size:2.2rem; font-weight:800; color:#fff; margin-bottom:36px; position:relative; display:inline-block; }
         .section-title::after { content:''; position:absolute; bottom:-10px; left:0; width:50px; height:4px; background:linear-gradient(90deg,#f0a500,#e94560); border-radius:4px; }
         .section { padding:70px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
         .section:last-of-type { border-bottom:none; }
 
-        /* ===== LISTS ===== */
         .reviews-grid, .articles-grid, .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -237,8 +234,15 @@
         }
         .article-card .info .category-badge.research { background: rgba(76,175,80,0.15); color: #4caf50; border-color: rgba(76,175,80,0.2); }
         .article-card .info .category-badge.analytical { background: rgba(33,150,243,0.15); color: #2196f3; border-color: rgba(33,150,243,0.2); }
+        .article-card .stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+            font-size: 0.75rem;
+            color: #888;
+        }
+        .article-card .stats i { margin-left: 4px; }
 
-        /* ===== FILTER BAR ===== */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -283,7 +287,6 @@
         }
         .filter-bar .sort-select option { background: #0a0a0f; color: #e0e0e0; }
 
-        /* ===== DETAIL PAGE ===== */
         #detail-page {
             display: none;
             padding: 110px 0 50px;
@@ -353,7 +356,6 @@
             margin-top: 6px;
         }
 
-        /* ===== GALLERY IN DETAIL ===== */
         .detail-body .block .section-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -376,7 +378,6 @@
             border-color: rgba(240,165,0,0.3);
         }
 
-        /* ===== DETAIL COVER ===== */
         .detail-cover {
             width: 100%;
             max-height: 400px;
@@ -386,7 +387,6 @@
             border: 1px solid rgba(255,255,255,0.06);
         }
 
-        /* ===== FINAL SCORE BOX (طلایی و درخشان) ===== */
         .final-score-box {
             margin: 40px 0 20px;
             padding: 32px 24px;
@@ -401,23 +401,29 @@
             color: #fff;
             text-shadow: 0 0 40px rgba(240,165,0,0.3);
         }
-        .final-score-box .score-number span {
-            color: #f0a500;
-        }
+        .final-score-box .score-number span { color: #f0a500; }
         .final-score-box .score-label {
             font-size: 0.95rem;
             color: #888;
             margin-top: 4px;
         }
 
-        /* ===== ARTICLE CONTENT ===== */
         .article-content {
             max-width: 850px;
             margin: 0 auto;
             padding: 20px 0;
         }
         .article-content h1 { font-size: 2.8rem; color: #fff; margin-bottom: 8px; }
-        .article-content .article-meta { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+        .article-content .article-meta {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            align-items: center;
+        }
+        .article-content .article-meta i { margin-left: 4px; }
         .article-content .article-cover {
             width: 100%;
             max-height: 400px;
@@ -425,6 +431,7 @@
             border-radius: 16px;
             margin-bottom: 30px;
             border: 1px solid rgba(255,255,255,0.06);
+            background: #0a0a0f;
         }
         .article-content .article-body {
             color: #e0e0e0;
@@ -435,14 +442,24 @@
             font-size: 1.8rem;
             color: #fff;
             margin: 30px 0 12px;
-            border-right: 4px solid #f0a500;
+            border-right: 4px solid #fff;
             padding-right: 16px;
         }
-        .article-content .article-body h3 {
-            font-size: 1.4rem;
-            color: #fff;
-            margin: 24px 0 10px;
-            color: #f0a500;
+        .article-content .article-body h2.level-1 {
+            color: #e94560;
+            border-right-color: #e94560;
+        }
+        .article-content .article-body h2.level-2 {
+            color: #d4738a;
+            border-right-color: #d4738a;
+        }
+        .article-content .article-body h2.level-3 {
+            color: #c08a9a;
+            border-right-color: #c08a9a;
+        }
+        .article-content .article-body h2.level-4 {
+            color: #a89a9a;
+            border-right-color: #a89a9a;
         }
         .article-content .article-body p {
             margin-bottom: 16px;
@@ -470,7 +487,123 @@
             border-color: rgba(240,165,0,0.3);
         }
 
-        /* ===== PORTFOLIO GALLERY ===== */
+        .article-quote {
+            background: rgba(240,165,0,0.05);
+            border: 1px solid rgba(240,165,0,0.12);
+            border-radius: 16px;
+            padding: 24px 20px 16px;
+            margin: 24px 0;
+            position: relative;
+            text-align: center;
+        }
+        .article-quote .speaker-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: -50px auto 8px;
+            border: 3px solid #f0a500;
+            box-shadow: 0 0 30px rgba(240,165,0,0.3);
+            background: #0a0a0f;
+        }
+        .article-quote .speaker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: auto;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .article-quote .speaker-image-placeholder {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: -50px auto 8px;
+            border: 3px solid #f0a500;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f0a500;
+            font-size: 1.5rem;
+        }
+        .article-quote .speaker-name {
+            color: #f0a500;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .article-quote .quote-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            font-style: italic;
+            color: #e0e0e0;
+            margin: 0 0 12px 0;
+            padding: 0 12px;
+            border-right: 3px solid rgba(240,165,0,0.2);
+            padding-right: 16px;
+        }
+        .article-quote .quote-translator {
+            color: #888;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            padding-top: 10px;
+            margin-top: 4px;
+        }
+
+        .article-footnote {
+            background: rgba(240,165,0,0.05);
+            border: 1px solid rgba(240,165,0,0.12);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 30px;
+        }
+        .article-footnote .footnote-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #f0a500;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .article-footnote .footnote-text {
+            font-style: italic;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .article-references {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .article-references h3 {
+            color: #f0a500;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .article-references .ref-text {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+        .article-references .special-thanks {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(240,165,0,0.1);
+            color: #f0a500;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .continuation-separator {
+            border: 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            margin: 16px 0;
+        }
+
         .portfolio-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -524,16 +657,34 @@
             transform: translateY(-2px);
         }
 
-        /* ===== ABOUT ===== */
         .about-content { display:flex; flex-wrap:wrap; gap:40px; align-items:flex-start; }
         .about-text { flex:2; min-width:260px; }
         .about-text .bio { color:#ccc; font-size:1rem; margin-bottom:20px; line-height:2; white-space:pre-wrap; }
         .about-social { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
-        .about-social a { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); padding:8px 16px; border-radius:40px; color:#ccc; border:1px solid rgba(255,255,255,0.06); transition:0.3s; font-size:0.85rem; }
-        .about-social a:hover { background:rgba(240,165,0,0.1); color:#f0a500; border-color:rgba(240,165,0,0.2); }
+        .about-social a {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            background:rgba(255,255,255,0.04);
+            padding:8px 16px;
+            border-radius:40px;
+            color:#ccc;
+            border:1px solid rgba(255,255,255,0.06);
+            transition:0.3s;
+            font-size:0.85rem;
+        }
+        .about-social a:hover {
+            background:rgba(240,165,0,0.1);
+            color:#f0a500;
+            border-color:rgba(240,165,0,0.2);
+        }
         .about-social a i { font-size:1rem; width:18px; }
+        .about-social a .placeholder-badge {
+            font-size:0.6rem;
+            color:#888;
+            margin-right:4px;
+        }
 
-        /* ===== LOAD MORE ===== */
         .load-more-btn {
             display: block;
             margin: 30px auto 0;
@@ -554,7 +705,6 @@
             border-color: #f0a500;
         }
 
-        /* ===== LATEST SECTION ===== */
         .latest-section {
             margin-top: 60px;
             padding-top: 40px;
@@ -599,7 +749,6 @@
             font-size: 0.7rem;
         }
 
-        /* ===== LIGHTBOX ===== */
         .lightbox {
             position: fixed;
             top: 0;
@@ -642,7 +791,7 @@
             opacity: 1;
             transform: rotate(90deg);
         }
-        .lightbox-prev, .lightbox-next {
+        .lightbox-prev {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -656,9 +805,26 @@
             transition: 0.3s;
             user-select: none;
             opacity: 0.7;
+            right: 20px;
+            left: auto;
         }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            transition: 0.3s;
+            user-select: none;
+            opacity: 0.7;
+            left: 20px;
+            right: auto;
+        }
         .lightbox-prev:hover, .lightbox-next:hover {
             background: rgba(240,165,0,0.3);
             opacity: 1;
@@ -702,7 +868,312 @@
             font-weight: 600;
         }
 
-        /* ===== ADMIN ===== */
+        .article-nav-wrapper {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            direction: ltr;
+        }
+        .article-nav-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(240,165,0,0.15);
+            border-radius: 8px 0 0 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #f0a500;
+            font-size: 1.2rem;
+            border: 1px solid rgba(240,165,0,0.1);
+            border-right: none;
+        }
+        .article-nav-trigger:hover {
+            background: rgba(240,165,0,0.3);
+            width: 48px;
+        }
+        .article-nav-panel {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            max-height: 80vh;
+            background: rgba(18,18,26,0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(240,165,0,0.15);
+            border-radius: 12px;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, right 0.25s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+        .article-nav-panel.open {
+            opacity: 1;
+            pointer-events: auto;
+            right: 48px;
+        }
+        .article-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 12px;
+            color: #f0a500;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .article-nav-header .nav-count {
+            color: #888;
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+        .article-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: calc(80vh - 80px);
+            overflow-y: auto;
+        }
+        .article-nav-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .article-nav-list::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.04);
+        }
+        .article-nav-list::-webkit-scrollbar-thumb {
+            background: #f0a500;
+            border-radius: 4px;
+        }
+        .article-nav-list .nav-item {
+            margin: 2px 0;
+        }
+        .article-nav-list .nav-item .nav-item-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #ccc;
+            font-size: 0.85rem;
+            border-right: 2px solid transparent;
+        }
+        .article-nav-list .nav-item .nav-item-content:hover {
+            background: rgba(240,165,0,0.08);
+            color: #fff;
+        }
+        .article-nav-list .nav-item.active .nav-item-content {
+            background: rgba(240,165,0,0.15);
+            border-right-color: #f0a500;
+        }
+        .article-nav-list .nav-item.level-0 .nav-item-title {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+        .article-nav-list .nav-item.level-1 .nav-item-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #cccccc;
+        }
+        .article-nav-list .nav-item.level-2 .nav-item-title {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #aaaaaa;
+        }
+        .article-nav-list .nav-item.level-3 .nav-item-title {
+            font-weight: 300;
+            font-size: 0.75rem;
+            color: #888888;
+        }
+        .article-nav-list .nav-toggle {
+            font-size: 0.6rem;
+            color: #888;
+            margin-right: 4px;
+            transition: 0.3s;
+            cursor: pointer;
+            padding: 2px 6px;
+            display: inline-block;
+        }
+        .article-nav-list .nav-toggle:hover {
+            color: #f0a500;
+        }
+        .article-nav-list .nav-sublist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+        }
+        .article-nav-list .nav-sublist.open {
+            display: block;
+        }
+        .article-nav-toggle-btn {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .article-nav-wrapper {
+                top: auto;
+                bottom: 80px;
+                right: 16px;
+                transform: none;
+            }
+            .article-nav-trigger { display: none; }
+            .article-nav-panel {
+                position: fixed;
+                right: -320px;
+                top: 0;
+                bottom: 0;
+                width: 300px;
+                max-height: 100vh;
+                border-radius: 0;
+                transform: none;
+                opacity: 1;
+                pointer-events: none;
+                transition: right 0.3s ease;
+                padding: 20px;
+                background: rgba(10,10,15,0.98);
+                border: none;
+                box-shadow: none;
+            }
+            .article-nav-panel.mobile-open {
+                right: 0;
+                pointer-events: auto;
+            }
+            .article-nav-toggle-btn {
+                display: flex;
+                position: fixed;
+                bottom: 20px;
+                right: 16px;
+                z-index: 101;
+                background: rgba(240,165,0,0.9);
+                color: #0a0a0f;
+                border: none;
+                border-radius: 50%;
+                width: 52px;
+                height: 52px;
+                font-size: 1.2rem;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 4px 20px rgba(240,165,0,0.3);
+                transition: 0.3s;
+            }
+            .article-nav-toggle-btn:hover { transform: scale(1.05); }
+            .article-nav-close-btn {
+                display: block;
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                background: none;
+                border: none;
+                color: #e94560;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+        @media (min-width: 769px) {
+            .article-nav-close-btn { display: none !important; }
+        }
+
+        .social-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: socialModalFadeIn 0.3s ease;
+        }
+        .social-modal.active { display: flex; }
+        .social-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            cursor: pointer;
+        }
+        .social-modal-box {
+            position: relative;
+            z-index: 10;
+            background: #12121a;
+            border: 1px solid rgba(240,165,0,0.15);
+            border-radius: 20px;
+            padding: 32px 28px 24px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            animation: socialModalScale 0.3s ease;
+        }
+        .social-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 1.8rem;
+            color: #888;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .social-modal-close:hover {
+            color: #e94560;
+            transform: rotate(90deg);
+        }
+        .social-modal-icon { margin-bottom: 12px; }
+        .social-modal-box h3 {
+            color: #f0a500;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .social-modal-box p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .social-modal-btn {
+            background: rgba(240,165,0,0.12);
+            border: 1px solid rgba(240,165,0,0.2);
+            border-radius: 30px;
+            padding: 8px 32px;
+            color: #f0a500;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .social-modal-btn:hover {
+            background: rgba(240,165,0,0.2);
+            transform: scale(1.02);
+        }
+        @keyframes socialModalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes socialModalScale {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         .admin-toggle {
             position: fixed;
             bottom: 24px;
@@ -741,7 +1212,6 @@
         .admin-box .admin-item { background:#0a0a0f; padding:10px 14px; border-radius:10px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(255,255,255,0.04); }
         .admin-box .admin-item .del-btn { color:#e94560; cursor:pointer; background:none; border:none; font-size:1rem; margin-left:6px; }
 
-        /* ===== GALLERY MANAGER ===== */
         .gallery-manager {
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 12px;
@@ -827,7 +1297,6 @@
             background: rgba(240,165,0,0.05);
         }
 
-        /* ===== EDITOR TOOLBAR ===== */
         .editor-toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -855,7 +1324,6 @@
         }
         .editor-toolbar .fullscreen-btn:hover { background: rgba(33,150,243,0.15); }
 
-        /* ===== SECRET LOGIN ===== */
         .secret-login {
             display: none;
             position: fixed;
@@ -906,20 +1374,23 @@
         .secret-login-box .btn:hover { background: #e94560; color: #fff; }
         .secret-login-box .hint { color: #666; font-size: 0.75rem; margin-top: 12px; }
 
-        /* ===== MODALS ===== */
+        /* ===== اصلاح مدال‌ها برای اسکرول درست ===== */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background: rgba(0,0,0,0.9);
             z-index: 3000;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             padding: 30px 16px;
         }
-        .modal-overlay.active { display: block; }
+        .modal-overlay.active {
+            display: block;
+        }
         .modal-box {
             max-width: 820px;
             margin: 0 auto;
@@ -927,6 +1398,7 @@
             border-radius: 24px;
             padding: 24px;
             border: 1px solid rgba(240,165,0,0.15);
+            overscroll-behavior: contain;
         }
         .modal-box .modal-header {
             display: flex;
@@ -959,7 +1431,10 @@
             font-family: inherit;
             font-size: 0.9rem;
         }
-        .modal-box textarea { min-height: 80px; resize: vertical; }
+        .modal-box textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
         .modal-box .btn-admin {
             margin-top: 8px;
             background: #f0a500;
@@ -975,13 +1450,43 @@
         }
         .modal-box .btn-admin:hover { background: #e94560; color: #fff; }
 
-        /* ===== SECTION FIELDS ===== */
         .admin-section-item {
             background: #1a1a2e;
             padding: 10px 12px;
             border-radius: 10px;
             margin-bottom: 10px;
             border-left: 3px solid #f0a500;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .admin-section-item .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .admin-section-item .section-header .collapse-btn {
+            background: none;
+            border: none;
+            color: #f0a500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: transform 0.2s;
+        }
+        .admin-section-item .section-header .collapse-btn.collapsed {
+            transform: rotate(-90deg);
+        }
+        .admin-section-item .section-content {
+            margin-top: 6px;
+            overflow: visible;
+            max-height: none;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+        .admin-section-item .section-content.collapsed {
+            display: none;
         }
         .admin-section-item .sec-actions {
             display: flex;
@@ -1021,8 +1526,30 @@
             color: #e94560;
             cursor: pointer;
         }
+        .admin-children-container {
+            margin-right: 20px;
+            border-right: 2px solid rgba(240,165,0,0.1);
+            padding-right: 10px;
+        }
+        .continuations-container {
+            margin-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 8px;
+        }
+        .continuations-container label {
+            font-size: 0.75rem;
+            color: #aaa;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .continuation-item {
+            background: #0a0a0f;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            border-right: 3px solid #2196f3;
+        }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .menu-toggle{display:block;}
             nav ul{display:none;flex-direction:column;gap:10px;background:#0a0a0f;padding:16px;border-radius:16px;position:absolute;top:60px;right:16px;width:180px;border:1px solid rgba(240,165,0,0.1);}
@@ -1077,8 +1604,8 @@
                 padding: 6px 14px;
                 top: 50%;
             }
-            .lightbox-prev { left: 10px; }
-            .lightbox-next { right: 10px; }
+            .lightbox-prev { right: 10px; left: auto; }
+            .lightbox-next { left: 10px; right: auto; }
             .lightbox-close {
                 top: 15px;
                 right: 20px;
@@ -1117,7 +1644,6 @@
     </style>
 </head>
 <body>
-    <!-- ===== HEADER ===== -->
     <header>
         <div class="container">
             <div class="logo">
@@ -1138,7 +1664,6 @@
     </header>
 
     <main>
-        <!-- ===== HOME ===== -->
         <section id="home" class="section hero">
             <div id="heroBgContainer" class="hero-bg" style="background-image: none;"></div>
             <div class="container">
@@ -1158,14 +1683,12 @@
             </div>
         </section>
 
-        <!-- ===== LATEST ===== -->
         <section id="latestSection" class="section" style="padding-top:20px;">
             <div class="container">
                 <div id="latestContent"></div>
             </div>
         </section>
 
-        <!-- ===== REVIEWS ===== -->
         <section id="reviews" class="section" style="display:none;">
             <div class="container">
                 <div class="filter-bar">
@@ -1181,7 +1704,6 @@
             </div>
         </section>
 
-        <!-- ===== ARTICLES ===== -->
         <section id="articles" class="section" style="display:none;">
             <div class="container">
                 <div class="filter-bar">
@@ -1201,7 +1723,6 @@
             </div>
         </section>
 
-        <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio" class="section" style="display:none;">
             <div class="container">
                 <div class="filter-bar">
@@ -1216,7 +1737,6 @@
             </div>
         </section>
 
-        <!-- ===== ABOUT ===== -->
         <section id="about" class="section" style="display:none;">
             <div class="container">
                 <h2 class="section-title">درباره من</h2>
@@ -1227,13 +1747,11 @@
         </section>
     </main>
 
-    <!-- ===== DETAIL PAGE ===== -->
     <div id="detail-page" class="container">
         <span class="detail-back" id="detailBackBtn"><i class="fas fa-arrow-right"></i> بازگشت</span>
         <div id="detailContent"></div>
     </div>
 
-    <!-- ===== LIGHTBOX ===== -->
     <div id="lightbox" class="lightbox" style="display:none;">
         <div class="lightbox-overlay" onclick="closeLightbox()"></div>
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -1246,7 +1764,19 @@
         <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
-    <!-- ===== SECRET LOGIN ===== -->
+    <div id="socialModal" class="social-modal" style="display:none;">
+        <div class="social-modal-overlay" onclick="closeSocialModal()"></div>
+        <div class="social-modal-box">
+            <span class="social-modal-close" onclick="closeSocialModal()">&times;</span>
+            <div class="social-modal-icon">
+                <i class="fas fa-link" style="font-size:2.5rem;color:#f0a500;"></i>
+            </div>
+            <h3 id="socialModalTitle">🔗 صفحه یا چنل ندارم</h3>
+            <p id="socialModalText">من فعلاً در این پلتفرم صفحه یا چنل ندارم</p>
+            <button class="social-modal-btn" onclick="closeSocialModal()">متوجه شدم</button>
+        </div>
+    </div>
+
     <div class="secret-login" id="secretLogin">
         <div class="secret-login-box">
             <h3>🔐 دسترسی مدیریت</h3>
@@ -1256,15 +1786,12 @@
         </div>
     </div>
 
-    <!-- ===== ADMIN TOGGLE ===== -->
     <button class="admin-toggle" id="adminToggle"><i class="fas fa-user-cog"></i> مدیریت</button>
 
-    <!-- ===== ADMIN PANEL ===== -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-box">
             <h2>پنل مدیریت <span class="close-admin" id="closeAdmin">&times;</span></h2>
             <div id="adminDashboard">
-                <!-- Hero -->
                 <h3 style="color:#fff;margin-top:8px;">🏠 تنظیمات صفحه اصلی</h3>
                 <label>تگ قرمز:</label>
                 <input type="text" id="heroBadgeInput">
@@ -1282,25 +1809,21 @@
                 <button class="btn-admin" onclick="saveHeroSettings()">💾 ذخیره تنظیمات</button>
                 <hr style="border-color:#1a1a2e;margin:16px 0;">
 
-                <!-- Reviews -->
                 <h3 style="color:#fff;">📝 نقدها</h3>
                 <div id="adminReviewList"></div>
                 <button class="btn-admin" onclick="openAddReviewModal()">➕ افزودن نقد</button>
                 <hr style="border-color:#1a1a2e;margin:16px 0;">
 
-                <!-- Articles -->
                 <h3 style="color:#fff;">📄 مقالات</h3>
                 <div id="adminArticleList"></div>
                 <button class="btn-admin" onclick="openAddArticleModal()">➕ افزودن مقاله</button>
                 <hr style="border-color:#1a1a2e;margin:16px 0;">
 
-                <!-- Portfolio -->
                 <h3 style="color:#fff;">📁 پورتفولیو</h3>
                 <div id="adminPortfolioList"></div>
                 <button class="btn-admin" onclick="openAddPortfolioModal()">➕ افزودن پروژه</button>
                 <hr style="border-color:#1a1a2e;margin:16px 0;">
 
-                <!-- About -->
                 <h3 style="color:#fff;">👤 درباره من</h3>
                 <label>بیوگرافی:</label>
                 <textarea id="adminBio" rows="4"></textarea>
@@ -1309,13 +1832,25 @@
                 <button class="btn-admin" onclick="saveAbout()">💾 ذخیره</button>
                 <hr style="border-color:#1a1a2e;margin:16px 0;">
 
-                <!-- Tools -->
                 <button class="btn-admin" onclick="exportData()">📤 خروجی JSON</button>
                 <button class="btn-admin" onclick="importFromServer()">📥 بارگیری از سرور</button>
                 <button class="btn-admin" onclick="document.getElementById('importFile').click()">📥 ورودی JSON (فایل)</button>
                 <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importData(event)">
                 <hr style="border-color:#1a1a2e;margin:16px 0;">
                 <button class="btn-admin danger" onclick="clearAllData()">🗑️ ریست داده‌ها</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== DELETE CONFIRMATION MODAL ===== -->
+    <div class="modal-overlay" id="deleteConfirmModal" style="z-index:5000;">
+        <div class="modal-box" style="max-width:420px;text-align:center;">
+            <div style="font-size:2.2rem;color:#e94560;margin-bottom:8px;">⚠️</div>
+            <h3 style="color:#fff;margin-bottom:10px;">تأیید حذف</h3>
+            <p id="deleteConfirmText" style="color:#bbb;line-height:1.8;margin-bottom:18px;">آیا مطمئن هستید که می‌خواهید این مورد را حذف کنید؟</p>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                <button type="button" class="btn-admin danger" id="deleteConfirmYes" style="width:auto;min-width:120px;margin-top:0;">بله، حذف شود</button>
+                <button type="button" class="btn-admin" id="deleteConfirmNo" style="width:auto;min-width:120px;margin-top:0;background:#333;color:#fff;">خیر، لغو</button>
             </div>
         </div>
     </div>
@@ -1362,8 +1897,32 @@
                 <option value="analytical">تحلیلی/تحقیقی</option>
             </select>
             <label>تاریخ:</label><input type="text" id="aDate" placeholder="مثلاً ۲۰ خرداد ۱۴۰۵">
+
+            <label style="display:flex;align-items:center;gap:8px;margin:10px 0;color:#aaa;font-size:0.9rem;">
+                <input type="checkbox" id="aNavigationEnabled" style="width:18px;height:18px;accent-color:#f0a500;cursor:pointer;">
+                فعال‌سازی ناوبری هوشمند (مشابه دیپ‌سیک)
+            </label>
+
+            <hr style="border-color:#1a1a2e;margin:16px 0;">
+            <label style="display:flex;align-items:center;gap:8px;color:#aaa;font-size:0.9rem;">
+                <input type="checkbox" id="aHasFootnote" style="width:18px;height:18px;accent-color:#f0a500;cursor:pointer;">
+                فعال‌سازی پینوشت (ابتدا مقاله)
+            </label>
+            <label>متن پینوشت:</label>
+            <textarea id="aFootnoteText" rows="3" placeholder="متن پینوشت یا هشدار اولیه..."></textarea>
+
+            <hr style="border-color:#1a1a2e;margin:16px 0;">
+            <label style="display:flex;align-items:center;gap:8px;color:#aaa;font-size:0.9rem;">
+                <input type="checkbox" id="aHasReferences" style="width:18px;height:18px;accent-color:#f0a500;cursor:pointer;">
+                فعال‌سازی منابع (انتهای مقاله)
+            </label>
+            <label>متن منابع:</label>
+            <textarea id="aReferencesText" rows="4" placeholder="منابع و مآخذ..."></textarea>
+            <label>تشکر ویژه:</label>
+            <textarea id="aSpecialThanks" rows="2" placeholder="تشکر ویژه از ..."></textarea>
+
             <div id="aSectionsContainer">
-                <h4 style="color:#aaa;margin:8px 0;">بخش‌های مقاله (هدر، پاراگراف، گالری)</h4>
+                <h4 style="color:#aaa;margin:8px 0;">بخش‌های مقاله (هدر، متن، گالری، نقل قول)</h4>
                 <div id="aSectionsList"></div>
                 <button class="btn-admin" onclick="addArticleSection('aSectionsList')" style="width:auto;padding:6px 16px;font-size:0.85rem;">➕ افزودن بخش</button>
             </div>
@@ -1393,7 +1952,7 @@
 
     <script>
         // ============================================================
-        // DATA MANAGER (IndexedDB)
+        // DATA MANAGER
         // ============================================================
         class DataManager {
             constructor(dbName = 'DaniyalSiteDB', storeName = 'siteData') {
@@ -1402,10 +1961,9 @@
                 this.db = null;
                 this.initialized = false;
             }
-
             async init() {
                 return new Promise((resolve, reject) => {
-                    const request = indexedDB.open(this.dbName, 2);
+                    const request = indexedDB.open(this.dbName, 5);
                     request.onupgradeneeded = (event) => {
                         const db = event.target.result;
                         if (!db.objectStoreNames.contains(this.storeName)) {
@@ -1423,7 +1981,6 @@
                     };
                 });
             }
-
             async save(key, value) {
                 if (!this.initialized) await this.init();
                 return new Promise((resolve, reject) => {
@@ -1434,7 +1991,6 @@
                     request.onerror = (e) => reject(e.target.error);
                 });
             }
-
             async load(key) {
                 if (!this.initialized) await this.init();
                 return new Promise((resolve, reject) => {
@@ -1447,7 +2003,6 @@
                     request.onerror = (e) => reject(e.target.error);
                 });
             }
-
             async delete(key) {
                 if (!this.initialized) await this.init();
                 return new Promise((resolve, reject) => {
@@ -1458,7 +2013,6 @@
                     request.onerror = (e) => reject(e.target.error);
                 });
             }
-
             async clear() {
                 if (!this.initialized) await this.init();
                 return new Promise((resolve, reject) => {
@@ -1471,9 +2025,6 @@
             }
         }
 
-        // ============================================================
-        // APP DATA
-        // ============================================================
         const ADMIN_PASS = 'dn@.84_98bg';
         const STORE_KEY = 'mainData';
         const DATA_URL = 'daniyal_site_data.json';
@@ -1504,9 +2055,15 @@
                 cover: 'https://via.placeholder.com/300x180/1a1a2e/4caf50?text=Article',
                 category: 'research',
                 date: '۲۰ خرداد ۱۴۰۵',
+                navigationEnabled: false,
+                hasFootnote: false,
+                footnoteText: '',
+                hasReferences: false,
+                referencesText: '',
+                specialThanks: '',
                 sections: [
-                    { title: 'مقدمه', text: 'بازی‌های ویدئویی مدت‌هاست که فراتر از یک سرگرمی ساده...', gallery: [] },
-                    { title: 'یافته‌های اصلی', text: 'پژوهش‌ها نشان می‌دهند که...', gallery: [] }
+                    { id: 'sec_1', title: 'مقدمه', text: 'بازی‌های ویدئویی مدت‌هاست که فراتر از یک سرگرمی ساده...', gallery: [], quotes: [], continuations: [], children: [] },
+                    { id: 'sec_2', title: 'یافته‌های اصلی', text: 'پژوهش‌ها نشان می‌دهند که...', gallery: [], quotes: [], continuations: [], children: [] }
                 ]
             }],
             portfolio: [{
@@ -1536,9 +2093,46 @@
             return text.replace(/\n/g, '<br>');
         }
 
-        // ============================================================
-        // LOAD/SAVE DATA
-        // ============================================================
+        function countWords(text) {
+            if (!text) return 0;
+            const plainText = String(text).replace(/<[^>]*>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
+            return plainText ? plainText.split(/\s+/).length : 0;
+        }
+
+        function collectArticleWordText(section, parts = []) {
+            if (!section) return parts;
+            if (section.title) parts.push(section.title);
+            if (section.text) parts.push(section.text);
+            (section.quotes || []).forEach(q => {
+                if (q.speakerName) parts.push(q.speakerName);
+                if (q.quoteText) parts.push(q.quoteText);
+                if (q.translator) parts.push(q.translator);
+            });
+            (section.continuations || []).forEach(cont => {
+                if (cont.text) parts.push(cont.text);
+                (cont.quotes || []).forEach(q => {
+                    if (q.speakerName) parts.push(q.speakerName);
+                    if (q.quoteText) parts.push(q.quoteText);
+                    if (q.translator) parts.push(q.translator);
+                });
+            });
+            (section.children || []).forEach(child => collectArticleWordText(child, parts));
+            return parts;
+        }
+
+        function calculateArticleStats(article) {
+            if (!article) return { wordCount: 0, readTime: 0 };
+            const parts = [];
+            (article.sections || []).forEach(section => collectArticleWordText(section, parts));
+            if (article.footnoteText) parts.push(article.footnoteText);
+            if (article.referencesText) parts.push(article.referencesText);
+            if (article.specialThanks) parts.push(article.specialThanks);
+            const wordCount = countWords(parts.join(' '));
+            // سرعت مطالعه‌ی استاندارد و ثابت: ۲۰۰ کلمه در دقیقه
+            const readTime = wordCount > 0 ? Math.max(1, Math.ceil(wordCount / 200)) : 0;
+            return { wordCount, readTime };
+        }
+
         async function loadAppData() {
             try {
                 await db.init();
@@ -1550,7 +2144,6 @@
                         console.log('✅ داده‌ها از سرور بارگیری شدند.');
                     }
                 } catch (e) { console.warn('⚠️ بارگیری از سرور ناموفق:', e); }
-
                 if (serverData && serverData.reviews && serverData.articles && serverData.portfolio && serverData.about) {
                     data = serverData;
                     await db.save(STORE_KEY, data);
@@ -1592,10 +2185,27 @@
             if (data.articles) {
                 data.articles = data.articles.map(a => {
                     if (a.content && !a.sections) {
-                        a.sections = [{ title: '', text: a.content, gallery: [] }];
+                        a.sections = [{ id: 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5), title: '', text: a.content, gallery: [], quotes: [], continuations: [], children: [] }];
                         delete a.content;
                     }
                     if (!a.sections) a.sections = [];
+                    a.sections = a.sections.map(s => {
+                        if (!s.id) s.id = 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                        if (!s.children) s.children = [];
+                        if (!s.quotes) s.quotes = [];
+                        if (!s.continuations) s.continuations = [];
+                        if (!s.gallery) s.gallery = [];
+                        if (s.gallery && s.gallery.length && typeof s.gallery[0] === 'string') {
+                            s.gallery = s.gallery.map(url => ({ url, caption: '' }));
+                        }
+                        return s;
+                    });
+                    if (a.navigationEnabled === undefined) a.navigationEnabled = false;
+                    if (a.hasFootnote === undefined) a.hasFootnote = false;
+                    if (a.footnoteText === undefined) a.footnoteText = '';
+                    if (a.hasReferences === undefined) a.hasReferences = false;
+                    if (a.referencesText === undefined) a.referencesText = '';
+                    if (a.specialThanks === undefined) a.specialThanks = '';
                     return a;
                 });
             }
@@ -1640,21 +2250,49 @@
         }
 
         async function clearAllData() {
-            if (!confirm('همه داده‌ها پاک می‌شوند. ادامه می‌دهی؟')) return;
-            try {
-                await db.clear();
-                data = JSON.parse(JSON.stringify(defaultData));
-                await db.save(STORE_KEY, data);
-                renderAll();
-                alert('✅ داده‌ها ریست شدند.');
-            } catch (e) {
-                alert('❌ خطا در ریست داده‌ها: ' + e.message);
-            }
+            requestDeleteConfirmation('همه داده‌های سایت پاک و به حالت اولیه برمی‌گردند. مطمئن هستید؟', async () => {
+                try {
+                    await db.clear();
+                    data = JSON.parse(JSON.stringify(defaultData));
+                    await db.save(STORE_KEY, data);
+                    renderAll();
+                    alert('✅ داده‌ها ریست شدند.');
+                } catch (e) {
+                    alert('❌ خطا در ریست داده‌ها: ' + e.message);
+                }
+            });
         }
 
-        // ============================================================
-        // GALLERY MANAGER
-        // ============================================================
+        let pendingDeleteAction = null;
+        function requestDeleteConfirmation(message, action) {
+            const modal = document.getElementById('deleteConfirmModal');
+            const text = document.getElementById('deleteConfirmText');
+            const yes = document.getElementById('deleteConfirmYes');
+            const no = document.getElementById('deleteConfirmNo');
+            if (!modal || !yes || !no) {
+                if (window.confirm(message)) action();
+                return;
+            }
+            pendingDeleteAction = action;
+            text.textContent = message || 'آیا مطمئن هستید که می‌خواهید این مورد را حذف کنید؟';
+            modal.classList.add('active');
+            yes.onclick = async function() {
+                const actionToRun = pendingDeleteAction;
+                pendingDeleteAction = null;
+                modal.classList.remove('active');
+                if (actionToRun) await actionToRun();
+            };
+            no.onclick = function() {
+                pendingDeleteAction = null;
+                modal.classList.remove('active');
+            };
+        }
+
+        function requestDeleteElement(element, label = 'این بخش') {
+            if (!element) return;
+            requestDeleteConfirmation(`آیا مطمئن هستید که می‌خواهید ${label} را حذف کنید؟`, () => element.remove());
+        }
+
         function createGalleryManager(containerId, initialItems = []) {
             const container = document.getElementById(containerId);
             if (!container) return null;
@@ -1693,10 +2331,12 @@
                     removeBtn.innerHTML = '×';
                     removeBtn.onclick = function(e) {
                         e.stopPropagation();
-                        const items = getItems();
-                        items.splice(index, 1);
-                        setItems(items);
-                        renderItems();
+                        requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این تصویر/ویدیو را از گالری حذف کنید؟', () => {
+                            const items = getItems();
+                            items.splice(index, 1);
+                            setItems(items);
+                            renderItems();
+                        });
                     };
                     div.appendChild(removeBtn);
                     itemsDiv.appendChild(div);
@@ -1778,7 +2418,7 @@
         }
 
         // ============================================================
-        // LIGHTBOX SYSTEM
+        // LIGHTBOX
         // ============================================================
         let lightboxItems = [];
         let currentIndex = 0;
@@ -1912,8 +2552,263 @@
         });
 
         // ============================================================
+        // SOCIAL MODAL
+        // ============================================================
+        function openSocialModal(platformName) {
+            const modal = document.getElementById('socialModal');
+            const title = document.getElementById('socialModalTitle');
+            const text = document.getElementById('socialModalText');
+            title.textContent = `🔗 ${platformName}`;
+            text.textContent = `من فعلاً در ${platformName} صفحه یا چنل ندارم`;
+            modal.classList.add('active');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSocialModal() {
+            const modal = document.getElementById('socialModal');
+            modal.classList.remove('active');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSocialModal();
+            }
+        });
+
+        // ============================================================
+        // NAVIGATION RECURSIVE
+        // ============================================================
+        let currentArticleId = null;
+
+        function buildNavTree(sections, level = 0) {
+            let html = '';
+            sections.forEach(section => {
+                if (section.title && section.title.trim() !== '') {
+                    const hasChildren = section.children && section.children.length > 0;
+                    const colors = ['#ffffff', '#cccccc', '#aaaaaa', '#888888'];
+                    const color = colors[Math.min(level, colors.length - 1)];
+                    html += `
+                        <li class="nav-item level-${level}" data-target="section-${section.id}">
+                            <div class="nav-item-content" onclick="scrollToSection('section-${section.id}', '${currentArticleId}')">
+                                <span class="nav-item-title" style="padding-right:${level * 12}px;color:${color};">${section.title}</span>
+                                ${hasChildren ? `<span class="nav-toggle" onclick="event.stopPropagation();toggleNavSubmenu(this)">▶</span>` : ''}
+                            </div>
+                            ${hasChildren ? `<ul class="nav-sublist">${buildNavTree(section.children, level + 1)}</ul>` : ''}
+                        </li>
+                    `;
+                }
+            });
+            return html;
+        }
+
+        function renderNavigation(sections, articleId) {
+            if (!sections || sections.length === 0) return '';
+            currentArticleId = articleId;
+            const totalItems = countNavItems(sections);
+            let html = `
+                <div class="article-nav-wrapper" id="navWrapper_${articleId}">
+                    <div class="article-nav-trigger" id="navTrigger_${articleId}">
+                        <i class="fas fa-list-ul"></i>
+                    </div>
+                    <div class="article-nav-panel" id="navPanel_${articleId}">
+                        <button class="article-nav-close-btn" onclick="document.getElementById('navPanel_${articleId}').classList.remove('mobile-open')">&times;</button>
+                        <div class="article-nav-header">
+                            <span>📑 فهرست مطالب</span>
+                            <span class="nav-count">${totalItems} بخش</span>
+                        </div>
+                        <ul class="article-nav-list">
+                            ${buildNavTree(sections, 0)}
+                        </ul>
+                    </div>
+                </div>
+                <button class="article-nav-toggle-btn" onclick="document.getElementById('navPanel_${articleId}').classList.toggle('mobile-open')">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+            `;
+            return html;
+        }
+
+        function countNavItems(sections) {
+            let count = 0;
+            sections.forEach(s => {
+                if (s.title && s.title.trim() !== '') count++;
+                if (s.children && s.children.length > 0) count += countNavItems(s.children);
+            });
+            return count;
+        }
+
+        function scrollToSection(elementId, articleId) {
+            const target = document.getElementById(elementId);
+            if (target) {
+                const navPanel = document.querySelector(`#navWrapper_${articleId} .article-nav-panel`);
+                if (navPanel && window.innerWidth <= 768) {
+                    navPanel.classList.remove('mobile-open');
+                }
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll(`#navWrapper_${articleId} .nav-item`).forEach(el => el.classList.remove('active'));
+                const navItem = document.querySelector(`#navWrapper_${articleId} .nav-item[data-target="${elementId}"]`);
+                if (navItem) navItem.classList.add('active');
+            }
+        }
+
+        function toggleNavSubmenu(toggleBtn) {
+            const parentLi = toggleBtn.closest('.nav-item');
+            const sublist = parentLi.querySelector('.nav-sublist');
+            if (sublist) {
+                const isOpen = sublist.classList.contains('open');
+                if (isOpen) {
+                    sublist.classList.remove('open');
+                    toggleBtn.textContent = '▶';
+                    toggleBtn.style.transform = 'rotate(0deg)';
+                } else {
+                    sublist.classList.add('open');
+                    toggleBtn.textContent = '▼';
+                    toggleBtn.style.transform = 'rotate(180deg)';
+                }
+            }
+        }
+
+        function setupScrollSpy(articleId) {
+            const navItems = document.querySelectorAll(`#navWrapper_${articleId} .nav-item`);
+            if (navItems.length === 0) return;
+            const sections = [];
+            navItems.forEach(item => {
+                const targetId = item.dataset.target;
+                const element = document.getElementById(targetId);
+                if (element) {
+                    sections.push({ element, item });
+                }
+            });
+            let lastActive = -1;
+            window.addEventListener('scroll', () => {
+                let activeIndex = -1;
+                for (let i = 0; i < sections.length; i++) {
+                    const rect = sections[i].element.getBoundingClientRect();
+                    if (rect.top <= 120) {
+                        activeIndex = i;
+                    }
+                }
+                if (activeIndex !== -1 && activeIndex !== lastActive && sections[activeIndex]) {
+                    navItems.forEach(el => el.classList.remove('active'));
+                    sections[activeIndex].item.classList.add('active');
+                    lastActive = activeIndex;
+                }
+            });
+        }
+
+        function initNavBehavior(articleId) {
+            const wrapper = document.getElementById(`navWrapper_${articleId}`);
+            const trigger = document.getElementById(`navTrigger_${articleId}`);
+            const panel = document.getElementById(`navPanel_${articleId}`);
+            if (!wrapper || !trigger || !panel) return;
+
+            let timeout = null;
+
+            function openPanel() {
+                clearTimeout(timeout);
+                panel.classList.add('open');
+            }
+
+            function closePanel() {
+                timeout = setTimeout(() => {
+                    panel.classList.remove('open');
+                }, 200);
+            }
+
+            trigger.addEventListener('mouseenter', openPanel);
+            trigger.addEventListener('mouseleave', closePanel);
+            panel.addEventListener('mouseenter', () => {
+                clearTimeout(timeout);
+                panel.classList.add('open');
+            });
+            panel.addEventListener('mouseleave', closePanel);
+        }
+
+        // ============================================================
         // RENDER FUNCTIONS
         // ============================================================
+        function renderSectionContent(section, level = 0) {
+            let html = '';
+            const colors = ['#ffffff', '#e94560', '#d4738a', '#c08a9a', '#a89a9a'];
+            const color = colors[Math.min(level, colors.length - 1)];
+            const fontSize = Math.max(2.2 - (level * 0.4), 1);
+            
+            if (section.title) {
+                const levelClass = level > 0 ? `level-${level}` : '';
+                html += `<h2 id="section-${section.id}" class="${levelClass}" style="font-size:${fontSize}rem;color:${color};border-right:4px solid ${color};padding-right:12px;margin-top:24px;">${section.title}</h2>`;
+            }
+            if (section.text) {
+                html += `<p>${nl2br(section.text)}</p>`;
+            }
+            
+            if (section.quotes && section.quotes.length) {
+                section.quotes.forEach(q => {
+                    html += `
+                        <div class="article-quote">
+                            ${q.speakerImage ? `
+                                <div class="speaker-image">
+                                    <img src="${q.speakerImage}" alt="${q.speakerName || 'گوینده'}">
+                                </div>
+                            ` : `
+                                <div class="speaker-image-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            `}
+                            ${q.speakerName ? `<div class="speaker-name">${q.speakerName}</div>` : ''}
+                            <div class="quote-text">"${q.quoteText}"</div>
+                            ${q.translator ? `<div class="quote-translator">${q.translator}</div>` : ''}
+                        </div>
+                    `;
+                });
+            }
+            
+            if (section.gallery && section.gallery.length) {
+                html += `<div class="article-gallery">${section.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
+            }
+
+            if (section.continuations && section.continuations.length) {
+                section.continuations.forEach(cont => {
+                    html += `<hr class="continuation-separator">`;
+                    if (cont.text) {
+                        html += `<p>${nl2br(cont.text)}</p>`;
+                    }
+                    if (cont.quotes && cont.quotes.length) {
+                        cont.quotes.forEach(q => {
+                            html += `
+                                <div class="article-quote">
+                                    ${q.speakerImage ? `
+                                        <div class="speaker-image">
+                                            <img src="${q.speakerImage}" alt="${q.speakerName || 'گوینده'}">
+                                        </div>
+                                    ` : `
+                                        <div class="speaker-image-placeholder">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    `}
+                                    ${q.speakerName ? `<div class="speaker-name">${q.speakerName}</div>` : ''}
+                                    <div class="quote-text">"${q.quoteText}"</div>
+                                    ${q.translator ? `<div class="quote-translator">${q.translator}</div>` : ''}
+                                </div>
+                            `;
+                        });
+                    }
+                    if (cont.gallery && cont.gallery.length) {
+                        html += `<div class="article-gallery">${cont.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
+                    }
+                });
+            }
+            
+            if (section.children && section.children.length) {
+                section.children.forEach(child => {
+                    html += renderSectionContent(child, level + 1);
+                });
+            }
+            return html;
+        }
+
         function renderReviews() {
             const c = document.getElementById('reviewsContainer');
             if (!c || !data) return;
@@ -1950,7 +2845,11 @@
             else list.sort((a,b) => new Date(a.date) - new Date(b.date) || a.id.localeCompare(b.id));
             const start = 0, end = (articlePage + 1) * PER_PAGE;
             const shown = list.slice(start, end);
-            c.innerHTML = shown.map(a => `
+            c.innerHTML = shown.map(a => {
+                const stats = calculateArticleStats(a);
+                a.wordCount = stats.wordCount;
+                a.readTime = stats.readTime;
+                return `
                 <div class="article-card" onclick="openDetail('article','${a.id}')">
                     <img src="${a.cover}" alt="${a.title}">
                     <div class="info">
@@ -1960,9 +2859,13 @@
                             <span>${a.date}</span>
                             <span class="category-badge ${a.category}">${a.category === 'research' ? 'پژوهشی' : 'تحلیلی/تحقیقی'}</span>
                         </div>
+                        <div class="stats">
+                            <span><i class="fas fa-file-alt"></i> ${(a.wordCount || 0).toLocaleString()} کلمه</span>
+                            <span><i class="fas fa-clock"></i> ${a.readTime || 0} دقیقه</span>
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
             document.getElementById('articlesLoadMore').style.display = (list.length > end) ? 'block' : 'none';
         }
 
@@ -1991,7 +2894,15 @@
         function renderAbout() {
             const c = document.getElementById('aboutText');
             if (!c || !data) return;
-            c.innerHTML = `<p class="bio">${nl2br(data.about.bio)}</p><div class="about-social">${data.about.social.map(s=>`<a href="${s.link}" target="_blank"><i class="fab ${s.icon}"></i> ${s.name}</a>`).join('')}</div>`;
+            c.innerHTML = `<p class="bio">${nl2br(data.about.bio)}</p><div class="about-social">${data.about.social.map(s => {
+                const isPlaceholder = s.link === '#';
+                return `<a href="${s.link}" target="${isPlaceholder ? '_self' : '_blank'}" 
+                        onclick="${isPlaceholder ? `event.preventDefault(); openSocialModal('${s.name}')` : ''}"
+                        style="${isPlaceholder ? 'opacity:0.6;' : ''}">
+                        <i class="fab ${s.icon}"></i> ${s.name}
+                        ${isPlaceholder ? '<span class="placeholder-badge">(در حال راه‌اندازی)</span>' : ''}
+                    </a>`;
+            }).join('')}</div>`;
         }
 
         function renderLatest() {
@@ -2071,9 +2982,6 @@
             renderAdminLists();
         }
 
-        // ============================================================
-        // NAVIGATION
-        // ============================================================
         function navigate(page) {
             lastPage = page;
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
@@ -2094,9 +3002,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ============================================================
-        // DETAIL VIEW (با کاور نقدها و باکس نمره‌ی طلایی)
-        // ============================================================
         function openDetail(type, id) {
             if (!data) return;
             let item = null;
@@ -2144,26 +3049,68 @@
                 html += `<div class="final-score-box"><div class="score-number">◈ <span>${r.finalScore}</span> ◈</div><div class="score-label">نمره نهایی از ۱۰۰</div></div></div>`;
             } else if (type === 'article') {
                 const a = item;
+                const stats = calculateArticleStats(a);
+                a.wordCount = stats.wordCount;
+                a.readTime = stats.readTime;
+                let articleBody = '';
+                if (a.sections && a.sections.length) {
+                    a.sections.forEach(section => {
+                        articleBody += renderSectionContent(section, 0);
+                    });
+                }
+
+                let footnoteHtml = '';
+                if (a.hasFootnote && a.footnoteText) {
+                    footnoteHtml = `
+                        <div class="article-footnote">
+                            <div class="footnote-header">
+                                <span>📌</span> پینوشت
+                            </div>
+                            <div class="footnote-text">${nl2br(a.footnoteText)}</div>
+                        </div>
+                    `;
+                }
+
+                let referencesHtml = '';
+                if (a.hasReferences && (a.referencesText || a.specialThanks)) {
+                    referencesHtml = `
+                        <div class="article-references">
+                            <h3>📚 منابع</h3>
+                            <div class="ref-text">${nl2br(a.referencesText)}</div>
+                            ${a.specialThanks ? `
+                                <div class="special-thanks">
+                                    🙏 تشکر ویژه: ${nl2br(a.specialThanks)}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+
                 html = `<div class="article-content">
                     ${a.cover ? `<img class="article-cover" src="${a.cover}" alt="${a.title}">` : ''}
                     <h1>${a.title}</h1>
                     ${a.subtitle ? `<p style="color:#f0a500;font-size:1.1rem;font-style:italic;">${a.subtitle}</p>` : ''}
-                    <div class="article-meta">${a.date} | <span class="category-badge ${a.category}">${a.category === 'research' ? 'پژوهشی' : 'تحلیلی/تحقیقی'}</span></div>
-                    <div class="article-body">`;
-                a.sections.forEach(s => {
-                    if (s.title) html += `<h2>${s.title}</h2>`;
-                    if (s.text) {
-                        if (s.text.trim().startsWith('<')) {
-                            html += s.text;
-                        } else {
-                            html += `<p>${s.text}</p>`;
-                        }
+                    <div class="article-meta">
+                        <span>${a.date}</span>
+                        <span class="category-badge ${a.category}">${a.category === 'research' ? 'پژوهشی' : 'تحلیلی/تحقیقی'}</span>
+                        <span><i class="fas fa-file-alt"></i> ${(a.wordCount || 0).toLocaleString()} کلمه</span>
+                        <span><i class="fas fa-clock"></i> ${a.readTime || 0} دقیقه مطالعه</span>
+                    </div>
+                    ${footnoteHtml}
+                    <div class="article-body">
+                        ${articleBody}
+                    </div>
+                    ${referencesHtml}
+                </div>`;
+
+                if (a.navigationEnabled) {
+                    try {
+                        const navHtml = renderNavigation(a.sections, a.id);
+                        if (navHtml) html += navHtml;
+                    } catch(e) {
+                        console.warn('Navigation render error:', e);
                     }
-                    if (s.gallery && s.gallery.length) {
-                        html += `<div class="article-gallery">${s.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
-                    }
-                });
-                html += `</div></div>`;
+                }
             } else if (type === 'portfolio') {
                 const p = item;
                 html = `<div class="detail-header">
@@ -2199,6 +3146,16 @@
             document.getElementById('detailBackBtn').onclick = function() {
                 closeDetail();
             };
+            if (type === 'article' && item.navigationEnabled) {
+                setTimeout(() => {
+                    try {
+                        setupScrollSpy(item.id);
+                        initNavBehavior(item.id);
+                    } catch(e) {
+                        console.warn('Nav init error:', e);
+                    }
+                }, 300);
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2340,10 +3297,11 @@
 
         async function deleteReview(id) {
             if (!data) return;
-            if (!confirm('حذف شود؟')) return;
-            data.reviews = data.reviews.filter(r => r.id !== id);
-            await saveAppData();
-            renderAll();
+            requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این نقد را حذف کنید؟', async () => {
+                data.reviews = data.reviews.filter(r => r.id !== id);
+                await saveAppData();
+                renderAll();
+            });
         }
 
         function addSectionField(listId, s = null) {
@@ -2377,7 +3335,7 @@
                 <label style="font-size:0.75rem;color:#aaa;display:block;margin-top:4px;">گالری تصاویر این بخش:</label>
                 <div id="secGallery_${i}" class="gallery-manager"></div>
                 <div class="sec-actions">
-                    <button class="del" onclick="this.closest('.admin-section-item').remove()"><i class="fas fa-trash"></i> حذف</button>
+                    <button class="del" onclick="requestDeleteElement(this.closest('.admin-section-item'), 'این بخش')"><i class="fas fa-trash"></i> حذف</button>
                 </div>
             `;
             list.appendChild(div);
@@ -2403,7 +3361,7 @@
             const del = document.createElement('button');
             del.innerHTML = '&times;';
             del.style = 'background:none;border:none;color:#e94560;cursor:pointer;font-size:1rem;';
-            del.onclick = function() { wrapper.remove(); };
+            del.onclick = function() { requestDeleteElement(wrapper, 'این نکته'); };
             wrapper.appendChild(del);
             container.appendChild(wrapper);
         }
@@ -2464,7 +3422,7 @@
         }
 
         // ============================================================
-        // ARTICLE CRUD
+        // ARTICLE CRUD (اصلاح‌شده با رفع باگ تکرار و اسکرول)
         // ============================================================
         function openAddArticleModal() {
             document.getElementById('articleModalTitle').textContent = 'افزودن مقاله جدید';
@@ -2484,36 +3442,157 @@
             document.getElementById('aCover').value = a.cover || '';
             document.getElementById('aCategory').value = a.category || 'research';
             document.getElementById('aDate').value = a.date || '';
+            document.getElementById('aNavigationEnabled').checked = a.navigationEnabled || false;
+            document.getElementById('aHasFootnote').checked = a.hasFootnote || false;
+            document.getElementById('aFootnoteText').value = a.footnoteText || '';
+            document.getElementById('aHasReferences').checked = a.hasReferences || false;
+            document.getElementById('aReferencesText').value = a.referencesText || '';
+            document.getElementById('aSpecialThanks').value = a.specialThanks || '';
             document.getElementById('aSectionsList').innerHTML = '';
-            if (a.sections) a.sections.forEach(s => addArticleSection('aSectionsList', s));
+            if (a.sections) {
+                a.sections.forEach(s => {
+                    addArticleSection('aSectionsList', s);
+                });
+            }
             document.getElementById('articleModal').classList.add('active');
         }
 
         function clearArticleForm() {
             ['aTitle','aSubtitle','aCover','aDate','aEditId'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('aCategory').value = 'research';
+            document.getElementById('aNavigationEnabled').checked = false;
+            document.getElementById('aHasFootnote').checked = false;
+            document.getElementById('aFootnoteText').value = '';
+            document.getElementById('aHasReferences').checked = false;
+            document.getElementById('aReferencesText').value = '';
+            document.getElementById('aSpecialThanks').value = '';
             document.getElementById('aSectionsList').innerHTML = '';
         }
 
         async function deleteArticle(id) {
             if (!data) return;
-            if (!confirm('حذف شود؟')) return;
-            data.articles = data.articles.filter(a => a.id !== id);
-            await saveAppData();
-            renderAll();
+            requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این مقاله را حذف کنید؟', async () => {
+                data.articles = data.articles.filter(a => a.id !== id);
+                await saveAppData();
+                renderAll();
+            });
         }
 
-        function addArticleSection(listId, s = null) {
-            const list = document.getElementById(listId);
-            if (!list) return;
+        // تابع افزودن continuation
+        function addContinuation(btn) {
+            const sectionDiv = btn.closest('.admin-section-item');
+            if (!sectionDiv) return;
+            const contentDiv = sectionDiv.querySelector(':scope > .section-content');
+            if (!contentDiv) return;
+            let container = contentDiv.querySelector(':scope > .continuations-container');
+            if (!container) {
+                const contDiv = document.createElement('div');
+                contDiv.className = 'continuations-container';
+                const label = document.createElement('label');
+                label.textContent = '📝 ادامه‌های این بخش (بدون هدر):';
+                contDiv.appendChild(label);
+                contentDiv.appendChild(contDiv);
+                container = contDiv;
+            }
+            const contId = 'cont_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            const contItem = document.createElement('div');
+            contItem.className = 'continuation-item';
+            contItem.innerHTML = `
+                <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
+                    <span style="color:#888;font-size:0.7rem;">ادامه</span>
+                    <button onclick="requestDeleteElement(this.closest('.continuation-item'), 'این ادامه‌ی بخش')" style="background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:4px;color:#e94560;padding:2px 8px;cursor:pointer;font-size:0.7rem;">🗑️ حذف</button>
+                </div>
+                <div class="editor-toolbar">
+                    <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'bold')"><b>B</b></button>
+                    <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'italic')"><i>I</i></button>
+                    <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'h2')">H2</button>
+                    <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'h3')">H3</button>
+                    <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'p')">P</button>
+                </div>
+                <textarea rows="3" placeholder="متن ادامه..." style="width:100%;background:#1a1a2e;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;margin-bottom:4px;"></textarea>
+                <label style="font-size:0.7rem;color:#aaa;display:block;margin-top:4px;">گالری تصاویر این ادامه:</label>
+                <div id="contGallery_${contId}" class="gallery-manager"></div>
+                <div style="margin-top:4px;border-top:1px solid rgba(255,255,255,0.06);padding-top:4px;">
+                    <label style="font-size:0.7rem;color:#aaa;">📝 نقل قول‌ها (اختیاری):</label>
+                    <div id="contQuotes_${contId}" style="margin:4px 0;"></div>
+                    <button onclick="addQuoteField(this.closest('.continuation-item'))" style="background:rgba(240,165,0,0.08);border:1px solid rgba(240,165,0,0.12);border-radius:4px;color:#f0a500;padding:2px 12px;cursor:pointer;font-size:0.7rem;margin-top:2px;">➕ افزودن نقل قول</button>
+                </div>
+            `;
+            container.appendChild(contItem);
+            const galleryContainer = contItem.querySelector(`#contGallery_${contId}`);
+            initGalleryManager(galleryContainer.id, []);
+        }
+
+        // تابع toggleCollapse برای جمع/باز کردن بخش‌ها
+        function toggleCollapse(btn) {
+            const section = btn.closest('.admin-section-item');
+            const content = section.querySelector('.section-content');
+            if (content) {
+                content.classList.toggle('collapsed');
+                btn.classList.toggle('collapsed');
+                btn.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+            }
+        }
+
+        // تابع addArticleSection با پشتیبانی از continuations و collapse و اصلاح id
+        function addArticleSection(listId, s = null, parentEl = null) {
+            let list;
+            if (listId && typeof listId === 'object' && listId.nodeType === 1) {
+                list = listId;
+            } else if (typeof listId === 'string') {
+                list = document.getElementById(listId);
+            } else if (parentEl && parentEl.tagName) {
+                list = parentEl;
+            }
+            if (!list) {
+                console.error('❌ لیست مورد نظر پیدا نشد:', listId);
+                return;
+            }
+
+            // اگر s وجود دارد از id آن استفاده کن؛ اگر ID از داده‌ی قدیمی تکراری بود،
+            // برای DOM یک ID یکتا بساز تا مدیر گالری/عناصر دیگر روی هم نیفتند.
+            let sectionId = s && s.id ? s.id : 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            if (document.getElementById(sectionId)) {
+                sectionId = 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 7);
+            }
+            const title = s ? s.title : '';
+            const text = s ? s.text : '';
+            const gallery = s && s.gallery ? s.gallery : [];
+            const quotes = s && s.quotes ? s.quotes : [];
+            const children = s && s.children ? s.children : [];
+            const continuations = s && s.continuations ? s.continuations : [];
+
             const div = document.createElement('div');
             div.className = 'admin-section-item';
-            const t = s ? s.title : '';
-            const tx = s ? s.text : '';
-            const gallery = s && s.gallery ? s.gallery : [];
-            div.innerHTML = `
+            div.dataset.sectionId = sectionId;
+
+            // هدر بخش با دکمه Collapse
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'section-header';
+            const collapseBtn = document.createElement('button');
+            collapseBtn.className = 'collapse-btn';
+            const initiallyCollapsed = !!s;
+            collapseBtn.textContent = initiallyCollapsed ? '▶' : '▼';
+            collapseBtn.type = 'button';
+            if (initiallyCollapsed) collapseBtn.classList.add('collapsed');
+            collapseBtn.onclick = function(e) {
+                e.stopPropagation();
+                toggleCollapse(this);
+            };
+            headerDiv.appendChild(collapseBtn);
+            const titleSpan = document.createElement('span');
+            titleSpan.style.color = '#f0a500';
+            titleSpan.style.fontWeight = 'bold';
+            titleSpan.textContent = title || '(بدون عنوان)';
+            headerDiv.appendChild(titleSpan);
+            div.appendChild(headerDiv);
+
+            // محتوای بخش
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'section-content' + (initiallyCollapsed ? ' collapsed' : '');
+            contentDiv.innerHTML = `
                 <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
-                    <input placeholder="عنوان (هدر)" value="${t}" style="flex:2;min-width:100px;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;">
+                    <input placeholder="عنوان (هدر)" value="${title}" style="flex:2;min-width:100px;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;">
                 </div>
                 <div class="editor-toolbar">
                     <button onclick="formatText(this.closest('.admin-section-item').querySelector('textarea'), 'bold')"><b>B</b></button>
@@ -2522,17 +3601,137 @@
                     <button onclick="formatText(this.closest('.admin-section-item').querySelector('textarea'), 'h3')">H3</button>
                     <button onclick="formatText(this.closest('.admin-section-item').querySelector('textarea'), 'p')">P</button>
                 </div>
-                <textarea rows="4" placeholder="متن پاراگراف..." style="width:100%;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${tx}</textarea>
+                <textarea rows="4" placeholder="متن پاراگراف..." style="width:100%;background:#0a0a0f;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${text}</textarea>
                 <label style="font-size:0.75rem;color:#aaa;display:block;margin-top:4px;">گالری تصاویر (اختیاری):</label>
-                <div id="secGallery_${Date.now()}_${Math.random()}" class="gallery-manager"></div>
-                <div class="sec-actions">
-                    <button class="del" onclick="this.closest('.admin-section-item').remove()"><i class="fas fa-trash"></i> حذف</button>
+                <div id="gallery_${sectionId}" class="gallery-manager"></div>
+                <div style="margin-top:8px;border-top:1px solid rgba(255,255,255,0.06);padding-top:8px;">
+                    <label style="font-size:0.75rem;color:#aaa;">📝 نقل قول‌ها (اختیاری):</label>
+                    <div id="quotes_${sectionId}" style="margin:4px 0;">
+                        ${quotes.map((q, idx) => `
+                            <div class="quote-item" style="background:#0a0a0f;padding:8px;border-radius:6px;margin-bottom:6px;border-right:3px solid #f0a500;">
+                                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
+                                    <input placeholder="نام گوینده" value="${q.speakerName}" style="flex:2;min-width:80px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                                    <input placeholder="لینک عکس گوینده (۱:۱)" value="${q.speakerImage}" style="flex:3;min-width:120px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                                </div>
+                                <textarea rows="2" placeholder="متن نقل قول..." style="width:100%;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${q.quoteText}</textarea>
+                                <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+                                    <input placeholder="مترجم / منبع" value="${q.translator}" style="flex:2;min-width:80px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                                    <button onclick="requestDeleteElement(this.closest('.quote-item'), 'این نقل قول')" style="background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:4px;color:#e94560;padding:2px 8px;cursor:pointer;font-size:0.7rem;">🗑️ حذف</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button onclick="addQuoteField(this.closest('.admin-section-item'))" style="background:rgba(240,165,0,0.08);border:1px solid rgba(240,165,0,0.12);border-radius:4px;color:#f0a500;padding:2px 12px;cursor:pointer;font-size:0.7rem;margin-top:2px;">➕ افزودن نقل قول</button>
                 </div>
+                <div class="sec-actions" style="margin-top:8px;">
+                    <button class="del" onclick="requestDeleteElement(this.closest('.admin-section-item'), 'این بخش')"><i class="fas fa-trash"></i> حذف</button>
+                    <button onclick="addSubSection(this)" style="background:rgba(76,175,80,0.1);color:#4caf50;">➕ زیربخش</button>
+                    <button onclick="addContinuation(this)" style="background:rgba(33,150,243,0.1);color:#2196f3;">➕ ادامه‌ی بخش</button>
+                </div>
+                ${children.length ? `<div class="admin-children-container"></div>` : ''}
+                ${continuations.length ? `<div class="continuations-container"><label>📝 ادامه‌های این بخش (بدون هدر):</label></div>` : ''}
             `;
+            div.appendChild(contentDiv);
+
             list.appendChild(div);
 
-            const galleryContainer = div.querySelector('[id^="secGallery_"]');
+            // راه‌اندازی گالری اصلی
+            const galleryContainer = div.querySelector(`#gallery_${sectionId}`);
             initGalleryManager(galleryContainer.id, gallery);
+
+            // افزودن continuations موجود
+            if (continuations.length) {
+                const contContainer = div.querySelector('.continuations-container');
+                if (contContainer) {
+                    continuations.forEach(cont => {
+                        const contId = 'cont_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                        const contItem = document.createElement('div');
+                        contItem.className = 'continuation-item';
+                        contItem.innerHTML = `
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
+                                <span style="color:#888;font-size:0.7rem;">ادامه</span>
+                                <button onclick="requestDeleteElement(this.closest('.continuation-item'), 'این ادامه‌ی بخش')" style="background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:4px;color:#e94560;padding:2px 8px;cursor:pointer;font-size:0.7rem;">🗑️ حذف</button>
+                            </div>
+                            <div class="editor-toolbar">
+                                <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'bold')"><b>B</b></button>
+                                <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'italic')"><i>I</i></button>
+                                <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'h2')">H2</button>
+                                <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'h3')">H3</button>
+                                <button onclick="formatText(this.closest('.continuation-item').querySelector('textarea'), 'p')">P</button>
+                            </div>
+                            <textarea rows="3" placeholder="متن ادامه..." style="width:100%;background:#1a1a2e;border:1px solid #333;border-radius:6px;padding:4px 8px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${cont.text || ''}</textarea>
+                            <label style="font-size:0.7rem;color:#aaa;display:block;margin-top:4px;">گالری تصاویر این ادامه:</label>
+                            <div id="contGallery_${contId}" class="gallery-manager"></div>
+                            <div style="margin-top:4px;border-top:1px solid rgba(255,255,255,0.06);padding-top:4px;">
+                                <label style="font-size:0.7rem;color:#aaa;">📝 نقل قول‌ها (اختیاری):</label>
+                                <div id="contQuotes_${contId}" style="margin:4px 0;">
+                                    ${(cont.quotes || []).map(q => `
+                                        <div class="quote-item" style="background:#0a0a0f;padding:8px;border-radius:6px;margin-bottom:6px;border-right:3px solid #f0a500;">
+                                            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
+                                                <input placeholder="نام گوینده" value="${q.speakerName}" style="flex:2;min-width:80px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                                                <input placeholder="لینک عکس گوینده (۱:۱)" value="${q.speakerImage}" style="flex:3;min-width:120px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                                            </div>
+                                            <textarea rows="2" placeholder="متن نقل قول..." style="width:100%;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.85rem;margin-bottom:4px;">${q.quoteText}</textarea>
+                                            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+                                                <input placeholder="مترجم / منبع" value="${q.translator}" style="flex:2;min-width:80px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                                                <button onclick="requestDeleteElement(this.closest('.quote-item'), 'این نقل قول')" style="background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:4px;color:#e94560;padding:2px 8px;cursor:pointer;font-size:0.7rem;">🗑️ حذف</button>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <button onclick="addQuoteField(this.closest('.continuation-item'))" style="background:rgba(240,165,0,0.08);border:1px solid rgba(240,165,0,0.12);border-radius:4px;color:#f0a500;padding:2px 12px;cursor:pointer;font-size:0.7rem;margin-top:2px;">➕ افزودن نقل قول</button>
+                            </div>
+                        `;
+                        contContainer.appendChild(contItem);
+                        const galleryContainer2 = contItem.querySelector(`#contGallery_${contId}`);
+                        initGalleryManager(galleryContainer2.id, cont.gallery || []);
+                    });
+                }
+            }
+
+            // افزودن زیربخش‌های موجود
+            if (children.length) {
+                const childrenContainer = div.querySelector('.admin-children-container');
+                if (childrenContainer) {
+                    children.forEach(child => {
+                        addArticleSection(childrenContainer, child);
+                    });
+                }
+            }
+        }
+
+        function addSubSection(btn) {
+            const parentSection = btn.closest('.admin-section-item');
+            if (!parentSection) return;
+            const contentDiv = parentSection.querySelector(':scope > .section-content');
+            if (!contentDiv) return;
+            let childrenContainer = contentDiv.querySelector(':scope > .admin-children-container');
+            if (!childrenContainer) {
+                childrenContainer = document.createElement('div');
+                childrenContainer.className = 'admin-children-container';
+                contentDiv.appendChild(childrenContainer);
+            }
+            addArticleSection(childrenContainer, null);
+        }
+
+        function addQuoteField(sectionDiv) {
+            const container = sectionDiv.querySelector('[id^="quotes_"]') || sectionDiv.querySelector('[id^="contQuotes_"]');
+            if (!container) return;
+            const quoteDiv = document.createElement('div');
+            quoteDiv.className = 'quote-item';
+            quoteDiv.style.cssText = 'background:#0a0a0f;padding:8px;border-radius:6px;margin-bottom:6px;border-right:3px solid #f0a500;';
+            quoteDiv.innerHTML = `
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
+                    <input placeholder="نام گوینده" style="flex:2;min-width:80px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                    <input placeholder="لینک عکس گوینده (۱:۱)" style="flex:3;min-width:120px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                </div>
+                <textarea rows="2" placeholder="متن نقل قول..." style="width:100%;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.85rem;margin-bottom:4px;"></textarea>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+                    <input placeholder="مترجم / منبع" style="flex:2;min-width:80px;background:#1a1a2e;border:1px solid #333;border-radius:4px;padding:3px 6px;color:#fff;font-size:0.8rem;">
+                    <button onclick="requestDeleteElement(this.closest('.quote-item'), 'این نقل قول')" style="background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:4px;color:#e94560;padding:2px 8px;cursor:pointer;font-size:0.7rem;">🗑️ حذف</button>
+                </div>
+            `;
+            container.appendChild(quoteDiv);
         }
 
         function formatText(textarea, command) {
@@ -2554,37 +3753,166 @@
             ta.selectionEnd = start + replacement.length;
         }
 
+        function hasSectionContent(section) {
+            return !!(
+                section &&
+                (
+                    (section.title && section.title.trim()) ||
+                    (section.text && section.text.trim()) ||
+                    (section.gallery && section.gallery.length) ||
+                    (section.quotes && section.quotes.length) ||
+                    (section.continuations && section.continuations.length) ||
+                    (section.children && section.children.length)
+                )
+            );
+        }
+
+        function extractSectionData(el) {
+            const inputs = el.querySelectorAll('input:not([class])');
+            const ta = el.querySelector('textarea');
+            const titleVal = inputs[0]?.value?.trim() || '';
+            const textVal = ta?.value?.trim() || '';
+            const galleryContainer = el.querySelector('[id^="gallery_"]');
+            const gallery = galleryContainer ? getGalleryItems(galleryContainer.id) : [];
+            const quotesContainer = el.querySelector('[id^="quotes_"]');
+            const quotes = [];
+            if (quotesContainer) {
+                const quoteItems = quotesContainer.querySelectorAll('.quote-item');
+                quoteItems.forEach(qItem => {
+                    const qInputs = qItem.querySelectorAll('input');
+                    const qTextarea = qItem.querySelector('textarea');
+                    const speakerName = qInputs[0]?.value?.trim() || '';
+                    const speakerImage = qInputs[1]?.value?.trim() || '';
+                    const quoteText = qTextarea?.value?.trim() || '';
+                    const translator = qInputs[2]?.value?.trim() || '';
+                    if (speakerName || quoteText) {
+                        quotes.push({
+                            id: 'quote_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+                            speakerName,
+                            speakerImage,
+                            quoteText,
+                            translator
+                        });
+                    }
+                });
+            }
+
+            // استخراج continuations
+            const continuationsContainer = el.querySelector(':scope > .section-content > .continuations-container');
+            const continuations = [];
+            if (continuationsContainer) {
+                const contItems = continuationsContainer.querySelectorAll('.continuation-item');
+                contItems.forEach(contItem => {
+                    const cta = contItem.querySelector('textarea');
+                    const ctext = cta?.value?.trim() || '';
+                    const cgalleryContainer = contItem.querySelector('[id^="contGallery_"]');
+                    const cgallery = cgalleryContainer ? getGalleryItems(cgalleryContainer.id) : [];
+                    const cquotesContainer = contItem.querySelector('[id^="contQuotes_"]');
+                    const cquotes = [];
+                    if (cquotesContainer) {
+                        const cquoteItems = cquotesContainer.querySelectorAll('.quote-item');
+                        cquoteItems.forEach(qItem => {
+                            const qInputs = qItem.querySelectorAll('input');
+                            const qTextarea = qItem.querySelector('textarea');
+                            const speakerName = qInputs[0]?.value?.trim() || '';
+                            const speakerImage = qInputs[1]?.value?.trim() || '';
+                            const quoteText = qTextarea?.value?.trim() || '';
+                            const translator = qInputs[2]?.value?.trim() || '';
+                            if (speakerName || quoteText) {
+                                cquotes.push({
+                                    id: 'quote_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+                                    speakerName,
+                                    speakerImage,
+                                    quoteText,
+                                    translator
+                                });
+                            }
+                        });
+                    }
+                    if (ctext || cgallery.length > 0 || cquotes.length > 0) {
+                        continuations.push({
+                            id: 'cont_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+                            text: ctext,
+                            gallery: cgallery,
+                            quotes: cquotes
+                        });
+                    }
+                });
+            }
+
+            const childrenContainer = el.querySelector(':scope > .section-content > .admin-children-container');
+            const children = [];
+            if (childrenContainer) {
+                // فقط فرزندان مستقیم استخراج می‌شوند؛ querySelectorAll قبلی تمام نسل‌ها را
+                // دوباره برمی‌گرداند و باعث تکثیر نوه‌ها در زمان ذخیره می‌شد.
+                Array.from(childrenContainer.children)
+                    .filter(childEl => childEl.classList.contains('admin-section-item'))
+                    .forEach(childEl => {
+                        const childData = extractSectionData(childEl);
+                        if (hasSectionContent(childData)) {
+                            children.push(childData);
+                        }
+                    });
+            }
+            // استفاده از id موجود در el.dataset.sectionId
+            const id = el.dataset.sectionId || 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            return {
+                id: id,
+                title: titleVal,
+                text: textVal,
+                gallery,
+                quotes,
+                continuations,
+                children
+            };
+        }
+
         async function saveArticleFromForm() {
             if (!data) return;
             const id = document.getElementById('aEditId').value || 'article' + Date.now();
             const title = document.getElementById('aTitle').value.trim();
             if (!title) { alert('عنوان مقاله الزامی است.'); return; }
+            
             const sections = [];
             const items = document.getElementById('aSectionsList').children;
             for (let i = 0; i < items.length; i++) {
                 const el = items[i];
-                const input = el.querySelector('input');
-                const ta = el.querySelector('textarea');
-                const titleVal = input?.value?.trim() || '';
-                const textVal = ta?.value?.trim() || '';
-                if (!titleVal && !textVal) continue;
-                const galleryContainer = el.querySelector('[id^="secGallery_"]');
-                const gallery = galleryContainer ? getGalleryItems(galleryContainer.id) : [];
-                sections.push({ title: titleVal, text: textVal, gallery });
+                const sectionData = extractSectionData(el);
+                // عنوان می‌تواند خالی باشد؛ هر سکشنی که هر نوع محتوای معتبر دارد نگه داشته می‌شود.
+                if (hasSectionContent(sectionData)) {
+                    sections.push(sectionData);
+                }
             }
             if (sections.length === 0) { alert('حداقل یک بخش با محتوا اضافه کنید.'); return; }
+            
             const cover = document.getElementById('aCover').value.trim() || 'https://via.placeholder.com/300x180/1a1a2e/f0a500?text=' + encodeURIComponent(title);
+            
+            const statsArticle = { sections, footnoteText: document.getElementById('aFootnoteText').value.trim(), referencesText: document.getElementById('aReferencesText').value.trim(), specialThanks: document.getElementById('aSpecialThanks').value.trim() };
+            const stats = calculateArticleStats(statsArticle);
+            const wordCount = stats.wordCount;
+            const readTime = stats.readTime;
+            
             const newArticle = {
                 id, title,
                 subtitle: document.getElementById('aSubtitle').value.trim() || '',
                 cover,
                 category: document.getElementById('aCategory').value,
                 date: document.getElementById('aDate').value.trim() || new Date().toLocaleDateString('fa-IR'),
-                sections
+                navigationEnabled: document.getElementById('aNavigationEnabled').checked,
+                hasFootnote: document.getElementById('aHasFootnote').checked,
+                footnoteText: document.getElementById('aFootnoteText').value.trim(),
+                hasReferences: document.getElementById('aHasReferences').checked,
+                referencesText: document.getElementById('aReferencesText').value.trim(),
+                specialThanks: document.getElementById('aSpecialThanks').value.trim(),
+                sections,
+                wordCount,
+                readTime
             };
+            
             const existing = data.articles.findIndex(a => a.id === id);
             if (existing >= 0) data.articles[existing] = newArticle;
             else data.articles.push(newArticle);
+            
             if (await saveAppData()) {
                 renderAll();
                 closeModal('articleModal');
@@ -2623,10 +3951,11 @@
 
         async function deletePortfolio(id) {
             if (!data) return;
-            if (!confirm('حذف شود؟')) return;
-            data.portfolio = data.portfolio.filter(p => p.id !== id);
-            await saveAppData();
-            renderAll();
+            requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این پروژه را حذف کنید؟', async () => {
+                data.portfolio = data.portfolio.filter(p => p.id !== id);
+                await saveAppData();
+                renderAll();
+            });
         }
 
         async function savePortfolioFromForm() {
@@ -2710,10 +4039,27 @@
                     if (imported.articles) {
                         imported.articles = imported.articles.map(a => {
                             if (a.content && !a.sections) {
-                                a.sections = [{ title: '', text: a.content, gallery: [] }];
+                                a.sections = [{ id: 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5), title: '', text: a.content, gallery: [], quotes: [], continuations: [], children: [] }];
                                 delete a.content;
                             }
                             if (!a.sections) a.sections = [];
+                            a.sections = a.sections.map(s => {
+                                if (!s.id) s.id = 'sec_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                                if (!s.children) s.children = [];
+                                if (!s.quotes) s.quotes = [];
+                                if (!s.continuations) s.continuations = [];
+                                if (!s.gallery) s.gallery = [];
+                                if (s.gallery && s.gallery.length && typeof s.gallery[0] === 'string') {
+                                    s.gallery = s.gallery.map(url => ({ url, caption: '' }));
+                                }
+                                return s;
+                            });
+                            if (a.navigationEnabled === undefined) a.navigationEnabled = false;
+                            if (a.hasFootnote === undefined) a.hasFootnote = false;
+                            if (a.footnoteText === undefined) a.footnoteText = '';
+                            if (a.hasReferences === undefined) a.hasReferences = false;
+                            if (a.referencesText === undefined) a.referencesText = '';
+                            if (a.specialThanks === undefined) a.specialThanks = '';
                             return a;
                         });
                     }
@@ -2779,9 +4125,6 @@
             }
         })();
 
-        // ============================================================
-        // ADMIN TOGGLE
-        // ============================================================
         document.getElementById('adminToggle').addEventListener('click', function() {
             if (adminLoggedIn) {
                 document.getElementById('adminPanel').classList.toggle('active');
@@ -2802,9 +4145,6 @@
             if (e.target === this) this.classList.remove('active');
         });
 
-        // ============================================================
-        // DROP ZONE FOR HERO
-        // ============================================================
         (function setupHeroDrop() {
             const zone = document.getElementById('heroDropZone');
             if (!zone) return;
@@ -2837,9 +4177,6 @@
             });
         })();
 
-        // ============================================================
-        // NAVIGATION EVENTS
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('nav ul li a').forEach(a => {
                 a.addEventListener('click', function(e) {
