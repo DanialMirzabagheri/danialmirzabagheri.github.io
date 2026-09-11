@@ -3422,6 +3422,8 @@
         }
 
         function navigate(page) {
+            // خروج از هر مطلب/صفحه جزئیات باید URL را به ریشه اصلی سایت برگرداند.
+            history.replaceState({}, '', '/');
             lastPage = page;
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
             document.getElementById('detail-page').classList.remove('active');
@@ -3439,12 +3441,7 @@
             const el = document.querySelector(`nav ul li a[data-page="${page}"]`);
             if (el) el.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (!document.getElementById('detail-page').classList.contains('active')) {
-                // همیشه هنگام خروج از صفحه جزئیات به ریشه سایت برگرد؛
-                // location.pathname ممکن است هنوز /articles/slug/ یا /reviews/slug/ باشد.
-                history.replaceState({}, '', '/');
-                document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
-            }
+            document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
         }
 
         async function openDetail(type, id) {
@@ -3642,6 +3639,7 @@
         }
 
         function closeDetail() {
+            history.replaceState({}, '', '/');
             document.getElementById('detail-page').classList.remove('active');
             // navigate() مسیر را به ریشه سایت برمی‌گرداند.
             document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
