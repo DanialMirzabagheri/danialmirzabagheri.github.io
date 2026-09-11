@@ -2271,6 +2271,146 @@
             .hero .container { min-height: calc(100dvh - 62px); display:flex; align-items:center; }
         }
 
+
+        /* ============================================================
+           MOBILE REFINEMENT / V13
+           Mobile only. Desktop (769px+) is intentionally untouched.
+        ============================================================ */
+        @media (max-width: 768px) {
+            :root { --mobile-gutter: 24px; }
+
+            /* Header: logo left, menu right, compact dropdown directly under the menu. */
+            header { z-index: 5000 !important; padding: 7px 0 !important; }
+            header .container {
+                min-height: 48px !important;
+                padding-left: 18px !important;
+                padding-right: 18px !important;
+                direction:ltr !important;
+            }
+            header .logo { order:1 !important; text-align:left !important; direction:rtl !important; }
+            header .menu-toggle { order:3 !important; flex:0 0 44px; width:44px !important; height:44px !important; }
+            header nav { order:2 !important; }
+            nav ul {
+                top: calc(100% + 7px) !important;
+                right: 0 !important;
+                left: auto !important;
+                width: 188px !important;
+                max-width: calc(100vw - 36px) !important;
+                padding: 7px !important;
+                gap: 2px !important;
+                border-radius: 13px !important;
+                transform-origin: top right;
+                box-shadow: 0 14px 38px rgba(0,0,0,.5) !important;
+                z-index: 5001 !important;
+            }
+            nav ul li a {
+                min-height: 42px !important;
+                padding: 7px 11px !important;
+                justify-content:flex-start !important;
+                text-align:right !important;
+                font-size:.84rem !important;
+            }
+
+            /* Every public mobile page gets a safe header clearance. */
+            main, #detail-page { padding-top: 0 !important; }
+            #detail-page { padding-top: 108px !important; }
+            #detail-page > .container { padding-left: 10px !important; padding-right: 10px !important; }
+            .section { padding-top: 88px !important; }
+            .section:first-child { padding-top: 92px !important; }
+            .filter-bar { margin-top: 12px !important; }
+
+            /* Narrow centered reading column: no text/card touches the phone edge. */
+            .container { padding-left:24px !important; padding-right:24px !important; }
+            .article-content,
+            .detail-body,
+            .detail-header,
+            .about-content,
+            .portfolio-links { width: min(100%, 680px) !important; margin-left:auto !important; margin-right:auto !important; }
+            .article-content { padding-left:8px !important; padding-right:8px !important; }
+            .detail-body .block {
+                margin-left:4px !important; margin-right:4px !important;
+                padding-left:17px !important; padding-right:17px !important;
+            }
+            .article-content .article-body p,
+            .article-content .article-body h2,
+            .article-content .article-body h3,
+            .article-content .article-body h4 { margin-left:5px !important; margin-right:5px !important; }
+            .article-content .article-body p { overflow-wrap:anywhere !important; }
+
+            /* Cover images are contained, centered, and never oversized at first paint. */
+            .article-content .article-cover,
+            .detail-cover {
+                width:calc(100% - 14px) !important;
+                max-width:100% !important;
+                height:auto !important;
+                aspect-ratio:16/9 !important;
+                object-fit:cover !important;
+                margin:0 auto 22px !important;
+                border-radius:15px !important;
+            }
+
+            /* Article navigation: trigger and drawer are one attached sliding unit. */
+            .article-nav-wrapper {
+                position:fixed !important;
+                inset:0 !important;
+                z-index:6000 !important;
+                pointer-events:none !important;
+            }
+            .article-nav-wrapper::before {
+                z-index:0 !important;
+                background:rgba(0,0,0,.52) !important;
+            }
+            .article-nav-panel {
+                top:0 !important; bottom:0 !important; right:calc(-1 * min(88vw,360px)) !important; left:auto !important;
+                width:min(88vw,360px) !important; height:100dvh !important;
+                padding:18px 14px calc(22px + env(safe-area-inset-bottom)) !important;
+                visibility:hidden !important; pointer-events:none !important;
+                transition:right .32s cubic-bezier(.22,.8,.2,1), visibility 0s linear .32s !important;
+                z-index:2 !important;
+            }
+            .article-nav-trigger {
+                position:fixed !important;
+                top:50% !important;
+                right:0 !important;
+                width:45px !important; height:54px !important;
+                transform:translateY(-50%) !important;
+                border-radius:13px 0 0 13px !important;
+                z-index:3 !important;
+                transition:right .32s cubic-bezier(.22,.8,.2,1) !important;
+                pointer-events:auto !important;
+                cursor:pointer !important;
+            }
+            .article-nav-wrapper.nav-drawer-open .article-nav-panel,
+            .article-nav-panel.mobile-open {
+                right:0 !important;
+                visibility:visible !important;
+                pointer-events:auto !important;
+                transition:right .32s cubic-bezier(.22,.8,.2,1), visibility 0s linear 0s !important;
+            }
+            .article-nav-wrapper.nav-drawer-open .article-nav-trigger {
+                right:min(88vw,360px) !important;
+                border-radius:0 13px 13px 0 !important;
+            }
+            /* No close X: tapping the same attached widget closes it. */
+            .article-nav-close-btn { display:none !important; }
+            .article-nav-header { padding:8px 4px 12px !important; margin:0 0 8px !important; }
+            .article-nav-list { height:calc(100dvh - 72px) !important; max-height:none !important; }
+        }
+        @media (max-width: 480px) {
+            .container { padding-left:22px !important; padding-right:22px !important; }
+            #detail-page > .container { padding-left:8px !important; padding-right:8px !important; }
+            .article-content { padding-left:6px !important; padding-right:6px !important; }
+            .article-content .article-cover,
+            .detail-cover { width:calc(100% - 12px) !important; }
+            .detail-body .block { margin-left:5px !important; margin-right:5px !important; padding-left:15px !important; padding-right:15px !important; }
+            .article-content .article-body p,
+            .article-content .article-body h2,
+            .article-content .article-body h3,
+            .article-content .article-body h4 { margin-left:4px !important; margin-right:4px !important; }
+            .article-nav-panel { width:min(91vw,360px) !important; right:calc(-1 * min(91vw,360px)) !important; }
+            .article-nav-wrapper.nav-drawer-open .article-nav-trigger { right:min(91vw,360px) !important; }
+        }
+
 </style>
 </head>
 <body>
@@ -3429,7 +3569,6 @@
                         <i class="fas fa-list-ul"></i>
                     </div>
                     <div class="article-nav-panel" id="navPanel_${articleId}">
-                        <button class="article-nav-close-btn" onclick="document.getElementById('navPanel_${articleId}').classList.remove('mobile-open')">&times;</button>
                         <div class="article-nav-header">
                             <span>📑 فهرست مطالب</span>
                             <span class="nav-count">${totalItems} بخش</span>
@@ -3439,9 +3578,6 @@
                         </ul>
                     </div>
                 </div>
-                <button class="article-nav-toggle-btn" onclick="document.getElementById('navPanel_${articleId}').classList.toggle('mobile-open')">
-                    <i class="fas fa-list-ul"></i>
-                </button>
             `;
             return html;
         }
@@ -3548,7 +3684,7 @@
 
             trigger.setAttribute('role', 'button');
             trigger.setAttribute('tabindex', '0');
-            trigger.setAttribute('aria-label', 'باز کردن فهرست مطالب');
+            trigger.setAttribute('aria-label', 'باز و بسته کردن فهرست مطالب');
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (isMobile()) {
