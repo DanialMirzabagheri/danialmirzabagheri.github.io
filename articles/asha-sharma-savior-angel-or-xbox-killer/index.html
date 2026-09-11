@@ -1883,6 +1883,192 @@
         body.deep-link-loading #portfolio,
         body.deep-link-loading #about,
         body.deep-link-loading #detail-page { display: none !important; }
+
+
+        /* ============================================================
+           MOBILE-FIRST UX LAYER
+           IMPORTANT: These rules are scoped to mobile only. Desktop
+           (769px and above) keeps its existing layout and styling.
+        ============================================================ */
+        @media (max-width: 768px) {
+            :root { --mobile-gutter: 16px; --mobile-radius: 16px; }
+            html { overflow-x: hidden; scroll-behavior: smooth; }
+            body { overflow-x: hidden; line-height: 1.82; }
+            .container { width: 100%; max-width: none; padding-left: var(--mobile-gutter); padding-right: var(--mobile-gutter); }
+
+            /* Compact touch-first header */
+            header { padding: 8px 0; background: rgba(10,10,15,0.86); }
+            header .container { min-height: 46px; }
+            .logo h1 { font-size: 1.05rem; line-height: 1.2; }
+            .logo small { display: none; }
+            .menu-toggle { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; }
+            nav ul {
+                top: calc(100% + 8px); right: 12px; left: 12px; width: auto;
+                padding: 8px; gap: 4px; border-radius: 16px;
+                background: rgba(12,12,18,0.98); backdrop-filter: blur(20px);
+                box-shadow: 0 18px 50px rgba(0,0,0,.45);
+            }
+            nav ul li a {
+                display: flex; align-items: center; min-height: 46px; padding: 9px 12px;
+                border-radius: 11px; border-bottom: 0; font-size: .88rem;
+            }
+            nav ul li a.active { background: rgba(240,165,0,.10); }
+
+            /* Mobile home hero: portrait-first artwork, desktop hero untouched */
+            .hero {
+                min-height: calc(100svh - 62px);
+                min-height: calc(100dvh - 62px);
+                padding-top: 62px;
+                overflow: hidden;
+                align-items: center;
+            }
+            .hero-bg {
+                top: 62px; height: calc(100dvh - 62px); min-height: calc(100svh - 62px);
+                background-size: cover; background-position: center center;
+                opacity: .42; filter: grayscale(.15);
+            }
+            .hero-bg::after {
+                content: ''; position: absolute; inset: 0;
+                background: linear-gradient(180deg, rgba(10,10,15,.18) 0%, rgba(10,10,15,.35) 45%, rgba(10,10,15,.96) 100%);
+                pointer-events: none;
+            }
+            .hero .container { padding: 48px var(--mobile-gutter) 52px; }
+            .hero-content { width: 100%; max-width: 560px; }
+            .hero-content .badge { font-size: .72rem; padding: 5px 13px; margin-bottom: 14px; }
+            .hero-content h1 { font-size: clamp(2rem, 9vw, 2.65rem); line-height: 1.16; margin-bottom: 14px; }
+            .hero-content .hero-desc { font-size: .92rem; line-height: 1.85; max-width: 34rem; margin-bottom: 22px; }
+            .hero-shortcuts { gap: 8px; }
+            .hero-shortcuts .shortcut-btn { min-height: 42px; padding: 7px 13px; font-size: .78rem; }
+            .scroll-down { bottom: 14px; font-size: 1.25rem; }
+
+            /* Home content: mobile cards are touch-first, not squashed desktop cards */
+            .section { padding: 48px 0; }
+            .section-title { font-size: 1.65rem; margin-bottom: 26px; }
+            .reviews-grid, .articles-grid, .portfolio-grid { grid-template-columns: 1fr; gap: 16px; }
+            .latest-grid { gap: 12px; }
+            .filter-bar { gap: 10px; }
+            .filter-bar .filter-group { width: 100%; overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 3px; scrollbar-width: none; }
+            .filter-bar .filter-group::-webkit-scrollbar { display:none; }
+            .filter-bar .filter-btn { flex: 0 0 auto; min-height: 42px; padding: 7px 14px; }
+            .filter-bar .sort-select { min-height: 42px; }
+
+            /* Detail pages: controlled reading width and comfortable gutters */
+            #detail-page { padding: 84px 0 38px; }
+            .detail-back { min-height: 44px; display: inline-flex; align-items: center; padding: 7px 4px; margin-bottom: 14px; font-size: .86rem; }
+            .detail-header h2 { font-size: clamp(1.45rem, 6vw, 1.95rem); line-height: 1.38; overflow-wrap: anywhere; }
+            .detail-header .subtitle { font-size: .9rem; line-height: 1.8; }
+            .detail-header .detail-meta { font-size: .76rem; line-height: 1.8; margin-bottom: 14px; }
+            .detail-cover { max-height: none; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; margin-bottom: 18px; }
+            .detail-body { width: 100%; max-width: none; }
+            .detail-body .block { margin-bottom: 18px; padding: 17px 15px; border-radius: var(--mobile-radius); }
+            .detail-body .block h3 { font-size: 1.08rem; line-height: 1.55; }
+            .detail-body .block .block-text { font-size: .94rem; line-height: 1.95; overflow-wrap:anywhere; word-break: normal; }
+            .detail-body .block .notes { font-size: .82rem; line-height: 1.8; }
+            .detail-body .block .section-gallery,
+            .portfolio-gallery,
+            .article-content .article-body .article-gallery {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: minmax(29vw, 1fr);
+                grid-template-columns: none;
+                grid-template-rows: 1fr;
+                gap: 10px;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                padding: 3px 2px 8px;
+                margin: 14px 0;
+            }
+            .detail-body .block .section-gallery::-webkit-scrollbar,
+            .portfolio-gallery::-webkit-scrollbar,
+            .article-content .article-body .article-gallery::-webkit-scrollbar { display:none; }
+            .detail-body .block .section-gallery img,
+            .article-content .article-body .article-gallery img {
+                width: 100%; height: 125px; min-height: 0; max-height: none;
+                aspect-ratio: 4 / 3; object-fit: cover; border-radius: 11px;
+                scroll-snap-align: start;
+            }
+            .portfolio-gallery .gallery-item {
+                width: 100%; min-width: 0; border-radius: 11px; scroll-snap-align: start;
+            }
+            .portfolio-gallery .gallery-item img,
+            .portfolio-gallery .gallery-item video {
+                width: 100%; height: 125px; min-height: 0; max-height: none; aspect-ratio: 4 / 3; object-fit: cover;
+            }
+            .portfolio-gallery .gallery-item .caption { padding: 7px 9px; font-size: .7rem; line-height: 1.6; }
+            .portfolio-links { display: grid; grid-template-columns: 1fr; gap: 9px; }
+            .portfolio-links a { min-height: 44px; display:flex; align-items:center; justify-content:center; border-radius: 12px; }
+
+            /* Long-form article: editorial mobile reading layout */
+            .article-content { width: 100%; max-width: none; padding: 4px 0; }
+            .article-content h1 { font-size: clamp(1.55rem, 6.2vw, 2rem); line-height: 1.42; overflow-wrap:anywhere; margin-bottom: 9px; }
+            .article-content > p[style] { font-size: .9rem !important; line-height: 1.85; margin-bottom: 10px; }
+            .article-content .article-meta { font-size: .75rem; line-height: 1.8; gap: 5px 10px; margin-bottom: 15px; }
+            .article-content .article-body { font-size: .96rem; line-height: 2.02; overflow-wrap:anywhere; }
+            .article-content .article-body p { margin-bottom: 15px; text-align: right; }
+            .article-content .article-body h2 { font-size: 1.25rem; line-height: 1.55; margin: 25px 0 11px; padding-right: 11px; border-right-width: 3px; overflow-wrap:anywhere; }
+            .article-content .article-body h3 { font-size: 1.08rem; line-height: 1.6; overflow-wrap:anywhere; }
+            .article-content .article-cover { width:100%; max-height:none; aspect-ratio:16/9; object-fit:cover; border-radius:14px; margin-bottom:18px; }
+            .article-quote { border-radius: 14px; padding: 21px 14px 13px; margin: 24px 0; }
+            .article-quote .speaker-image { width:82px; height:82px; margin:-45px auto 8px; }
+            .article-quote .speaker-name { font-size: .88rem; }
+            .article-quote .quote-text { font-size: .9rem; line-height: 1.95; }
+            .article-quote .quote-translator { font-size: .72rem; }
+            .article-footnote, .article-references { padding: 15px 14px; border-radius: 14px; font-size: .84rem; line-height:1.9; overflow-wrap:anywhere; }
+
+            /* Mobile TOC: floating side handle + slide-in drawer */
+            .article-nav-wrapper {
+                top: 50%; right: 0; bottom: auto; transform: translateY(-50%);
+                z-index: 1200; display: flex; align-items:center; direction:ltr;
+            }
+            .article-nav-trigger { display:flex; width: 38px; height: 50px; border-radius: 12px 0 0 12px; font-size:1rem; }
+            .article-nav-panel {
+                position: fixed; top: 0; right: 0; bottom: 0; left: auto;
+                width: min(86vw, 340px); max-height:none; height:100dvh;
+                transform:none; opacity:1; pointer-events:none;
+                border: 0; border-left: 1px solid rgba(240,165,0,.14); border-radius:0;
+                padding: 20px 14px 24px; background:rgba(10,10,15,.985);
+                box-shadow:-18px 0 55px rgba(0,0,0,.55);
+                overflow:hidden; right:-100%; transition:right .28s cubic-bezier(.2,.8,.2,1);
+            }
+            .article-nav-panel.mobile-open { right:0; pointer-events:auto; }
+            .article-nav-panel::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(240,165,0,.045),transparent 30%); pointer-events:none; }
+            .article-nav-header { position:relative; padding: 8px 42px 13px 4px; margin-bottom:9px; font-size:.9rem; }
+            .article-nav-list { position:relative; max-height:calc(100dvh - 80px); padding-bottom:25px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+            .article-nav-list .nav-item .nav-item-content { min-height:44px; padding:7px 8px; border-radius:10px; font-size:.82rem; }
+            .article-nav-list .nav-item.level-0 .nav-item-title { font-size:.88rem; }
+            .article-nav-list .nav-item.level-1 .nav-item-title { font-size:.81rem; }
+            .article-nav-list .nav-item.level-2 .nav-item-title { font-size:.76rem; }
+            .article-nav-list .nav-toggle { padding:6px 8px; font-size:.55rem; }
+            .article-nav-close-btn { display:block; position:absolute; top:9px; left:10px; width:40px; height:40px; background:rgba(233,69,96,.08); border:1px solid rgba(233,69,96,.15); border-radius:10px; color:#e94560; font-size:1.35rem; z-index:2; }
+            .article-nav-toggle-btn { display:none !important; }
+
+            /* Prevent accidental horizontal overflow from long words/URLs */
+            .article-content, .article-content *, .detail-body, .detail-body *, .about-content, .about-content * { max-width:100%; }
+            img, video { max-width:100%; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: clamp(1.9rem, 9vw, 2.35rem); }
+            .hero-content .hero-desc { font-size: .88rem; }
+            .section-title { font-size: 1.5rem; }
+            .detail-body .block { padding: 15px 13px; }
+            .detail-body .block .section-gallery,
+            .portfolio-gallery,
+            .article-content .article-body .article-gallery { grid-auto-columns: 31vw; }
+            .detail-body .block .section-gallery img,
+            .article-content .article-body .article-gallery img,
+            .portfolio-gallery .gallery-item img,
+            .portfolio-gallery .gallery-item video { height: 112px; }
+        }
+
+        /* True portrait-phone hero. Landscape mobile keeps the more compact responsive treatment. */
+        @media (max-width: 768px) and (orientation: portrait) {
+            .hero-bg { background-position: center center; background-size: cover; }
+            .hero .container { min-height: calc(100dvh - 62px); display:flex; align-items:center; }
+        }
+
 </style>
 </head>
 <body>
