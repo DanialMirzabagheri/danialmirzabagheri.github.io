@@ -2195,6 +2195,7 @@
                 <span class="close-modal" onclick="closeModal('portfolioModal')">&times;</span>
             </div>
             <label>عنوان پروژه:</label><input type="text" id="pTitle">
+            <label>Slug / آدرس پروژه (اختیاری):</label><input type="text" id="pSlug" placeholder="مثلاً my-game-project">
             <label style="margin:10px 0 4px;color:#aaa;font-size:0.9rem;">وضعیت انتشار:</label>
             <div class="publish-toggle" id="pDraftToggle">
                 <button type="button" data-value="published" onclick="setDraftState('pDraft', false)">● منتشر شود</button>
@@ -3439,7 +3440,9 @@
             if (el) el.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (!document.getElementById('detail-page').classList.contains('active')) {
-                history.replaceState({}, '', location.pathname);
+                // همیشه هنگام خروج از صفحه جزئیات به ریشه سایت برگرد؛
+                // location.pathname ممکن است هنوز /articles/slug/ یا /reviews/slug/ باشد.
+                history.replaceState({}, '', '/');
                 document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
             }
         }
@@ -3640,7 +3643,7 @@
 
         function closeDetail() {
             document.getElementById('detail-page').classList.remove('active');
-            history.replaceState({}, '', location.pathname);
+            // navigate() مسیر را به ریشه سایت برمی‌گرداند.
             document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
             document.getElementById('latestSection').style.display = 'none';
@@ -4464,6 +4467,7 @@
             document.getElementById('portfolioModalTitle').textContent = 'ویرایش پروژه';
             document.getElementById('pEditId').value = id;
             document.getElementById('pTitle').value = p.title || '';
+            document.getElementById('pSlug').value = p.slug || '';
             document.getElementById('pDraft').checked = !!p.draft;
             syncDraftToggle('pDraft');
             document.getElementById('pDesc').value = p.desc || '';
@@ -4474,7 +4478,7 @@
         }
 
         function clearPortfolioForm() {
-            ['pTitle','pDesc','pTags','pLinks','pEditId'].forEach(id => document.getElementById(id).value = '');
+            ['pTitle','pSlug','pDesc','pTags','pLinks','pEditId'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('pDraft').checked = false;
             syncDraftToggle('pDraft');
         }
@@ -4495,10 +4499,11 @@
             const id = document.getElementById('pEditId').value || 'port' + Date.now();
             const title = document.getElementById('pTitle').value.trim();
             if (!title) { alert('عنوان پروژه الزامی است.'); return; }
+            const enteredSlug = document.getElementById('pSlug').value.trim();
             const gallery = getGalleryItems('pGalleryManager');
             const newP = {
                 id, title,
-                slug: slugify(title),
+                slug: slugify(enteredSlug || title),
                 draft: document.getElementById('pDraft').checked,
                 desc: document.getElementById('pDesc').value.trim() || '',
                 tags: document.getElementById('pTags').value.split(',').map(s => s.trim()).filter(Boolean),
