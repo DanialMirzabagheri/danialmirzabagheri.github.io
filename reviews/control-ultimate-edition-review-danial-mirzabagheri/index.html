@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdn.imgurl.ir" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Vazirmatn:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -1999,7 +2000,7 @@
         <span class="lightbox-prev" onclick="changeLightbox(-1)">&#10094;</span>
         <span class="lightbox-next" onclick="changeLightbox(1)">&#10095;</span>
         <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
+            <img id="lightbox-img" src="" alt="" decoding="async" fetchpriority="high">
             <video id="lightbox-video" controls style="display:none;"></video>
         </div>
         <div class="lightbox-counter" id="lightbox-counter"></div>
@@ -3177,7 +3178,7 @@
                         <div class="article-quote">
                             ${q.speakerImage ? `
                                 <div class="speaker-image">
-                                    <img src="${q.speakerImage}" alt="${q.speakerName || 'گوینده'}">
+                                    <img loading="lazy" decoding="async" src="${q.speakerImage}" alt="${q.speakerName || 'گوینده'}">
                                 </div>
                             ` : `
                                 <div class="speaker-image-placeholder">
@@ -3193,7 +3194,7 @@
             }
             
             if (section.gallery && section.gallery.length) {
-                html += `<div class="article-gallery">${section.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
+                html += `<div class="article-gallery">${section.gallery.map(g => `<img loading="lazy" decoding="async" src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
             }
 
             if (section.continuations && section.continuations.length) {
@@ -3208,7 +3209,7 @@
                                 <div class="article-quote">
                                     ${q.speakerImage ? `
                                         <div class="speaker-image">
-                                            <img src="${q.speakerImage}" alt="${q.speakerName || 'گوینده'}">
+                                            <img loading="lazy" decoding="async" src="${q.speakerImage}" alt="${q.speakerName || 'گوینده'}">
                                         </div>
                                     ` : `
                                         <div class="speaker-image-placeholder">
@@ -3223,7 +3224,7 @@
                         });
                     }
                     if (cont.gallery && cont.gallery.length) {
-                        html += `<div class="article-gallery">${cont.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
+                        html += `<div class="article-gallery">${cont.gallery.map(g => `<img loading="lazy" decoding="async" src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
                     }
                 });
             }
@@ -3254,7 +3255,7 @@
                 r.readTime = stats.readTime;
                 return `
                 <div class="review-card" onclick="openDetail('review','${r.id}')">
-                    <img src="${r.cover}" alt="${r.title}">
+                    <img loading="lazy" decoding="async" src="${r.cover}" alt="${r.title}">
                     <div class="info">
                         <h3>${r.title}</h3>
                         ${r.subtitle ? `<span class="subtitle">${r.subtitle}</span>` : ''}
@@ -3270,6 +3271,7 @@
                 </div>
             `}).join('');
             document.getElementById('reviewsLoadMore').style.display = (list.length > end) ? 'block' : 'none';
+            setupMediaPreloading(c);
         }
 
         function renderArticles(filter = 'all') {
@@ -3290,7 +3292,7 @@
                 a.readTime = stats.readTime;
                 return `
                 <div class="article-card" onclick="openDetail('article','${a.id}')">
-                    <img src="${a.cover}" alt="${a.title}">
+                    <img loading="lazy" decoding="async" src="${a.cover}" alt="${a.title}">
                     <div class="info">
                         <h3>${a.title}</h3>
                         ${a.subtitle ? `<span class="subtitle">${a.subtitle}</span>` : ''}
@@ -3306,6 +3308,7 @@
                 </div>
             `}).join('');
             document.getElementById('articlesLoadMore').style.display = (list.length > end) ? 'block' : 'none';
+            setupMediaPreloading(c);
         }
 
         function renderPortfolio() {
@@ -3319,7 +3322,7 @@
             const shown = list.slice(start, end);
             c.innerHTML = shown.map(p => `
                 <div class="portfolio-card" onclick="openDetail('portfolio','${p.id}')">
-                    ${p.gallery && p.gallery.length ? `<img src="${p.gallery[0].url}" alt="${p.title}">` : `<div style="height:180px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;color:#666;">بدون تصویر</div>`}
+                    ${p.gallery && p.gallery.length ? `<img loading="lazy" decoding="async" src="${p.gallery[0].url}" alt="${p.title}">` : `<div style="height:180px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;color:#666;">بدون تصویر</div>`}
                     <div class="info">
                         <h3>${p.title}</h3>
                         <div style="display:flex;flex-wrap:wrap;gap:4px;margin:6px 0;">${p.tags.map(t=>`<span style="background:rgba(240,165,0,0.12);color:#f0a500;padding:2px 10px;border-radius:30px;font-size:0.65rem;font-weight:600;">${t}</span>`).join('')}</div>
@@ -3328,6 +3331,7 @@
                 </div>
             `).join('');
             document.getElementById('portfolioLoadMore').style.display = (list.length > end) ? 'block' : 'none';
+            setupMediaPreloading(c);
         }
 
         function renderAbout() {
@@ -3355,7 +3359,7 @@
                 html += `<div class="latest-section"><h3 class="section-title">📝 آخرین نقدها</h3><div class="latest-grid">`;
                 latestReviews.forEach(r => {
                     html += `<div class="latest-item" onclick="openDetail('review','${r.id}')">
-                        <img src="${r.cover}" alt="${r.title}"><div class="info"><h4>${r.title}</h4><div class="meta">${r.date}</div></div>
+                        <img loading="lazy" decoding="async" src="${r.cover}" alt="${r.title}"><div class="info"><h4>${r.title}</h4><div class="meta">${r.date}</div></div>
                     </div>`;
                 });
                 html += `</div></div>`;
@@ -3364,7 +3368,7 @@
                 html += `<div class="latest-section"><h3 class="section-title">📄 آخرین مقالات</h3><div class="latest-grid">`;
                 latestArticles.forEach(a => {
                     html += `<div class="latest-item" onclick="openDetail('article','${a.id}')">
-                        <img src="${a.cover}" alt="${a.title}"><div class="info"><h4>${a.title}</h4><div class="meta">${a.date}</div></div>
+                        <img loading="lazy" decoding="async" src="${a.cover}" alt="${a.title}"><div class="info"><h4>${a.title}</h4><div class="meta">${a.date}</div></div>
                     </div>`;
                 });
                 html += `</div></div>`;
@@ -3374,13 +3378,14 @@
                 latestPortfolio.forEach(p => {
                     const img = p.gallery && p.gallery.length ? p.gallery[0].url : '';
                     html += `<div class="latest-item" onclick="openDetail('portfolio','${p.id}')">
-                        ${img ? `<img src="${img}" alt="${p.title}">` : `<div style="height:120px;background:#1a1a2e;"></div>`}
+                        ${img ? `<img loading="lazy" decoding="async" src="${img}" alt="${p.title}">` : `<div style="height:120px;background:#1a1a2e;"></div>`}
                         <div class="info"><h4>${p.title}</h4><div class="meta">${p.tags.slice(0,2).join(', ')}</div></div>
                     </div>`;
                 });
                 html += `</div></div>`;
             }
             c.innerHTML = html || '<p style="color:#888;text-align:center;">هنوز محتوایی منتشر نشده است.</p>';
+            setupMediaPreloading(c);
         }
 
         function renderAdminLists() {
@@ -3444,6 +3449,48 @@
             document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
         }
 
+        let mediaPreloadObserver = null;
+
+        function setupMediaPreloading(root = document) {
+            if (!root) return;
+            if (!mediaPreloadObserver && 'IntersectionObserver' in window) {
+                mediaPreloadObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        const el = entry.target;
+                        if (el.tagName === 'IMG') {
+                            if (el.id !== 'lightbox-img') {
+                                el.loading = 'eager';
+                                el.decoding = 'async';
+                                if (el.decode) el.decode().catch(() => {});
+                            }
+                        } else if (el.tagName === 'VIDEO') {
+                            el.preload = 'auto';
+                        }
+                        observer.unobserve(el);
+                    });
+                }, { rootMargin: '2500px 0px' });
+            }
+
+            const images = root.querySelectorAll ? root.querySelectorAll('img:not(#lightbox-img)') : [];
+            images.forEach(img => {
+                img.decoding = 'async';
+                if (img.classList.contains('article-cover') || img.classList.contains('detail-cover')) {
+                    img.loading = 'eager';
+                    img.fetchPriority = 'high';
+                } else if (!img.loading) {
+                    img.loading = 'lazy';
+                }
+                if (mediaPreloadObserver) mediaPreloadObserver.observe(img);
+            });
+
+            const videos = root.querySelectorAll ? root.querySelectorAll('video:not(#lightbox-video)') : [];
+            videos.forEach(video => {
+                if (!video.getAttribute('preload')) video.preload = 'metadata';
+                if (mediaPreloadObserver) mediaPreloadObserver.observe(video);
+            });
+        }
+
         async function openDetail(type, id) {
             if (!data) return;
             let item = null;
@@ -3474,7 +3521,7 @@
                 r.wordCount = stats.wordCount;
                 r.readTime = stats.readTime;
                 html = `
-                    <img src="${r.cover}" class="detail-cover" alt="${r.title}">
+                    <img loading="eager" fetchpriority="high" decoding="async" class="detail-cover" src="${r.cover}" alt="${r.title}">
                     <div class="detail-header">
                         <h2>${r.title}</h2>
                         ${r.subtitle ? `<span class="subtitle">${r.subtitle}</span>` : ''}
@@ -3488,13 +3535,13 @@
                     if (s.negatives && s.negatives.length) html += `<div class="notes"><span class="negative">➖ ${s.negatives.join(' | ')}</span></div>`;
                     if (s.score !== undefined) html += `<div class="score-block">⬡ نمره: ${s.score}/100</div>`;
                     if (s.gallery && s.gallery.length) {
-                        html += `<div class="section-gallery">${s.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
+                        html += `<div class="section-gallery">${s.gallery.map(g => `<img loading="lazy" decoding="async" src="${g.url}" alt="${g.caption || ''}">`).join('')}</div>`;
                     }
                     html += `</div>`;
                 });
                 if (r.conclusion) html += `<div class="block"><h3>سخن پایانی</h3><div class="block-text">${nl2br(r.conclusion)}</div></div>`;
                 if (r.gallery && r.gallery.length) {
-                    html += `<div class="block"><h3>گالری کلی</h3><div class="section-gallery">${r.gallery.map(g => `<img src="${g.url}" alt="${g.caption || ''}">`).join('')}</div></div>`;
+                    html += `<div class="block"><h3>گالری کلی</h3><div class="section-gallery">${r.gallery.map(g => `<img loading="lazy" decoding="async" src="${g.url}" alt="${g.caption || ''}">`).join('')}</div></div>`;
                 }
                 html += `<div class="final-score-box"><div class="score-number">◈ <span>${r.finalScore}</span> ◈</div><div class="score-label">نمره نهایی از ۱۰۰</div></div></div>`;
             } else if (type === 'article') {
@@ -3537,7 +3584,7 @@
                 }
 
                 html = `<div class="article-content">
-                    ${a.cover ? `<img class="article-cover" src="${a.cover}" alt="${a.title}">` : ''}
+                    ${a.cover ? `<img loading="eager" fetchpriority="high" decoding="async" class="article-cover" src="${a.cover}" alt="${a.title}">` : ''}
                     <h1>${a.title}</h1>
                     ${a.subtitle ? `<p style="color:#f0a500;font-size:1.1rem;font-style:italic;">${a.subtitle}</p>` : ''}
                     <div class="article-meta">
@@ -3572,9 +3619,9 @@
                     html += `<div class="block"><h3>گالری</h3><div class="portfolio-gallery">`;
                     p.gallery.forEach(item => {
                         if (item.type === 'video' || item.url.match(/\.(mp4|webm|ogg)$/i) || item.url.startsWith('data:video/')) {
-                            html += `<div class="gallery-item"><video controls><source src="${item.url}" type="video/mp4"></video>${item.caption ? `<div class="caption">${item.caption}</div>` : ''}</div>`;
+                            html += `<div class="gallery-item"><video controls preload="metadata"><source src="${item.url}" type="video/mp4"></video>${item.caption ? `<div class="caption">${item.caption}</div>` : ''}</div>`;
                         } else {
-                            html += `<div class="gallery-item"><img src="${item.url}" alt="${item.caption || ''}">${item.caption ? `<div class="caption">${item.caption}</div>` : ''}</div>`;
+                            html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="${item.url}" alt="${item.caption || ''}">${item.caption ? `<div class="caption">${item.caption}</div>` : ''}</div>`;
                         }
                     });
                     html += `</div></div>`;
@@ -3593,6 +3640,7 @@
             }
 
             c.innerHTML = html;
+            setupMediaPreloading(c);
             document.body.classList.remove('deep-link-loading');
             applySeoMeta(item, type);
             if (item.slug) {
@@ -3686,6 +3734,11 @@
             const bgContainer = document.getElementById('heroBgContainer');
             const url = data.heroBg || '';
             if (url) {
+                if (!url.match(/\.(mp4|webm|ogg)$/i) && !url.startsWith('data:video/')) {
+                    const heroPreload = new Image();
+                    heroPreload.decoding = 'async';
+                    heroPreload.src = url;
+                }
                 if (url.match(/\.(mp4|webm|ogg)$/i) || url.startsWith('data:video/')) {
                     bgContainer.innerHTML = `<video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"><source src="${url}" type="video/mp4"></video>`;
                     bgContainer.style.backgroundImage = 'none';
