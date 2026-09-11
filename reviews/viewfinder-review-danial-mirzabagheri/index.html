@@ -2411,6 +2411,362 @@
             .article-nav-wrapper.nav-drawer-open .article-nav-trigger { right:min(91vw,360px) !important; }
         }
 
+
+        /* ============================================================
+           MOBILE REFINEMENT / V14
+           Reading-width + cover-fit pass. Mobile only.
+           Desktop (769px+) remains untouched.
+        ============================================================ */
+        @media (max-width: 768px) {
+            /* Keep the whole reading experience inside a clean, centered column. */
+            #detail-page > .container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+                box-sizing: border-box !important;
+            }
+            .article-content,
+            .detail-header,
+            .detail-body,
+            .about-content,
+            .portfolio-links {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                box-sizing: border-box !important;
+            }
+            .article-content {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            /* Never crop article/review covers. Fit the complete image in the phone. */
+            .article-content .article-cover,
+            .detail-cover {
+                display: block !important;
+                width: auto !important;
+                height: auto !important;
+                max-width: 100% !important;
+                max-height: 360px !important;
+                aspect-ratio: auto !important;
+                object-fit: contain !important;
+                margin: 0 auto 24px !important;
+                box-sizing: border-box !important;
+            }
+
+            /* More usable reading width: smaller side padding, but still visibly away from edges. */
+            .article-content h1 {
+                font-size: 1.55rem !important;
+                line-height: 1.55 !important;
+                margin: 0 0 10px !important;
+                padding: 0 !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+            .article-content > p[style] {
+                font-size: 1rem !important;
+                line-height: 1.8 !important;
+                margin: 0 0 12px !important;
+                padding: 0 !important;
+            }
+            .article-content .article-meta {
+                font-size: .78rem !important;
+                line-height: 1.8 !important;
+                margin-bottom: 22px !important;
+                gap: 5px 10px !important;
+            }
+            .article-content .article-body {
+                font-size: 1rem !important;
+                line-height: 1.95 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-wrap: break-word !important;
+                word-break: normal !important;
+            }
+            .article-content .article-body p {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                margin-bottom: 18px !important;
+                padding: 0 !important;
+                text-align: justify !important;
+                overflow-wrap: break-word !important;
+                word-break: normal !important;
+            }
+            .article-content .article-body h2,
+            .article-content .article-body h3,
+            .article-content .article-body h4 {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-right: 11px !important;
+                padding-left: 0 !important;
+                line-height: 1.6 !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+
+            /* Review/detail text follows the same centered reading width. */
+            .detail-header h2 {
+                font-size: 1.55rem !important;
+                line-height: 1.55 !important;
+                margin: 0 0 8px !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+            .detail-header .subtitle {
+                font-size: .95rem !important;
+                line-height: 1.8 !important;
+            }
+            .detail-header .detail-meta {
+                font-size: .78rem !important;
+                line-height: 1.8 !important;
+            }
+            .detail-body {
+                padding: 0 !important;
+            }
+            .detail-body .block {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 0 22px !important;
+                padding: 16px 16px !important;
+                box-sizing: border-box !important;
+            }
+            .detail-body .block h3 {
+                font-size: 1.2rem !important;
+                line-height: 1.6 !important;
+            }
+            .detail-body .block .block-text {
+                font-size: 1rem !important;
+                line-height: 1.95 !important;
+                overflow-wrap: break-word !important;
+                word-break: normal !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #detail-page > .container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            .article-content h1,
+            .detail-header h2 { font-size: 1.48rem !important; }
+            .article-content .article-body,
+            .detail-body .block .block-text { font-size: .98rem !important; line-height: 1.98 !important; }
+            .article-content .article-cover,
+            .detail-cover {
+                max-height: 330px !important;
+                margin-bottom: 20px !important;
+            }
+            .detail-body .block { padding-left: 15px !important; padding-right: 15px !important; }
+        }
+
+
+        /* ============================================================
+           MOBILE REFINEMENT / V15
+           Final mobile reading-width + uncropped cover pass.
+           Desktop (769px+) is intentionally untouched.
+        ============================================================ */
+        @media (max-width: 768px) {
+            /* A compact, centered editorial column inspired by modern
+               gaming-news mobile layouts. */
+            :root { --mobile-reading-gutter: 18px; }
+
+            #detail-page > .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: var(--mobile-reading-gutter) !important;
+                padding-right: var(--mobile-reading-gutter) !important;
+                box-sizing: border-box !important;
+            }
+
+            .article-content,
+            .detail-header,
+            .detail-body,
+            .about-content,
+            .portfolio-links {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Covers: preserve the complete source image. Never force a
+               16:9 crop on mobile. */
+            .article-content .article-cover,
+            .detail-cover {
+                display: block !important;
+                width: auto !important;
+                max-width: 100% !important;
+                height: auto !important;
+                max-height: min(420px, 58dvh) !important;
+                aspect-ratio: auto !important;
+                object-fit: contain !important;
+                object-position: center center !important;
+                margin: 0 auto 20px !important;
+                border-radius: 12px !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Article title/meta: compact, clean wrapping. */
+            .article-content h1,
+            .detail-header h2 {
+                font-size: 1.32rem !important;
+                line-height: 1.58 !important;
+                font-weight: 800 !important;
+                margin: 0 0 8px !important;
+                padding: 0 !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+                hyphens: none !important;
+            }
+
+            .article-content > p[style],
+            .detail-header .subtitle {
+                font-size: .88rem !important;
+                line-height: 1.85 !important;
+                margin: 0 0 10px !important;
+                padding: 0 !important;
+            }
+
+            .article-content .article-meta,
+            .detail-header .detail-meta {
+                font-size: .73rem !important;
+                line-height: 1.75 !important;
+                gap: 4px 9px !important;
+                margin-bottom: 18px !important;
+            }
+
+            /* The actual reading text is slightly smaller and wider so
+               Persian sentences flow more like the reference layout. */
+            .article-content .article-body {
+                width: 100% !important;
+                max-width: 100% !important;
+                font-size: .94rem !important;
+                line-height: 1.98 !important;
+                overflow: visible !important;
+            }
+
+            .article-content .article-body p {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 0 15px !important;
+                padding: 0 !important;
+                text-align: justify !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+                hyphens: none !important;
+            }
+
+            .article-content .article-body h2 {
+                width: 100% !important;
+                max-width: 100% !important;
+                font-size: 1.14rem !important;
+                line-height: 1.62 !important;
+                margin: 24px 0 10px !important;
+                padding-right: 10px !important;
+                padding-left: 0 !important;
+                border-right-width: 3px !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+
+            .article-content .article-body h3 {
+                font-size: 1.03rem !important;
+                line-height: 1.62 !important;
+                margin: 20px 0 9px !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+
+            .article-content .article-body h4 {
+                font-size: .98rem !important;
+                line-height: 1.65 !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+
+            /* Review/portfolio blocks: narrower visual frame without
+               squeezing the actual text. */
+            .detail-body {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .detail-body .block {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 0 18px !important;
+                padding: 14px 15px !important;
+                border-radius: 14px !important;
+                box-sizing: border-box !important;
+            }
+
+            .detail-body .block h3 {
+                font-size: 1.08rem !important;
+                line-height: 1.62 !important;
+                margin-bottom: 9px !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+            }
+
+            .detail-body .block .block-text {
+                font-size: .94rem !important;
+                line-height: 1.98 !important;
+                overflow-wrap: normal !important;
+                word-break: normal !important;
+                text-align: justify !important;
+            }
+
+            .detail-body .block .block-text p {
+                margin-bottom: 14px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root { --mobile-reading-gutter: 17px; }
+
+            #detail-page > .container {
+                padding-left: var(--mobile-reading-gutter) !important;
+                padding-right: var(--mobile-reading-gutter) !important;
+            }
+
+            .article-content .article-cover,
+            .detail-cover {
+                max-height: min(390px, 56dvh) !important;
+                margin-bottom: 18px !important;
+            }
+
+            .article-content h1,
+            .detail-header h2 {
+                font-size: 1.28rem !important;
+                line-height: 1.58 !important;
+            }
+
+            .article-content .article-body,
+            .detail-body .block .block-text {
+                font-size: .92rem !important;
+                line-height: 2 !important;
+            }
+
+            .article-content .article-body h2 {
+                font-size: 1.1rem !important;
+                line-height: 1.62 !important;
+            }
+
+            .article-content .article-body h3,
+            .detail-body .block h3 {
+                font-size: 1rem !important;
+                line-height: 1.62 !important;
+            }
+
+            .detail-body .block {
+                padding: 13px 14px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -3597,6 +3953,9 @@
                 const navPanel = document.querySelector(`#navWrapper_${articleId} .article-nav-panel`);
                 if (navPanel && window.innerWidth <= 768) {
                     navPanel.classList.remove('mobile-open');
+                    const navWrapper = document.getElementById(`navWrapper_${articleId}`);
+                    if (navWrapper) navWrapper.classList.remove('nav-drawer-open');
+                    document.body.classList.remove('mobile-toc-open');
                 }
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 document.querySelectorAll(`#navWrapper_${articleId} .nav-item`).forEach(el => el.classList.remove('active'));
