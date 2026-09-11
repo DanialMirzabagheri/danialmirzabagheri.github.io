@@ -1873,6 +1873,15 @@
                 border-bottom: none;
             }
         }
+
+        /* Prevent a visible home-page flash when opening a direct article/review/project URL. */
+        body.deep-link-loading #home,
+        body.deep-link-loading #latestSection,
+        body.deep-link-loading #reviews,
+        body.deep-link-loading #articles,
+        body.deep-link-loading #portfolio,
+        body.deep-link-loading #about,
+        body.deep-link-loading #detail-page { display: none !important; }
 </style>
 </head>
 <body>
@@ -2095,6 +2104,7 @@
                 <span class="close-modal" onclick="closeModal('reviewModal')">&times;</span>
             </div>
             <label>عنوان بازی:</label><input type="text" id="rTitle">
+            <label>Slug / آدرس نقد (اختیاری):</label><input type="text" id="rSlug" placeholder="مثلاً control-ultimate-edition-review">
             <label>زیرعنوان:</label><input type="text" id="rSubtitle">
             <label>کاور (لینک):</label><input type="text" id="rCover">
             <label>تاریخ:</label><input type="text" id="rDate" placeholder="مثلاً ۱۳ خرداد ۱۴۰۵">
@@ -3236,7 +3246,9 @@
             const start = 0, end = (reviewPage + 1) * PER_PAGE;
             const shown = list.slice(start, end);
             c.innerHTML = shown.map(r => {
-                const stats = calculateReviewStats(r);
+                const stats = (optimizedDataMode && r.wordCount !== undefined && r.readTime !== undefined)
+                    ? { wordCount: Number(r.wordCount) || 0, readTime: Number(r.readTime) || 0 }
+                    : calculateReviewStats(r);
                 r.wordCount = stats.wordCount;
                 r.readTime = stats.readTime;
                 return `
@@ -3270,7 +3282,9 @@
             const start = 0, end = (articlePage + 1) * PER_PAGE;
             const shown = list.slice(start, end);
             c.innerHTML = shown.map(a => {
-                const stats = calculateArticleStats(a);
+                const stats = (optimizedDataMode && a.wordCount !== undefined && a.readTime !== undefined)
+                    ? { wordCount: Number(a.wordCount) || 0, readTime: Number(a.readTime) || 0 }
+                    : calculateArticleStats(a);
                 a.wordCount = stats.wordCount;
                 a.readTime = stats.readTime;
                 return `
@@ -3579,9 +3593,11 @@
             }
 
             c.innerHTML = html;
+            document.body.classList.remove('deep-link-loading');
             applySeoMeta(item, type);
             if (item.slug) {
-                const deepUrl = `${location.pathname}?type=${encodeURIComponent(type)}&slug=${encodeURIComponent(item.slug)}`;
+                const folder = type === 'article' ? 'articles' : type === 'review' ? 'reviews' : 'portfolio';
+                const deepUrl = `/${folder}/${encodeURIComponent(item.slug)}/`;
                 history.replaceState({type, slug:item.slug}, '', deepUrl);
                 applySeoMeta(item, type);
             }
@@ -3604,10 +3620,19 @@
         }
 
         function handleInitialDeepLink() {
+            if (!data) return;
             const params = new URLSearchParams(location.search);
-            const type = params.get('type');
-            const slug = params.get('slug');
-            if (!type || !slug || !data) return;
+            let type = params.get('type');
+            let slug = params.get('slug');
+            if (!type || !slug) {
+                const path = location.pathname.replace(/^\/+|\/+$/g, '');
+                const match = path.match(/^(articles|reviews|portfolio)\/(.+)$/);
+                if (match) {
+                    type = match[1] === 'articles' ? 'article' : match[1] === 'reviews' ? 'review' : 'portfolio';
+                    slug = decodeURIComponent(match[2]);
+                }
+            }
+            if (!type || !slug) return;
             const list = type === 'article' ? data.articles : type === 'review' ? data.reviews : type === 'portfolio' ? data.portfolio : [];
             const item = list.find(x => x.slug === slug);
             if (item && !item.draft) openDetail(type, item.id);
@@ -3743,6 +3768,7 @@
             document.getElementById('reviewModalTitle').textContent = 'ویرایش نقد';
             document.getElementById('rEditId').value = id;
             document.getElementById('rTitle').value = r.title || '';
+            document.getElementById('rSlug').value = r.slug || slugify(r.title || r.id);
             document.getElementById('rSubtitle').value = r.subtitle || '';
             document.getElementById('rCover').value = r.cover || '';
             document.getElementById('rDate').value = r.date || '';
@@ -3758,7 +3784,7 @@
         }
 
         function clearReviewForm() {
-            ['rTitle','rSubtitle','rCover','rDate','rFinalScore','rIntro','rConclusion','rEditId'].forEach(id => document.getElementById(id).value = '');
+            ['rTitle','rSlug','rSubtitle','rCover','rDate','rFinalScore','rIntro','rConclusion','rEditId'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('rDraft').checked = false;
             syncDraftToggle('rDraft');
             document.getElementById('rSectionsList').innerHTML = '';
@@ -3885,9 +3911,10 @@
             if (sections.length === 0) { alert('حداقل یک بخش اضافه کنید.'); return; }
             const cover = document.getElementById('rCover').value.trim() || 'https://via.placeholder.com/300x180/1a1a2e/f0a500?text=' + encodeURIComponent(title);
             const gallery = getGalleryItems('rGalleryManager');
+            const enteredSlug = document.getElementById('rSlug').value.trim();
             const newReview = {
                 id, title,
-                slug: slugify(title),
+                slug: slugify(enteredSlug || title),
                 draft: document.getElementById('rDraft').checked,
                 subtitle: document.getElementById('rSubtitle').value.trim() || '',
                 cover,
@@ -4712,11 +4739,16 @@
                 document.getElementById('navMenu').classList.toggle('open');
             });
 
+            const initialPath = location.pathname.replace(/^\/+|\/+$/g, '');
+            const hasInitialDeepLink = !!(new URLSearchParams(location.search).get('type') || initialPath.match(/^(articles|reviews|portfolio)\/.+$/));
+            if (hasInitialDeepLink) document.body.classList.add('deep-link-loading');
+
             loadAppData().then(() => {
-                navigate('home');
+                if (!hasInitialDeepLink) navigate('home');
             }).catch(err => {
                 console.error('Failed to load app data:', err);
-                navigate('home');
+                if (!hasInitialDeepLink) navigate('home');
+                else document.body.classList.remove('deep-link-loading');
             });
         });
     </script>
