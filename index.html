@@ -2832,6 +2832,33 @@
 
         .portfolio-video-speed { display:flex; align-items:center; justify-content:flex-end; gap:7px; padding:7px 10px; background:#0b0b10; color:#888; font-size:.72rem; }
         .portfolio-video-speed select { background:#15151d; color:#ddd; border:1px solid #292934; border-radius:8px; padding:4px 7px; font:inherit; }
+
+        /* ============================================================
+           PORTFOLIO-ONLY V21 REFINEMENTS
+           Media keeps its native aspect ratio; detail content matches
+           the centered editorial/article layout; video loading stays
+           metadata-first and player clicks toggle playback.
+        ============================================================ */
+        .portfolio-detail-header,
+        .portfolio-detail-body { width:100%; max-width:850px; margin-left:auto; margin-right:auto; }
+        .portfolio-detail-header { text-align:right; }
+        .portfolio-detail-cover { width:100%; height:auto; max-height:520px; object-fit:contain; }
+        .portfolio-media-single .portfolio-media-item,
+        .portfolio-media-carousel .portfolio-media-item { height:auto; }
+        .portfolio-media-item img,
+        .portfolio-media-item video { width:100%; height:auto !important; max-width:100%; aspect-ratio:auto !important; object-fit:contain !important; display:block; }
+        .portfolio-video-frame { width:100%; height:auto; aspect-ratio:auto; }
+        .portfolio-video-frame iframe { width:100%; height:auto; aspect-ratio:16/9; display:block; }
+        .portfolio-direct-frame { align-items:flex-start; }
+        .portfolio-media-single .portfolio-direct-frame video { height:auto !important; }
+        .portfolio-media-carousel .portfolio-direct-frame video { height:auto !important; }
+        @media(max-width:768px){
+            .portfolio-detail-header,
+            .portfolio-detail-body { width:100%; max-width:none; margin-left:auto; margin-right:auto; }
+            .portfolio-media-item img,
+            .portfolio-media-item video { height:auto !important; aspect-ratio:auto !important; object-fit:contain !important; }
+            .portfolio-video-frame iframe { height:auto; }
+        }
 </style>
 </head>
 <body>
@@ -4524,7 +4551,12 @@
             const videos = root.querySelectorAll ? root.querySelectorAll('video:not(#lightbox-video)') : [];
             videos.forEach(video => {
                 if (!video.getAttribute('preload')) video.preload = 'metadata';
-                if (mediaPreloadObserver) mediaPreloadObserver.observe(video);
+                // Portfolio direct videos intentionally stay on metadata preload.
+                // Their actual playback/buffering is handled by the browser/media host
+                // instead of proactively downloading video data far ahead of the user.
+                if (!video.classList.contains('portfolio-direct-video') && mediaPreloadObserver) {
+                    mediaPreloadObserver.observe(video);
+                }
             });
         }
 
@@ -5726,6 +5758,7 @@
                 img.style.cursor='zoom-in';
             });
             root.querySelectorAll('.portfolio-direct-video').forEach(v=>{
+                v.preload = 'metadata';
                 v.addEventListener('loadedmetadata',()=>{
                     if(v.videoWidth && v.videoHeight){
                         const frame=v.closest('.portfolio-direct-frame');
@@ -5734,6 +5767,19 @@
                 },{once:true});
                 v.addEventListener('play',()=>{
                     root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} });
+                });
+                // Clicking the actual video area (not the native control strip)
+                // toggles play/pause, like common media players.
+                v.addEventListener('click',e=>{
+                    const rect=v.getBoundingClientRect();
+                    const y=e.clientY-rect.top;
+                    if (y >= rect.height - 58) return;
+                    if (v.paused) {
+                        root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} });
+                        v.play().catch(()=>{});
+                    } else {
+                        v.pause();
+                    }
                 });
             });
             carousels.forEach(car=>{
