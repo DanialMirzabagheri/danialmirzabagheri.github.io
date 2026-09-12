@@ -636,101 +636,6 @@
             margin: 16px 0;
         }
 
-        /* PORTFOLIO MEDIA / DETAIL UI */
-        .portfolio-category-badge {
-            display:inline-flex; align-items:center; gap:6px;
-            padding:4px 11px; border-radius:30px;
-            background:rgba(240,165,0,0.10); color:#f0a500;
-            border:1px solid rgba(240,165,0,0.18);
-            font-size:.72rem; font-weight:700;
-            margin-bottom:10px;
-        }
-        .portfolio-detail-cover {
-            width:100%; max-width:100%; height:auto; max-height:620px;
-            object-fit:contain; display:block; margin:0 auto 22px;
-            border-radius:18px; background:#0a0a0f;
-            border:1px solid rgba(255,255,255,0.06);
-        }
-        .portfolio-media-carousel {
-            position:relative; width:100%; margin:20px 0 8px;
-        }
-        .portfolio-media-track {
-            display:flex; width:100%; overflow-x:auto; gap:14px;
-            scroll-snap-type:x mandatory; scrollbar-width:none;
-            overscroll-behavior-x:contain; scroll-behavior:smooth;
-        }
-        .portfolio-media-track::-webkit-scrollbar { display:none; }
-        .portfolio-media-item {
-            position:relative; flex:0 0 100%; width:100%;
-            scroll-snap-align:center; border-radius:16px; overflow:hidden;
-            border:1px solid rgba(255,255,255,0.07); background:#07070b;
-        }
-        .portfolio-media-item img,
-        .portfolio-media-item video,
-        .portfolio-youtube-frame {
-            width:100%; aspect-ratio:16/9; min-height:280px;
-            display:block; border:0; background:#050507;
-        }
-        .portfolio-media-item img { object-fit:contain; cursor:zoom-in; }
-        .portfolio-media-item video { object-fit:contain; }
-        .portfolio-media-caption {
-            padding:10px 14px; color:#aaa; font-size:.82rem; line-height:1.8;
-            background:rgba(0,0,0,.34); text-align:right;
-        }
-        .portfolio-media-arrow {
-            position:absolute; top:50%; transform:translateY(-50%);
-            z-index:5; width:42px; height:42px; border-radius:50%;
-            border:1px solid rgba(240,165,0,.22); background:rgba(10,10,15,.82);
-            color:#f0a500; display:flex; align-items:center; justify-content:center;
-            cursor:pointer; backdrop-filter:blur(8px); transition:.25s;
-        }
-        .portfolio-media-arrow:hover { background:rgba(240,165,0,.14); transform:translateY(-50%) scale(1.04); }
-        .portfolio-media-arrow.prev { left:10px; }
-        .portfolio-media-arrow.next { right:10px; }
-        .portfolio-media-index { text-align:center; color:#777; font-size:.72rem; margin-top:8px; }
-        .portfolio-direct-controls {
-            display:flex; justify-content:flex-end; align-items:center; gap:8px;
-            padding:8px 10px; background:rgba(0,0,0,.34); border-top:1px solid rgba(255,255,255,.04);
-        }
-        .portfolio-direct-controls label { color:#999; font-size:.72rem; }
-        .portfolio-direct-controls select {
-            background:#111118; color:#ddd; border:1px solid #333; border-radius:8px;
-            padding:4px 8px; font-family:inherit; font-size:.72rem;
-        }
-        .portfolio-links-grid {
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin:18px 0;
-        }
-        .portfolio-link-card {
-            display:flex; align-items:center; gap:12px; min-height:68px;
-            padding:10px 13px; border-radius:14px;
-            background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.07);
-            color:#ddd; text-decoration:none; transition:.25s;
-        }
-        .portfolio-link-card:hover { transform:translateY(-2px); border-color:rgba(240,165,0,.28); background:rgba(240,165,0,.07); }
-        .portfolio-link-icon { width:42px; height:42px; flex:0 0 42px; display:flex; align-items:center; justify-content:center; border-radius:11px; background:rgba(240,165,0,.10); color:#f0a500; font-size:1.2rem; }
-        .portfolio-link-text { min-width:0; display:flex; flex-direction:column; gap:2px; }
-        .portfolio-link-text strong { font-size:.86rem; color:#fff; }
-        .portfolio-link-text span { font-size:.7rem; color:#888; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        .portfolio-media-manager-help { color:#777; font-size:.72rem; line-height:1.8; margin:5px 0 8px; }
-        .portfolio-media-manager .portfolio-media-add-row { display:grid; grid-template-columns:150px 1fr auto; gap:8px; align-items:center; }
-        .portfolio-media-manager .portfolio-media-add-row select,
-        .portfolio-media-manager .portfolio-media-add-row input { width:100%; background:#0a0a0f; border:1px solid #333; border-radius:6px; padding:7px 10px; color:#fff; font-family:inherit; font-size:.8rem; }
-        .portfolio-media-manager .portfolio-media-add-row button { background:rgba(240,165,0,.12); border:1px solid rgba(240,165,0,.15); border-radius:6px; padding:7px 14px; color:#f0a500; cursor:pointer; font-family:inherit; }
-        .portfolio-media-manager .portfolio-media-drop-zone {
-            border:2px dashed rgba(240,165,0,.15); border-radius:8px; padding:14px; text-align:center;
-            color:#888; font-size:.76rem; cursor:pointer; transition:.25s; margin-top:8px;
-        }
-        .portfolio-media-manager .portfolio-media-drop-zone.dragover { border-color:#f0a500; background:rgba(240,165,0,.05); color:#aaa; }
-        .portfolio-media-manager .portfolio-media-list { display:grid; gap:8px; margin-bottom:10px; }
-        .portfolio-media-manager .portfolio-media-editor-item { display:grid; grid-template-columns:80px 1fr auto; gap:10px; align-items:center; padding:8px; border:1px solid rgba(255,255,255,.06); border-radius:9px; background:rgba(0,0,0,.16); }
-        .portfolio-media-manager .portfolio-media-editor-thumb { width:80px; height:56px; border-radius:7px; overflow:hidden; background:#050507; display:flex; align-items:center; justify-content:center; color:#777; }
-        .portfolio-media-manager .portfolio-media-editor-thumb img,
-        .portfolio-media-manager .portfolio-media-editor-thumb video { width:100%; height:100%; object-fit:cover; }
-        .portfolio-media-manager .portfolio-media-editor-meta { min-width:0; }
-        .portfolio-media-manager .portfolio-media-editor-meta strong { display:block; color:#ddd; font-size:.78rem; margin-bottom:3px; }
-        .portfolio-media-manager .portfolio-media-editor-meta span { display:block; color:#777; font-size:.68rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; direction:ltr; text-align:left; }
-        .portfolio-media-manager .portfolio-media-remove { width:30px; height:30px; border:0; border-radius:8px; background:rgba(233,69,96,.10); color:#e94560; cursor:pointer; }
-
         .portfolio-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -2863,40 +2768,65 @@
         }
 
 
-        /* PORTFOLIO MOBILE-ONLY LAYER: does not affect desktop or other sections. */
-        @media (max-width: 768px) {
-            #portfolio .filter-bar { align-items:stretch; }
-            #portfolio .filter-bar > .filter-group { order:2; }
-            #portfolio .filter-bar > div:last-child { order:1; justify-content:space-between; }
-            #portfolio .portfolio-grid { gap:14px; }
-            #portfolio .portfolio-card img { height:180px; object-fit:cover; }
-            .portfolio-detail-cover { width:calc(100% - 18px); max-width:calc(100% - 18px); max-height:none; height:auto; aspect-ratio:auto; object-fit:contain; margin:0 auto 18px; border-radius:14px; }
-            .portfolio-detail-content .detail-header { width:calc(100% - 14px); margin-left:auto; margin-right:auto; }
-            .portfolio-detail-content .detail-header h2 { font-size:clamp(1.35rem,5.8vw,1.85rem); line-height:1.42; }
-            .portfolio-detail-content .detail-header .subtitle { font-size:.84rem; line-height:1.8; }
-            .portfolio-detail-content .detail-body { width:calc(100% - 12px); margin-left:auto; margin-right:auto; }
-            .portfolio-detail-content .detail-body .block { margin-left:0; margin-right:0; }
-            .portfolio-media-carousel { margin-top:14px; }
-            .portfolio-media-track { gap:10px; }
-            .portfolio-media-item { flex-basis:100%; border-radius:13px; }
-            .portfolio-media-item img, .portfolio-media-item video, .portfolio-youtube-frame { min-height:0; aspect-ratio:16/9; }
-            .portfolio-media-arrow { width:38px; height:38px; }
-            .portfolio-media-arrow.prev { left:7px; }
-            .portfolio-media-arrow.next { right:7px; }
-            .portfolio-media-caption { padding:8px 11px; font-size:.72rem; }
-            .portfolio-links-grid { grid-template-columns:1fr; gap:9px; }
-            .portfolio-link-card { min-height:60px; border-radius:12px; }
-            .portfolio-link-icon { width:38px; height:38px; flex-basis:38px; }
-            .portfolio-media-manager .portfolio-media-add-row { grid-template-columns:1fr; }
-            .portfolio-media-manager .portfolio-media-editor-item { grid-template-columns:62px 1fr auto; }
-            .portfolio-media-manager .portfolio-media-editor-thumb { width:62px; height:46px; }
+        /* ============================================================
+           PORTFOLIO-ONLY V19 LAYER
+           No article/review/general UI rules are changed here.
+        ============================================================ */
+        .portfolio-card .portfolio-card-category { color:#f0a500; font-size:.72rem; font-weight:700; margin-bottom:6px; opacity:.9; }
+        .portfolio-card .subtitle { color:#aaa; font-size:.82rem; font-style:italic; display:block; margin:4px 0 8px; line-height:1.7; }
+        .portfolio-card-tags { display:flex; flex-wrap:wrap; gap:4px; }
+        .portfolio-card-tags span { background:rgba(240,165,0,.12); color:#f0a500; padding:2px 9px; border-radius:30px; font-size:.65rem; font-weight:600; }
+        .portfolio-detail-header { text-align:center; }
+        .portfolio-detail-cover { width:100%; max-width:100%; max-height:520px; object-fit:contain; display:block; margin:0 auto 24px; border-radius:18px; background:#0a0a0f; }
+        .portfolio-detail-category { display:inline-block; color:#f0a500; background:rgba(240,165,0,.08); border:1px solid rgba(240,165,0,.15); border-radius:30px; padding:5px 13px; font-size:.75rem; font-weight:700; margin-bottom:10px; }
+        .portfolio-detail-header .subtitle { color:#aaa; font-size:.95rem; line-height:1.8; margin:0 0 10px; }
+        .portfolio-media-shell { position:relative; display:flex; align-items:center; gap:8px; }
+        .portfolio-media-carousel { display:flex !important; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; gap:14px; width:100%; padding:4px 2px 12px; }
+        .portfolio-media-carousel::-webkit-scrollbar { display:none; }
+        .portfolio-media-item { flex:0 0 88%; scroll-snap-align:center; border-radius:16px; overflow:hidden; background:#08080c; border:1px solid rgba(255,255,255,.07); }
+        .portfolio-media-item img, .portfolio-media-item video { width:100%; height:auto; max-height:620px; min-height:300px; object-fit:contain; display:block; background:#08080c; }
+        .portfolio-video-frame { width:100%; aspect-ratio:16/9; background:#000; }
+        .portfolio-video-frame iframe, .portfolio-video-frame video { width:100%; height:100%; border:0; object-fit:contain; }
+        .portfolio-media-item .caption { padding:9px 12px; color:#aaa; font-size:.8rem; line-height:1.7; }
+        .portfolio-media-prev, .portfolio-media-next { flex:0 0 42px; width:42px; height:42px; border-radius:50%; border:1px solid rgba(240,165,0,.2); background:rgba(18,18,26,.9); color:#f0a500; font-size:1.8rem; cursor:pointer; z-index:2; }
+        .portfolio-media-prev:hover, .portfolio-media-next:hover { background:rgba(240,165,0,.12); }
+        .portfolio-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+        .portfolio-link-card { display:flex !important; align-items:center; gap:12px; min-height:70px; padding:12px 14px !important; border:1px solid rgba(255,255,255,.07) !important; border-radius:16px !important; background:rgba(255,255,255,.035) !important; color:#fff !important; text-decoration:none !important; transform:none !important; }
+        .portfolio-link-card:hover { border-color:rgba(240,165,0,.35) !important; background:rgba(240,165,0,.08) !important; transform:translateY(-2px) !important; }
+        .portfolio-link-icon { width:42px; height:42px; flex:0 0 42px; display:grid; place-items:center; border-radius:12px; background:rgba(240,165,0,.1); color:#f0a500; font-size:1.15rem; }
+        .portfolio-link-copy { min-width:0; flex:1; display:flex; flex-direction:column; text-align:right; }
+        .portfolio-link-copy strong { color:#fff; font-size:.9rem; }
+        .portfolio-link-copy small { color:#777; font-size:.68rem; margin-top:2px; direction:ltr; text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .portfolio-link-arrow { color:#777; font-size:.75rem; }
+        .portfolio-cover-preview img { display:block; width:100%; max-height:180px; object-fit:contain; background:#0a0a0f; border:1px solid #222; border-radius:12px; margin:8px 0; }
+        .portfolio-media-add { display:grid; grid-template-columns:150px 1fr 1fr auto; gap:8px; align-items:center; margin-top:10px; }
+        .portfolio-media-add select, .portfolio-media-add input, .portfolio-upload-label input { min-width:0; }
+        .portfolio-upload-label { display:block; margin-top:10px; color:#999; font-size:.8rem; }
+        .portfolio-media-list { display:flex; flex-direction:column; gap:7px; }
+        .portfolio-media-row { display:flex; align-items:center; gap:10px; padding:9px 10px; border:1px solid rgba(255,255,255,.06); background:#0d0d14; border-radius:10px; }
+        .portfolio-media-row > div { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+        .portfolio-media-row b { color:#f0a500; font-size:.75rem; }
+        .portfolio-media-row small { color:#777; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; direction:ltr; text-align:right; }
+        .portfolio-media-row em { color:#aaa; font-size:.72rem; font-style:normal; }
+        .portfolio-media-row .remove-item { width:30px; height:30px; border:0; border-radius:8px; background:rgba(233,69,96,.1); color:#e94560; cursor:pointer; }
+        @media(max-width:768px){
+            #portfolioCategoryFilters { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; width:100%; }
+            #portfolioCategoryFilters .filter-btn { padding:7px 11px; font-size:.72rem; }
+            .portfolio-detail-cover { max-height:420px; border-radius:14px; }
+            .portfolio-media-item { flex-basis:88%; }
+            .portfolio-media-item img { min-height:0; max-height:420px; }
+            .portfolio-media-prev, .portfolio-media-next { width:36px; height:36px; flex-basis:36px; font-size:1.4rem; }
+            .portfolio-media-add { grid-template-columns:1fr; }
+            .portfolio-links { grid-template-columns:1fr; }
         }
-        @media (max-width: 480px) {
-            #portfolio .portfolio-card img { height:165px; }
-            .portfolio-detail-cover { width:calc(100% - 22px); max-width:calc(100% - 22px); }
-            .portfolio-detail-content .detail-header { width:calc(100% - 20px); }
-            .portfolio-detail-content .detail-body { width:calc(100% - 18px); }
+        @media(max-width:480px){
+            .portfolio-detail-cover { max-height:330px; }
+            .portfolio-media-item { flex-basis:92%; }
+            .portfolio-media-carousel { gap:10px; }
         }
+
+        .portfolio-video-speed { display:flex; align-items:center; justify-content:flex-end; gap:7px; padding:7px 10px; background:#0b0b10; color:#888; font-size:.72rem; }
+        .portfolio-video-speed select { background:#15151d; color:#ddd; border:1px solid #292934; border-radius:8px; padding:4px 7px; font:inherit; }
 </style>
 </head>
 <body>
@@ -2982,18 +2912,16 @@
         <section id="portfolio" class="section" style="display:none;">
             <div class="container">
                 <div class="filter-bar">
-                    <div class="filter-group">
+                    <h2 class="section-title" style="margin-bottom:0;">نمونه‌کارها</h2>
+                    <div class="filter-group" id="portfolioCategoryFilters">
                         <button class="filter-btn active" data-portfolio-category="all" onclick="filterPortfolio('all')">همه</button>
-                        <button class="filter-btn" data-portfolio-category="video" onclick="filterPortfolio('video')">تولید محتوای ویدیویی</button>
-                        <button class="filter-btn" data-portfolio-category="gamedev" onclick="filterPortfolio('gamedev')">بازی‌سازی و پروژه‌ها</button>
+                        <button class="filter-btn" data-portfolio-category="video-content" onclick="filterPortfolio('video-content')">تولید محتوای ویدیویی</button>
+                        <button class="filter-btn" data-portfolio-category="game-dev" onclick="filterPortfolio('game-dev')">بازی‌سازی و پروژه‌ها</button>
                     </div>
-                    <div style="display:flex;align-items:center;gap:10px;">
-                        <h2 class="section-title" style="margin-bottom:0;">نمونه‌کارها</h2>
-                        <select class="sort-select" id="portfolioSort" onchange="applyPortfolioSort()">
+                    <select class="sort-select" id="portfolioSort" onchange="applyPortfolioSort()">
                         <option value="newest">جدیدترین</option>
                         <option value="oldest">قدیمی‌ترین</option>
                     </select>
-                    </div>
                 </div>
                 <div id="portfolioContainer" class="portfolio-grid"></div>
                 <button class="load-more-btn" id="portfolioLoadMore" onclick="loadMorePortfolio()">بارگذاری بیشتر</button>
@@ -3220,31 +3148,33 @@
             <label>Slug / آدرس پروژه (اختیاری):</label><input type="text" id="pSlug" placeholder="مثلاً my-game-project">
             <label>دسته‌بندی:</label>
             <select id="pCategory">
-                <option value="gamedev">بازی‌سازی و پروژه‌ها</option>
-                <option value="video">تولید محتوای ویدیویی</option>
+                <option value="video-content">تولید محتوای ویدیویی</option>
+                <option value="game-dev">بازی‌سازی و پروژه‌ها</option>
             </select>
-            <label>عکس کاور (لینک):</label><input type="text" id="pCover" placeholder="لینک تصویر کاور پروژه">
-            <label>زیرعنوان کوتاه (اختیاری):</label><input type="text" id="pSubtitle" placeholder="توضیح کوتاه یک‌خطی برای کارت">
+            <label>کاور پروژه (لینک):</label><input type="text" id="pCover" placeholder="https://..."><br>
+            <label>یا آپلود کاور:</label><input type="file" id="pCoverFile" accept="image/*">
+            <div id="pCoverPreview" class="portfolio-cover-preview"></div>
+            <label>زیرعنوان کوتاه (حدود یک خط):</label><input type="text" id="pSubtitle" placeholder="توضیح کوتاه برای کارت پروژه...">
             <label style="margin:10px 0 4px;color:#aaa;font-size:0.9rem;">وضعیت انتشار:</label>
             <div class="publish-toggle" id="pDraftToggle">
                 <button type="button" data-value="published" onclick="setDraftState('pDraft', false)">● منتشر شود</button>
                 <button type="button" class="draft-option" data-value="draft" onclick="setDraftState('pDraft', true)">● پیش‌نویس</button>
             </div>
             <input type="checkbox" id="pDraft" hidden>
-            <label>توضیحات اصلی پروژه:</label><textarea id="pDesc" rows="5" placeholder="این متن فقط داخل صفحه خود پروژه نمایش داده می‌شود، نه روی کارت."></textarea>
+            <label>توضیحات کامل پروژه:</label><textarea id="pDesc" rows="6" placeholder="این متن فقط داخل صفحه پروژه نمایش داده می‌شود."></textarea>
             <label>تگ‌ها (با کاما):</label><input type="text" id="pTags">
-            <label>لینک‌های مرتبط (هر خط: متن دلخواه | لینک):</label>
-            <textarea id="pLinks" rows="3" placeholder="گیت‌هاب پروژه | https://github.com/...
-صفحه یوتیوب | https://youtube.com/...
-دانلود نسخه | https://..."></textarea>
-            <label>مدیا / رسانه‌های پروژه (عکس، ویدیوی مستقیم یا YouTube):</label>
-            <div class="portfolio-media-manager-help">برای ویدیوی YouTube لینک ویدیو را وارد کنید. برای فایل ویدیویی مستقیم، لینک فایل را بگذارید یا نوع را دستی انتخاب کنید. ترتیب مدیا همان ترتیب نمایش در صفحه است.</div>
+            <hr style="border-color:#1a1a2e;margin:16px 0;">
+            <h4 style="color:#fff;margin:8px 0;">🎬 مدیای پروژه</h4>
             <div id="pMediaManager" class="portfolio-media-manager"></div>
+            <hr style="border-color:#1a1a2e;margin:16px 0;">
+            <h4 style="color:#fff;margin:8px 0;">🔗 لینک‌های مرتبط</h4>
+            <p style="color:#888;font-size:.78rem;line-height:1.8;margin-top:0;">هر خط: <b>متن دلخواه | لینک | آیکون اختیاری</b> — مثلاً: گیت‌هاب پروژه | https://github.com/... | fa-github</p>
+            <textarea id="pLinks" rows="4" placeholder="گیت‌هاب پروژه | https://github.com/... | fa-github
+دانلود بازی | https://... | fa-download"></textarea>
             <input type="hidden" id="pEditId">
             <button class="btn-admin" onclick="savePortfolioFromForm()">💾 ذخیره</button>
         </div>
     </div>
-
     <script>
         // ============================================================
         // DATA MANAGER
@@ -3369,14 +3299,15 @@
             portfolio: [{
                 id: 'port1',
                 title: 'The Forgotten Key',
-                category: 'gamedev',
-                cover: 'https://via.placeholder.com/600x340/1a1a2e/f0a500?text=Cover',
-                subtitle: 'پروژه RPG در آنریل انجین ۵',
+                slug: 'the-forgotten-key',
+                category: 'game-dev',
+                cover: 'https://via.placeholder.com/1200x675/1a1a2e/f0a500?text=The+Forgotten+Key',
+                subtitle: 'یک پروژه مستقل در Unreal Engine 5',
                 desc: 'پروژه RPG در آنریل انجین ۵ با مکانیک‌های منحصربه‌فرد',
                 tags: ['UE5','Blueprint','C++'],
-                links: ['گیت‌هاب|https://github.com'],
-                media: [{ type:'image', url:'https://via.placeholder.com/800x450/1a1a2e/f0a500?text=Project', caption:'' }],
-                gallery: [{ type:'image', url:'https://via.placeholder.com/800x450/1a1a2e/f0a500?text=Project', caption:'' }]
+                links: ['گیت‌هاب پروژه|https://github.com|fa-github'],
+                media: [{ type:'image', url:'https://via.placeholder.com/1200x675/1a1a2e/f0a500?text=The+Forgotten+Key', caption:'' }],
+                gallery: [{ type:'image', url:'https://via.placeholder.com/1200x675/1a1a2e/f0a500?text=The+Forgotten+Key', caption:'' }]
             }],
             about: {
                 bio: 'من دانیال میرزاباقری هستم...',
@@ -3670,18 +3601,13 @@
             data.portfolio = data.portfolio.map(p => {
                 if (p.draft === undefined) p.draft = false;
                 if (!p.slug) p.slug = slugify(p.title || p.id);
-                if (!p.category) p.category = 'gamedev';
+                if (!p.category) p.category = 'game-dev';
                 if (p.subtitle === undefined) p.subtitle = '';
-                if (p.cover === undefined) {
-                    const oldMedia = p.media || p.gallery || [];
-                    const firstImage = oldMedia.find(m => {
-                        const u = typeof m === 'string' ? m : (m && m.url) || '';
-                        return u && !isYouTubeUrl(u) && !isDirectVideoUrl(u);
-                    });
-                    p.cover = firstImage ? (typeof firstImage === 'string' ? firstImage : firstImage.url) : '';
-                }
-                if (!Array.isArray(p.media)) p.media = Array.isArray(p.gallery) ? p.gallery : [];
-                if (!Array.isArray(p.gallery)) p.gallery = p.media;
+                if (p.cover === undefined) p.cover = '';
+                if (!p.media) p.media = Array.isArray(p.gallery) ? p.gallery : [];
+                if (!p.gallery) p.gallery = p.media;
+                if (!p.tags) p.tags = [];
+                if (!p.links) p.links = [];
                 return p;
             });
             if (!data.about) data.about = { bio: '', social: [] };
@@ -3989,10 +3915,7 @@
             } else if (target.tagName === 'IMG' && target.closest('.article-gallery')) {
                 galleryContainer = target.closest('.article-gallery');
                 item = target;
-            } else if (target.tagName === 'IMG' && target.closest('.portfolio-media-image')) {
-                galleryContainer = target.closest('.portfolio-media-track');
-                item = target;
-            } else if ((target.tagName === 'IMG' || target.tagName === 'VIDEO') && target.closest('.portfolio-gallery') && !target.closest('.portfolio-media-item')) {
+            } else if ((target.tagName === 'IMG' || target.tagName === 'VIDEO') && target.closest('.portfolio-gallery')) {
                 galleryContainer = target.closest('.portfolio-gallery');
                 item = target;
             }
@@ -4405,19 +4328,8 @@
         }
 
         let currentPortfolioCategory = 'all';
-
         function portfolioCategoryLabel(cat) {
-            return cat === 'video' ? 'تولید محتوای ویدیویی' : 'بازی‌سازی و پروژه‌ها';
-        }
-
-        function portfolioCover(p) {
-            if (p.cover) return p.cover;
-            const media = p.media || p.gallery || [];
-            const first = media.find(m => {
-                const u = typeof m === 'string' ? m : (m && m.url) || '';
-                return u && !isYouTubeUrl(u) && !isDirectVideoUrl(u);
-            });
-            return first ? (typeof first === 'string' ? first : first.url) : '';
+            return cat === 'video-content' ? 'تولید محتوای ویدیویی' : cat === 'game-dev' ? 'بازی‌سازی و پروژه‌ها' : 'نمونه‌کار';
         }
 
         function renderPortfolio() {
@@ -4425,25 +4337,33 @@
             if (!c || !data) return;
             const sort = document.getElementById('portfolioSort').value;
             let list = [...publicPortfolioList()];
-            if (currentPortfolioCategory !== 'all') list = list.filter(p => (p.category || 'gamedev') === currentPortfolioCategory);
-            if (sort === 'newest') list.sort((a,b) => b.id.localeCompare(a.id));
-            else list.sort((a,b) => a.id.localeCompare(b.id));
-            const start = 0, end = (portfolioPage + 1) * PER_PAGE;
-            const shown = list.slice(start, end);
+            if (currentPortfolioCategory !== 'all') list = list.filter(p => (p.category || 'game-dev') === currentPortfolioCategory);
+            if (sort === 'newest') list.sort((a,b) => String(b.id).localeCompare(String(a.id)));
+            else list.sort((a,b) => String(a.id).localeCompare(String(b.id)));
+            const end = (portfolioPage + 1) * PER_PAGE;
+            const shown = list.slice(0, end);
             c.innerHTML = shown.map(p => {
-                const cover = portfolioCover(p);
-                return `<div class="portfolio-card" onclick="openDetail('portfolio','${p.id}')">
+                const cover = p.cover || (p.media && p.media[0] && p.media[0].type === 'image' ? p.media[0].url : '') || (p.gallery && p.gallery[0] ? p.gallery[0].url : '');
+                return `
+                <div class="portfolio-card" onclick="openDetail('portfolio','${p.id}')">
                     ${cover ? `<img loading="lazy" decoding="async" src="${cover}" alt="${p.title}">` : `<div style="height:180px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;color:#666;">بدون کاور</div>`}
                     <div class="info">
-                        <div class="portfolio-category-badge">${portfolioCategoryLabel(p.category || 'gamedev')}</div>
+                        <div class="portfolio-card-category">${portfolioCategoryLabel(p.category)}</div>
                         <h3>${p.title}</h3>
                         ${p.subtitle ? `<span class="subtitle">${p.subtitle}</span>` : ''}
-                        <div style="display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 0;">${(p.tags || []).map(t=>`<span style="background:rgba(240,165,0,0.12);color:#f0a500;padding:2px 10px;border-radius:30px;font-size:0.65rem;font-weight:600;">${t}</span>`).join('')}</div>
+                        <div class="portfolio-card-tags">${(p.tags || []).map(t=>`<span>${t}</span>`).join('')}</div>
                     </div>
                 </div>`;
             }).join('');
             document.getElementById('portfolioLoadMore').style.display = (list.length > end) ? 'block' : 'none';
             setupMediaPreloading(c);
+        }
+
+        function filterPortfolio(cat) {
+            currentPortfolioCategory = cat;
+            portfolioPage = 0;
+            document.querySelectorAll('#portfolioCategoryFilters .filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.portfolioCategory === cat));
+            renderPortfolio();
         }
 
         function renderAbout() {
@@ -4488,7 +4408,7 @@
             if (latestPortfolio.length) {
                 html += `<div class="latest-section"><h3 class="section-title">📁 آخرین پروژه‌ها</h3><div class="latest-grid">`;
                 latestPortfolio.forEach(p => {
-                    const img = portfolioCover(p);
+                    const img = p.gallery && p.gallery.length ? p.gallery[0].url : '';
                     html += `<div class="latest-item" onclick="openDetail('portfolio','${p.id}')">
                         ${img ? `<img loading="lazy" decoding="async" src="${img}" alt="${p.title}">` : `<div style="height:120px;background:#1a1a2e;"></div>`}
                         <div class="info"><h4>${p.title}</h4><div class="meta">${p.tags.slice(0,2).join(', ')}</div></div>
@@ -4521,7 +4441,7 @@
             const pList = document.getElementById('adminPortfolioList');
             if (pList) {
                 pList.innerHTML = data.portfolio.map(p => `
-                    <div class="admin-item"><span>${p.title} <small style="color:#888;">(${portfolioCategoryLabel(p.category || 'gamedev')})</small></span>
+                    <div class="admin-item"><span>${p.title}</span>
                     <div><span style="font-size:0.7rem;color:${p.draft ? '#f0a500' : '#4caf50'};margin-left:8px;">${p.draft ? 'پیش‌نویس' : 'منتشر شده'}</span><button class="del-btn" onclick="editPortfolio('${p.id}')"><i class="fas fa-edit"></i></button>
                     <button class="del-btn" onclick="deletePortfolio('${p.id}')"><i class="fas fa-trash"></i></button></div></div>
                 `).join('');
@@ -4722,66 +4642,49 @@
                 }
             } else if (type === 'portfolio') {
                 const p = item;
-                const media = (p.media && p.media.length ? p.media : (p.gallery || [])).map(normalizePortfolioMedia);
-                html = `<div class="portfolio-detail-content">
-                    ${portfolioCover(p) ? `<img loading="eager" fetchpriority="high" decoding="async" class="portfolio-detail-cover" src="${portfolioCover(p)}" alt="${p.title}">` : ''}
-                    <div class="detail-header">
-                        <div class="portfolio-category-badge">${portfolioCategoryLabel(p.category || 'gamedev')}</div>
-                        <h2>${p.title}</h2>
-                        ${p.subtitle ? `<span class="subtitle">${p.subtitle}</span>` : ''}
-                        <div class="detail-meta">${(p.tags || []).map(t=>`<span style="background:rgba(240,165,0,0.12);color:#f0a500;padding:2px 10px;border-radius:30px;font-size:0.7rem;font-weight:600;margin:0 4px;display:inline-block;">${t}</span>`).join('')}</div>
-                    </div><div class="detail-body">`;
-                if (p.desc) html += `<div class="block"><h3>توضیحات پروژه</h3><div class="block-text">${nl2br(p.desc)}</div></div>`;
+                const categoryLabel = portfolioCategoryLabel(p.category);
+                const media = (p.media && p.media.length) ? p.media : (p.gallery || []);
+                html = `<div class="detail-header portfolio-detail-header">
+                    ${p.cover ? `<img class="portfolio-detail-cover" src="${p.cover}" alt="${p.title}" loading="eager" fetchpriority="high" decoding="async">` : ''}
+                    <div class="portfolio-detail-category">${categoryLabel}</div>
+                    <h2>${p.title}</h2>
+                    ${p.subtitle ? `<div class="subtitle">${p.subtitle}</div>` : ''}
+                    <div class="detail-meta">${(p.tags || []).map(t=>`<span style="background:rgba(240,165,0,0.12);color:#f0a500;padding:2px 10px;border-radius:30px;font-size:0.7rem;font-weight:600;margin:0 4px;">${t}</span>`).join('')}</div>
+                </div><div class="detail-body portfolio-detail-body">`;
+                if (p.desc) html += `<div class="block"><h3>توضیحات</h3><div class="block-text">${nl2br(p.desc)}</div></div>`;
                 if (media.length) {
-                    const carouselId = 'portfolioMedia_' + String(p.id).replace(/[^a-zA-Z0-9_-]/g,'_');
-                    html += `<div class="block"><h3>رسانه‌های پروژه</h3><div class="portfolio-media-carousel" id="${carouselId}">
-                        <button class="portfolio-media-arrow prev" type="button" aria-label="قبلی" onclick="portfolioMediaMove('${carouselId}',-1)"><i class="fas fa-chevron-right"></i></button>
-                        <div class="portfolio-media-track">`;
-                    media.forEach((m, idx) => {
-                        const caption = m.caption || '';
-                        if (m.type === 'youtube') {
-                            const yt = getYouTubeId(m.url);
-                            if (yt) html += `<div class="portfolio-media-item" data-media-type="youtube" data-media-index="${idx}">
-                                <iframe id="portfolioYT_${String(p.id).replace(/[^a-zA-Z0-9_-]/g,'_')}_${idx}" class="portfolio-youtube-frame" src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(yt)}?enablejsapi=1&playsinline=1&rel=0&controls=1" title="${caption || p.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-                                ${caption ? `<div class="portfolio-media-caption">${caption}</div>` : ''}
-                            </div>`;
-                        } else if (m.type === 'video') {
-                            html += `<div class="portfolio-media-item" data-media-type="video" data-media-index="${idx}">
-                                <video class="portfolio-direct-video" controls playsinline preload="metadata"><source src="${m.url}"></video>
-                                <div class="portfolio-direct-controls"><label>سرعت <select onchange="setPortfolioVideoRate(this)"><option value="0.5">۰.۵×</option><option value="0.75">۰.۷۵×</option><option value="1" selected>۱×</option><option value="1.25">۱.۲۵×</option><option value="1.5">۱.۵×</option><option value="2">۲×</option></select></label></div>
-                                ${caption ? `<div class="portfolio-media-caption">${caption}</div>` : ''}
-                            </div>`;
+                    html += `<div class="block"><h3>مدیای پروژه</h3><div class="portfolio-media-shell"><button class="portfolio-media-prev" type="button" aria-label="قبلی">‹</button><div class="portfolio-gallery portfolio-media-carousel">`;
+                    media.forEach((m, i) => {
+                        const rawUrl = String(m.url || '').trim();
+                        const type = m.type || detectPortfolioMediaType(rawUrl);
+                        if (type === 'youtube') {
+                            const yt = getYouTubeEmbedUrl(rawUrl);
+                            html += `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame"><iframe class="portfolio-youtube" src="${yt}" title="${p.title} - ویدیو ${i+1}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                        } else if (type === 'video') {
+                            html += `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame"><video class="portfolio-direct-video" controls preload="metadata" playsinline><source src="${rawUrl}"></video></div><div class="portfolio-video-speed"><label>سرعت</label><select class="portfolio-speed-select"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         } else {
-                            html += `<div class="portfolio-media-item" data-media-type="image" data-media-index="${idx}">
-                                <img loading="lazy" decoding="async" class="portfolio-media-image" src="${m.url}" alt="${caption}">
-                                ${caption ? `<div class="portfolio-media-caption">${caption}</div>` : ''}
-                            </div>`;
+                            html += `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><img loading="lazy" decoding="async" src="${rawUrl}" alt="${m.caption || p.title}" class="portfolio-media-image">${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         }
                     });
-                    html += `</div><button class="portfolio-media-arrow next" type="button" aria-label="بعدی" onclick="portfolioMediaMove('${carouselId}',1)"><i class="fas fa-chevron-left"></i></button></div>
-                    <div class="portfolio-media-index" data-for="${carouselId}">۱ از ${media.length}</div></div>`;
+                    html += `</div><button class="portfolio-media-next" type="button" aria-label="بعدی">›</button></div></div>`;
                 }
                 if (p.links && p.links.length) {
-                    html += `<div class="block"><h3>لینک‌های مرتبط</h3><div class="portfolio-links-grid">`;
+                    html += `<div class="block"><h3>لینک‌های مرتبط</h3><div class="portfolio-links">`;
                     p.links.forEach(l => {
                         const parts = String(l).split('|');
                         const label = (parts[0] || 'لینک').trim();
-                        const url = (parts[1] || '').trim();
-                        if (!url) return;
-                        const info = portfolioLinkInfo(url, label);
-                        html += `<a class="portfolio-link-card" href="${url}" target="_blank" rel="noopener noreferrer">
-                            <span class="portfolio-link-icon"><i class="${info.icon}"></i></span>
-                            <span class="portfolio-link-text"><strong>${info.label}</strong><span>${info.host}</span></span>
-                        </a>`;
+                        const url = (parts[1] || '#').trim();
+                        const icon = (parts[2] || portfolioLinkIcon(url)).trim();
+                        html += `<a class="portfolio-link-card" href="${url}" target="_blank" rel="noopener noreferrer"><span class="portfolio-link-icon"><i class="${icon.startsWith('fa') ? 'fab' : 'fas'} ${icon}"></i></span><span class="portfolio-link-copy"><strong>${label}</strong><small>${portfolioLinkDomain(url)}</small></span><i class="fas fa-arrow-up-right-from-square portfolio-link-arrow"></i></a>`;
                     });
                     html += `</div></div>`;
                 }
-                html += `</div></div>`;
+                html += `</div>`;
             }
+
             c.innerHTML = html;
             setupMediaPreloading(c);
-            initPortfolioMediaRuntime(c);
-            initPortfolioYouTubePlayers(c);
+            if (type === 'portfolio') setupPortfolioMediaBehavior(c);
             document.body.classList.remove('deep-link-loading');
             applySeoMeta(item, type);
             if (item.slug) {
@@ -4856,14 +4759,6 @@
             });
             articlePage = 0;
             renderArticles(cat);
-        }
-        function filterPortfolio(cat) {
-            currentPortfolioCategory = cat;
-            document.querySelectorAll('.filter-btn[data-portfolio-category]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.portfolioCategory === cat);
-            });
-            portfolioPage = 0;
-            renderPortfolio();
         }
         function applyReviewSort() { reviewPage = 0; renderReviews(); }
         function applyArticleSort() { articlePage = 0; renderArticles(currentCategory); }
@@ -5648,215 +5543,12 @@
             }
         }
 
-        function getYouTubeId(url) {
-            try {
-                const u = new URL(url);
-                const host = u.hostname.replace(/^www\./,'').toLowerCase();
-                if (host === 'youtu.be') return u.pathname.split('/').filter(Boolean)[0] || '';
-                if (host === 'youtube.com' || host === 'm.youtube.com') {
-                    if (u.pathname === '/watch') return u.searchParams.get('v') || '';
-                    const parts = u.pathname.split('/').filter(Boolean);
-                    if (parts[0] === 'shorts' || parts[0] === 'embed' || parts[0] === 'live') return parts[1] || '';
-                }
-            } catch(e) {}
-            return '';
-        }
-        function isYouTubeUrl(url) { return !!getYouTubeId(url || ''); }
-        function isDirectVideoUrl(url) {
-            if (!url) return false;
-            return /\.(mp4|webm|ogg|m4v)(?:[?#].*)?$/i.test(url) || /^data:video\//i.test(url);
-        }
-        function isImageUrl(url) {
-            return /\.(jpg|jpeg|png|gif|webp|avif|svg)(?:[?#].*)?$/i.test(url) || /^data:image\//i.test(url);
-        }
-        function detectPortfolioMediaType(url) {
-            if (isYouTubeUrl(url)) return 'youtube';
-            if (isDirectVideoUrl(url)) return 'video';
-            return 'image';
-        }
-        function normalizePortfolioMedia(item) {
-            if (typeof item === 'string') return { type:detectPortfolioMediaType(item), url:item, caption:'' };
-            const url = item && item.url ? item.url : '';
-            let type = item && item.type ? item.type : detectPortfolioMediaType(url);
-            if (type === 'video' && isYouTubeUrl(url)) type = 'youtube';
-            return { type, url, caption:(item && item.caption) || '' };
-        }
-        function portfolioLinkInfo(url, customLabel) {
-            let host = '';
-            try { host = new URL(url).hostname.replace(/^www\./,''); } catch(e) { host = 'لینک مرتبط'; }
-            const h = host.toLowerCase();
-            let icon = 'fas fa-link';
-            let label = customLabel || host;
-            if (h.includes('youtube') || h.includes('youtu.be')) icon = 'fab fa-youtube';
-            else if (h.includes('github')) icon = 'fab fa-github';
-            else if (h.includes('linkedin')) icon = 'fab fa-linkedin';
-            else if (h.includes('discord')) icon = 'fab fa-discord';
-            else if (h.includes('itch.io')) icon = 'fas fa-gamepad';
-            else if (h.includes('steam')) icon = 'fab fa-steam';
-            else if (h.includes('instagram')) icon = 'fab fa-instagram';
-            else if (h.includes('twitter') || h.includes('x.com')) icon = 'fab fa-x-twitter';
-            else if (h.includes('unrealengine')) icon = 'fas fa-cube';
-            else if (h.includes('drive.google') || h.includes('dropbox')) icon = 'fas fa-cloud-arrow-down';
-            else if (/download|dl\.|file|zip|rar/i.test(h + ' ' + url)) icon = 'fas fa-download';
-            return { icon, label, host };
-        }
-
-        function createPortfolioMediaManager(initialItems = []) {
-            const container = document.getElementById('pMediaManager');
-            if (!container) return;
-            container.innerHTML = '';
-            container._portfolioMediaItems = (initialItems || []).map(normalizePortfolioMedia);
-            const list = document.createElement('div');
-            list.className = 'portfolio-media-list';
-            container.appendChild(list);
-            const row = document.createElement('div');
-            row.className = 'portfolio-media-add-row';
-            const typeSelect = document.createElement('select');
-            typeSelect.innerHTML = '<option value="auto">تشخیص خودکار</option><option value="image">عکس</option><option value="video">ویدیوی مستقیم</option><option value="youtube">YouTube</option>';
-            const urlInput = document.createElement('input');
-            urlInput.placeholder = 'لینک عکس، فایل ویدیو یا YouTube...';
-            const addBtn = document.createElement('button');
-            addBtn.type = 'button'; addBtn.textContent = '➕ افزودن';
-            row.append(typeSelect, urlInput, addBtn); container.appendChild(row);
-            const fileInput=document.createElement('input');
-            fileInput.type='file'; fileInput.multiple=true; fileInput.accept='image/*,video/*'; fileInput.style.display='none';
-            container.appendChild(fileInput);
-            const drop=document.createElement('div'); drop.className='portfolio-media-drop-zone';
-            drop.innerHTML='<i class="fas fa-cloud-upload-alt"></i> فایل عکس یا ویدیو را انتخاب کنید یا اینجا بکشید و رها کنید';
-            container.appendChild(drop);
-            function addFiles(files){
-                [...files].forEach(file=>{
-                    if(!file.type.startsWith('image/') && !file.type.startsWith('video/')) return;
-                    const reader=new FileReader();
-                    reader.onload=e=>{ container._portfolioMediaItems.push({type:file.type.startsWith('video/')?'video':'image',url:e.target.result,caption:''}); render(); };
-                    reader.readAsDataURL(file);
-                });
-            }
-            drop.onclick=()=>fileInput.click();
-            fileInput.onchange=e=>addFiles(e.target.files);
-            drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('dragover');});
-            drop.addEventListener('dragleave',()=>drop.classList.remove('dragover'));
-            drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('dragover');addFiles(e.dataTransfer.files);});
-
-            function render() {
-                list.innerHTML = '';
-                container._portfolioMediaItems.forEach((item,index) => {
-                    const div = document.createElement('div'); div.className='portfolio-media-editor-item';
-                    const thumb = document.createElement('div'); thumb.className='portfolio-media-editor-thumb';
-                    if (item.type === 'youtube') thumb.innerHTML='<i class="fab fa-youtube"></i>';
-                    else if (item.type === 'video') { const v=document.createElement('video'); v.src=item.url; v.muted=true; thumb.appendChild(v); }
-                    else { const img=document.createElement('img'); img.src=item.url; thumb.appendChild(img); }
-                    const meta=document.createElement('div'); meta.className='portfolio-media-editor-meta';
-                    const label=item.type==='youtube'?'YouTube':item.type==='video'?'ویدیوی مستقیم':'عکس';
-                    meta.innerHTML=`<strong>${label}</strong><span>${item.url}</span>`;
-                    const remove=document.createElement('button'); remove.type='button'; remove.className='portfolio-media-remove'; remove.textContent='×';
-                    remove.onclick=()=>requestDeleteConfirmation('آیا مطمئن هستید که می‌خواهید این مدیا حذف شود؟',()=>{container._portfolioMediaItems.splice(index,1);render();});
-                    div.append(thumb,meta,remove); list.appendChild(div);
-                });
-            }
-            addBtn.onclick=()=>{
-                const url=urlInput.value.trim(); if(!url) return;
-                let type=typeSelect.value; if(type==='auto') type=detectPortfolioMediaType(url);
-                if(type==='youtube' && !isYouTubeUrl(url)) { alert('لینک YouTube معتبر نیست.'); return; }
-                container._portfolioMediaItems.push({type,url,caption:''}); urlInput.value=''; typeSelect.value='auto'; render();
-            };
-            container._portfolioMediaRender=render;
-            render();
-        }
-        function initPortfolioMediaManager(items) {
-            createPortfolioMediaManager(items);
-        }
-        function getPortfolioMediaItems() {
-            const c=document.getElementById('pMediaManager');
-            return c && c._portfolioMediaItems ? c._portfolioMediaItems.map(normalizePortfolioMedia) : [];
-        }
-        function portfolioMediaMove(id, direction) {
-            const carousel=document.getElementById(id); if(!carousel) return;
-            const track=carousel.querySelector('.portfolio-media-track');
-            const item=track.querySelector('.portfolio-media-item'); if(!item) return;
-            const step=track.clientWidth + 14;
-            track.scrollBy({left:direction * step, behavior:'smooth'});
-            setTimeout(()=>updatePortfolioMediaIndex(carousel),280);
-        }
-        function updatePortfolioMediaIndex(carousel) {
-            if(!carousel) return;
-            const track=carousel.querySelector('.portfolio-media-track'); const items=[...track.querySelectorAll('.portfolio-media-item')];
-            if(!items.length) return;
-            let best=0,dist=Infinity; items.forEach((el,i)=>{const d=Math.abs(el.offsetLeft-track.scrollLeft);if(d<dist){dist=d;best=i;}});
-            const counter=document.querySelector(`.portfolio-media-index[data-for="${carousel.id}"]`); if(counter) counter.textContent=`${best+1} از ${items.length}`;
-        }
-        function pausePortfolioYouTube(frame) {
-            if(!frame || !frame.contentWindow) return;
-            const player = window.__portfolioYTPlayers && window.__portfolioYTPlayers[frame.id];
-            if (player && player.pauseVideo) { try { player.pauseVideo(); return; } catch(e) {} }
-            frame.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');
-        }
-        function pauseAllPortfolioMedia(except) {
-            document.querySelectorAll('.portfolio-direct-video').forEach(v=>{ if(v!==except) v.pause(); });
-            document.querySelectorAll('.portfolio-youtube-frame').forEach(f=>{ if(f!==except) pausePortfolioYouTube(f); });
-            if (window.__portfolioYTPlayers) Object.keys(window.__portfolioYTPlayers).forEach(id=>{
-                const frame=document.getElementById(id);
-                const player=window.__portfolioYTPlayers[id];
-                if(frame!==except && player && player.pauseVideo) { try { player.pauseVideo(); } catch(e) {} }
+        const portfolioCoverFileInput = document.getElementById('pCoverFile');
+        if (portfolioCoverFileInput) {
+            portfolioCoverFileInput.addEventListener('change', function(e) {
+                const file=e.target.files && e.target.files[0]; if(!file) return;
+                const reader=new FileReader(); reader.onload=ev=>{ document.getElementById('pCover').value=ev.target.result; updatePortfolioCoverPreview(ev.target.result); }; reader.readAsDataURL(file);
             });
-        }
-        function ensurePortfolioYouTubeApi(callback) {
-            if (window.YT && window.YT.Player) { callback(); return; }
-            window.__portfolioYTCallbacks = window.__portfolioYTCallbacks || [];
-            window.__portfolioYTCallbacks.push(callback);
-            if (window.__portfolioYTApiRequested) return;
-            window.__portfolioYTApiRequested = true;
-            const previous = window.onYouTubeIframeAPIReady;
-            window.onYouTubeIframeAPIReady = function() {
-                if (typeof previous === 'function') { try { previous(); } catch(e) {} }
-                const callbacks = window.__portfolioYTCallbacks.splice(0);
-                callbacks.forEach(cb=>{ try { cb(); } catch(e) {} });
-            };
-            const script=document.createElement('script');
-            script.src='https://www.youtube.com/iframe_api';
-            script.async=true;
-            document.head.appendChild(script);
-        }
-        function initPortfolioYouTubePlayers(root=document) {
-            const frames=[...(root.querySelectorAll ? root.querySelectorAll('.portfolio-youtube-frame') : [])];
-            if(!frames.length) return;
-            window.__portfolioYTPlayers=window.__portfolioYTPlayers||{};
-            ensurePortfolioYouTubeApi(()=>{
-                frames.forEach(frame=>{
-                    if(!frame.id || window.__portfolioYTPlayers[frame.id]) return;
-                    try {
-                        window.__portfolioYTPlayers[frame.id]=new YT.Player(frame,{
-                            events:{ onStateChange:function(event){
-                                if(event.data===YT.PlayerState.PLAYING) pauseAllPortfolioMedia(frame);
-                            }}
-                        });
-                    } catch(e) {}
-                });
-            });
-        }
-        function setPortfolioVideoRate(select) {
-            const video=select.closest('.portfolio-media-item')?.querySelector('.portfolio-direct-video');
-            if(video) video.playbackRate=parseFloat(select.value)||1;
-        }
-        function initPortfolioMediaRuntime(root=document) {
-            root.querySelectorAll?.('.portfolio-direct-video').forEach(video=>{
-                if(video.dataset.bound==='1') return; video.dataset.bound='1';
-                video.addEventListener('play',()=>pauseAllPortfolioMedia(video));
-            });
-            root.querySelectorAll?.('.portfolio-media-track').forEach(track=>{
-                if(track.dataset.bound==='1') return; track.dataset.bound='1';
-                track.addEventListener('scroll',()=>{ updatePortfolioMediaIndex(track.closest('.portfolio-media-carousel')); },{passive:true});
-            });
-            if(window.__portfolioMediaObserver) window.__portfolioMediaObserver.disconnect();
-            window.__portfolioMediaObserver=new IntersectionObserver(entries=>{
-                entries.forEach(entry=>{
-                    if(entry.isIntersecting && entry.intersectionRatio>.72) return;
-                    const el=entry.target;
-                    if(el.classList.contains('portfolio-direct-video')) el.pause();
-                    if(el.classList.contains('portfolio-youtube-frame')) pausePortfolioYouTube(el);
-                });
-            },{threshold:[0,.72]});
-            root.querySelectorAll?.('.portfolio-direct-video,.portfolio-youtube-frame').forEach(el=>window.__portfolioMediaObserver.observe(el));
         }
 
         // ============================================================
@@ -5879,7 +5571,7 @@
             document.getElementById('pEditId').value = id;
             document.getElementById('pTitle').value = p.title || '';
             document.getElementById('pSlug').value = p.slug || '';
-            document.getElementById('pCategory').value = p.category || 'gamedev';
+            document.getElementById('pCategory').value = p.category || 'game-dev';
             document.getElementById('pCover').value = p.cover || '';
             document.getElementById('pSubtitle').value = p.subtitle || '';
             document.getElementById('pDraft').checked = !!p.draft;
@@ -5887,14 +5579,17 @@
             document.getElementById('pDesc').value = p.desc || '';
             document.getElementById('pTags').value = (p.tags || []).join(', ');
             document.getElementById('pLinks').value = (p.links || []).join('\n');
+            updatePortfolioCoverPreview(p.cover || '');
             document.getElementById('portfolioModal').classList.add('active');
             initPortfolioMediaManager(p.media || p.gallery || []);
         }
 
         function clearPortfolioForm() {
             ['pTitle','pSlug','pCover','pSubtitle','pDesc','pTags','pLinks','pEditId'].forEach(id => document.getElementById(id).value = '');
-            document.getElementById('pCategory').value = 'gamedev';
+            document.getElementById('pCategory').value = 'game-dev';
             document.getElementById('pDraft').checked = false;
+            document.getElementById('pCoverFile').value = '';
+            updatePortfolioCoverPreview('');
             syncDraftToggle('pDraft');
         }
 
@@ -5915,22 +5610,21 @@
             const title = document.getElementById('pTitle').value.trim();
             if (!title) { alert('عنوان پروژه الزامی است.'); return; }
             const enteredSlug = document.getElementById('pSlug').value.trim();
-            const media = getPortfolioMediaItems();
             const cover = document.getElementById('pCover').value.trim();
+            const media = getPortfolioMediaItems();
             const newP = {
                 id, title,
                 slug: slugify(enteredSlug || title),
-                draft: document.getElementById('pDraft').checked,
-                category: document.getElementById('pCategory').value,
+                category: document.getElementById('pCategory').value || 'game-dev',
                 cover,
                 subtitle: document.getElementById('pSubtitle').value.trim() || '',
+                draft: document.getElementById('pDraft').checked,
                 desc: document.getElementById('pDesc').value.trim() || '',
                 tags: document.getElementById('pTags').value.split(',').map(s => s.trim()).filter(Boolean),
                 links: document.getElementById('pLinks').value.split('\n').map(s => s.trim()).filter(Boolean),
                 media,
                 gallery: media
             };
-            if (!newP.cover) newP.cover = portfolioCover(newP);
             const existing = data.portfolio.findIndex(p => p.id === id);
             if (existing >= 0) data.portfolio[existing] = newP;
             else data.portfolio.push(newP);
@@ -5939,6 +5633,109 @@
                 closeModal('portfolioModal');
                 alert('✅ پروژه ذخیره شد.');
             }
+        }
+
+        // ============================================================
+        // PORTFOLIO MEDIA MANAGER (portfolio-only)
+        // ============================================================
+        function detectPortfolioMediaType(url) {
+            const u = String(url || '').trim();
+            if (/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)/i.test(u)) return 'youtube';
+            if (/\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(u) || u.startsWith('data:video/')) return 'video';
+            return 'image';
+        }
+        function getYouTubeId(url) {
+            const u = String(url || '').trim();
+            const m = u.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/i);
+            return m ? m[1] : '';
+        }
+        function getYouTubeEmbedUrl(url) {
+            const id = getYouTubeId(url);
+            return id ? `https://www.youtube.com/embed/${id}?enablejsapi=1&rel=0&playsinline=1` : url;
+        }
+        function portfolioLinkIcon(url) {
+            const u=String(url||'').toLowerCase();
+            if (u.includes('github.com')) return 'fa-github';
+            if (u.includes('youtube.com') || u.includes('youtu.be')) return 'fa-youtube';
+            if (u.includes('linkedin.com')) return 'fa-linkedin';
+            if (u.includes('itch.io')) return 'fa-itch-io';
+            if (u.includes('discord')) return 'fa-discord';
+            if (/\.(zip|rar|7z|exe|msi)(\?.*)?$/i.test(u) || u.includes('download')) return 'fa-download';
+            return 'fa-link';
+        }
+        function portfolioLinkDomain(url) {
+            try { return new URL(url).hostname.replace(/^www\./,''); } catch(e) { return 'لینک مرتبط'; }
+        }
+        function updatePortfolioCoverPreview(url) {
+            const c=document.getElementById('pCoverPreview'); if(!c) return;
+            c.innerHTML=url ? `<img src="${url}" alt="پیش‌نمایش کاور">` : '';
+        }
+        function createPortfolioMediaManager(initialItems=[]) {
+            const container=document.getElementById('pMediaManager'); if(!container) return;
+            container.innerHTML=`<div class="portfolio-media-list"></div><div class="portfolio-media-add"><select id="pMediaType"><option value="auto">تشخیص خودکار</option><option value="image">تصویر</option><option value="video">ویدیوی مستقیم</option><option value="youtube">YouTube</option></select><input id="pMediaUrl" type="text" placeholder="لینک تصویر، فایل ویدیو یا YouTube"><input id="pMediaCaption" type="text" placeholder="عنوان/توضیح اختیاری"><button type="button" class="add-btn" id="pMediaAddBtn">➕ افزودن مدیا</button></div><label class="portfolio-upload-label">یا فایل تصویر/ویدیو را انتخاب کن: <input type="file" id="pMediaFile" accept="image/*,video/*"></label>`;
+            container._items=(initialItems||[]).map(x=>({...x}));
+            const list=container.querySelector('.portfolio-media-list');
+            function render(){
+                list.innerHTML='';
+                container._items.forEach((m,i)=>{
+                    const row=document.createElement('div'); row.className='portfolio-media-row';
+                    const kind=m.type||detectPortfolioMediaType(m.url);
+                    const label=kind==='youtube'?'YouTube':kind==='video'?'ویدیوی مستقیم':'تصویر';
+                    row.innerHTML=`<div><b>${label}</b><small>${m.url||''}</small>${m.caption?`<em>${m.caption}</em>`:''}</div><button type="button" class="remove-item">×</button>`;
+                    row.querySelector('button').onclick=()=>{container._items.splice(i,1);render();};
+                    list.appendChild(row);
+                });
+            }
+            container.querySelector('#pMediaAddBtn').onclick=()=>{
+                const url=container.querySelector('#pMediaUrl').value.trim(); if(!url) return;
+                let type=container.querySelector('#pMediaType').value; if(type==='auto') type=detectPortfolioMediaType(url);
+                container._items.push({type,url,caption:container.querySelector('#pMediaCaption').value.trim()});
+                container.querySelector('#pMediaUrl').value=''; container.querySelector('#pMediaCaption').value=''; render();
+            };
+            container.querySelector('#pMediaFile').onchange=(e)=>{
+                const file=e.target.files && e.target.files[0]; if(!file) return;
+                const reader=new FileReader(); reader.onload=ev=>{container._items.push({type:file.type.startsWith('video/')?'video':'image',url:ev.target.result,caption:''});render();}; reader.readAsDataURL(file); e.target.value='';
+            };
+            render();
+        }
+        function initPortfolioMediaManager(items){
+            const c=document.getElementById('pMediaManager'); if(!c) return;
+            createPortfolioMediaManager(items);
+        }
+        function getPortfolioMediaItems(){ const c=document.getElementById('pMediaManager'); return c&&Array.isArray(c._items)?c._items:[]; }
+
+        function setupPortfolioMediaBehavior(root) {
+            if (!root) return;
+            const carousels=root.querySelectorAll('.portfolio-media-carousel');
+            const pauseAll=()=>{
+                carousels.forEach(car=>{
+                    car.querySelectorAll('video').forEach(v=>{ try{v.pause();}catch(e){} });
+                    car.querySelectorAll('iframe.portfolio-youtube').forEach(f=>{ try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');}catch(e){} });
+                });
+            };
+            carousels.forEach(car=>{
+                if(car.dataset.bound==='1') return; car.dataset.bound='1';
+                car.addEventListener('scroll',()=>pauseAll(),{passive:true});
+                car.addEventListener('change',e=>{
+                    const sel=e.target.closest('.portfolio-speed-select');
+                    if(sel){ const item=sel.closest('.portfolio-media-item'); const v=item && item.querySelector('video'); if(v) v.playbackRate=Number(sel.value)||1; }
+                });
+                car.addEventListener('click',e=>{
+                    const v=e.target.closest('video'); if(v){ root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} }); }
+                    const item=e.target.closest('.portfolio-media-item'); if(item){
+                        const imgs=item.querySelectorAll('img'); if(imgs.length && e.target.closest('img')) openLightbox(Array.from(car.querySelectorAll('img')).map(img=>({type:'image',url:img.src,caption:img.alt})), Math.max(0,Array.from(car.querySelectorAll('img')).indexOf(e.target)));
+                    }
+                });
+                const wrapper=car.parentElement;
+                const prev=wrapper && wrapper.querySelector('.portfolio-media-prev'); const next=wrapper && wrapper.querySelector('.portfolio-media-next');
+                const step=()=>Math.max(1,car.clientWidth*0.88);
+                if(prev) prev.onclick=()=>{pauseAll();car.scrollBy({left:-step(),behavior:'smooth'});};
+                if(next) next.onclick=()=>{pauseAll();car.scrollBy({left:step(),behavior:'smooth'});};
+                if('IntersectionObserver' in window){
+                    const obs=new IntersectionObserver(entries=>entries.forEach(en=>{if(!en.isIntersecting) { const v=en.target.querySelector('video'); if(v) try{v.pause()}catch(_){} const f=en.target.querySelector('iframe.portfolio-youtube'); if(f) try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*')}catch(_){} }}),{threshold:.25});
+                    car.querySelectorAll('.portfolio-media-item').forEach(it=>obs.observe(it));
+                }
+            });
         }
 
         // ============================================================
