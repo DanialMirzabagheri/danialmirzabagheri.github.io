@@ -2834,30 +2834,76 @@
         .portfolio-video-speed select { background:#15151d; color:#ddd; border:1px solid #292934; border-radius:8px; padding:4px 7px; font:inherit; }
 
         /* ============================================================
-           PORTFOLIO-ONLY V21 REFINEMENTS
-           Media keeps its native aspect ratio; detail content matches
-           the centered editorial/article layout; video loading stays
-           metadata-first and player clicks toggle playback.
+           PORTFOLIO-ONLY V22 REFINEMENTS
+           Centered editorial layout, contained native-aspect media,
+           polished play/pause feedback, and automatic pause when media
+           leaves the visible detail view.
         ============================================================ */
         .portfolio-detail-header,
-        .portfolio-detail-body { width:100%; max-width:850px; margin-left:auto; margin-right:auto; }
-        .portfolio-detail-header { text-align:right; }
-        .portfolio-detail-cover { width:100%; height:auto; max-height:520px; object-fit:contain; }
+        .portfolio-detail-body {
+            width:100% !important;
+            max-width:850px !important;
+            margin-left:auto !important;
+            margin-right:auto !important;
+            box-sizing:border-box;
+        }
+        .portfolio-detail-header { text-align:right !important; }
+        .portfolio-detail-cover {
+            width:100%; height:auto; max-height:520px; object-fit:contain;
+            display:block; margin-left:auto; margin-right:auto;
+        }
         .portfolio-media-single .portfolio-media-item,
         .portfolio-media-carousel .portfolio-media-item { height:auto; }
-        .portfolio-media-item img,
-        .portfolio-media-item video { width:100%; height:auto !important; max-width:100%; aspect-ratio:auto !important; object-fit:contain !important; display:block; }
-        .portfolio-video-frame { width:100%; height:auto; aspect-ratio:auto; }
-        .portfolio-video-frame iframe { width:100%; height:auto; aspect-ratio:16/9; display:block; }
-        .portfolio-direct-frame { align-items:flex-start; }
-        .portfolio-media-single .portfolio-direct-frame video { height:auto !important; }
-        .portfolio-media-carousel .portfolio-direct-frame video { height:auto !important; }
+        .portfolio-media-item img {
+            width:auto !important; height:auto !important; max-width:100% !important;
+            max-height:520px !important; aspect-ratio:auto !important;
+            object-fit:contain !important; display:block; margin:0 auto;
+        }
+        .portfolio-video-frame {
+            width:100%; aspect-ratio:16/9; min-height:0;
+            display:flex; align-items:center; justify-content:center;
+            position:relative; overflow:hidden; background:#08080c;
+        }
+        .portfolio-video-frame iframe {
+            width:100%; height:100%; aspect-ratio:auto;
+            display:block; border:0;
+        }
+        .portfolio-direct-frame {
+            align-items:center; justify-content:center;
+            cursor:pointer;
+        }
+        .portfolio-media-item .portfolio-direct-video {
+            width:auto !important; height:auto !important;
+            max-width:100% !important; max-height:100% !important;
+            aspect-ratio:auto !important; object-fit:contain !important;
+            display:block; margin:auto;
+        }
+        .portfolio-play-feedback {
+            position:absolute; left:50%; top:50%; width:68px; height:68px;
+            transform:translate(-50%,-50%) scale(.72); opacity:0; pointer-events:none;
+            display:flex; align-items:center; justify-content:center;
+            border-radius:50%; background:rgba(0,0,0,.72);
+            border:1px solid rgba(255,255,255,.16);
+            box-shadow:0 10px 35px rgba(0,0,0,.35);
+            color:#fff; font-size:1.55rem; z-index:5;
+        }
+        .portfolio-play-feedback.show {
+            animation:portfolioPlayFeedback .58s cubic-bezier(.2,.8,.2,1) forwards;
+        }
+        @keyframes portfolioPlayFeedback {
+            0% { opacity:0; transform:translate(-50%,-50%) scale(.72); }
+            18% { opacity:1; transform:translate(-50%,-50%) scale(1); }
+            65% { opacity:.92; transform:translate(-50%,-50%) scale(1); }
+            100% { opacity:0; transform:translate(-50%,-50%) scale(1.08); }
+        }
         @media(max-width:768px){
             .portfolio-detail-header,
-            .portfolio-detail-body { width:100%; max-width:none; margin-left:auto; margin-right:auto; }
-            .portfolio-media-item img,
-            .portfolio-media-item video { height:auto !important; aspect-ratio:auto !important; object-fit:contain !important; }
-            .portfolio-video-frame iframe { height:auto; }
+            .portfolio-detail-body { width:100% !important; max-width:100% !important; margin-left:auto !important; margin-right:auto !important; }
+            .portfolio-detail-cover { max-height:min(420px,58dvh); }
+            .portfolio-media-item img { max-height:420px !important; }
+            .portfolio-video-frame { width:100%; aspect-ratio:16/9; }
+            .portfolio-media-item .portfolio-direct-video { max-width:100% !important; max-height:100% !important; }
+            .portfolio-play-feedback { width:58px; height:58px; font-size:1.3rem; }
         }
 </style>
 </head>
@@ -4698,7 +4744,7 @@
                             const ytRatio = /youtube\.com\/shorts\//i.test(rawUrl) ? '9/16' : '16/9';
                             return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame" style="aspect-ratio:${ytRatio}"><iframe class="portfolio-youtube" src="${yt}" title="${p.title} - ویدیو ${i+1}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         } else if (type === 'video') {
-                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame portfolio-direct-frame"><video class="portfolio-direct-video" controls preload="metadata" playsinline><source src="${rawUrl}"></video></div><div class="portfolio-video-speed"><label>سرعت</label><select class="portfolio-speed-select"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame portfolio-direct-frame"><video class="portfolio-direct-video" controls preload="metadata" playsinline><source src="${rawUrl}"></video><div class="portfolio-play-feedback" aria-hidden="true"><i class="fas fa-play"></i></div></div><div class="portfolio-video-speed"><label>سرعت</label><select class="portfolio-speed-select"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         }
                         return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><img loading="lazy" decoding="async" src="${rawUrl}" alt="${m.caption || p.title}" class="portfolio-media-image">${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                     }).join('');
@@ -4771,6 +4817,7 @@
         }
 
         function closeDetail() {
+            pauseAllPortfolioMedia(document.getElementById('detail-page') || document);
             history.replaceState({}, '', '/');
             document.getElementById('detail-page').classList.remove('active');
             // navigate() مسیر را به ریشه سایت برمی‌گرداند.
@@ -5744,32 +5791,47 @@
         }
         function getPortfolioMediaItems(){ const c=document.getElementById('pMediaManager'); return c&&Array.isArray(c._items)?c._items:[]; }
 
+        function pauseAllPortfolioMedia(root=document) {
+            try {
+                root.querySelectorAll('.portfolio-direct-video').forEach(v=>{ try{v.pause();}catch(e){} });
+                root.querySelectorAll('iframe.portfolio-youtube').forEach(f=>{
+                    try { f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
+                });
+            } catch(e) {}
+        }
+
         function setupPortfolioMediaBehavior(root) {
             if (!root) return;
             const carousels=root.querySelectorAll('.portfolio-media-carousel');
-            const pauseAll=()=>{
-                carousels.forEach(car=>{
-                    car.querySelectorAll('video').forEach(v=>{ try{v.pause();}catch(e){} });
-                    car.querySelectorAll('iframe.portfolio-youtube').forEach(f=>{ try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');}catch(e){} });
-                });
-            };
+            const pauseAll=()=>pauseAllPortfolioMedia(root);
+
             root.querySelectorAll('.portfolio-media-single img.portfolio-media-image').forEach(img=>{
                 img.addEventListener('click',()=>openLightbox([{type:'image',url:img.src,caption:img.alt}],0));
                 img.style.cursor='zoom-in';
             });
+
             root.querySelectorAll('.portfolio-direct-video').forEach(v=>{
                 v.preload = 'metadata';
+                const frame=v.closest('.portfolio-direct-frame');
+                const feedback=frame && frame.querySelector('.portfolio-play-feedback');
+                const showFeedback=(isPlaying)=>{
+                    if(!feedback) return;
+                    const icon=feedback.querySelector('i');
+                    if(icon) icon.className=isPlaying ? 'fas fa-play' : 'fas fa-pause';
+                    feedback.classList.remove('show');
+                    void feedback.offsetWidth;
+                    feedback.classList.add('show');
+                };
                 v.addEventListener('loadedmetadata',()=>{
                     if(v.videoWidth && v.videoHeight){
-                        const frame=v.closest('.portfolio-direct-frame');
-                        if(frame) frame.style.aspectRatio=`${v.videoWidth}/${v.videoHeight}`;
+                        if(frame) frame.dataset.mediaRatio=`${v.videoWidth}/${v.videoHeight}`;
                     }
                 },{once:true});
                 v.addEventListener('play',()=>{
                     root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} });
+                    showFeedback(true);
                 });
-                // Clicking the actual video area (not the native control strip)
-                // toggles play/pause, like common media players.
+                v.addEventListener('pause',()=>showFeedback(false));
                 v.addEventListener('click',e=>{
                     const rect=v.getBoundingClientRect();
                     const y=e.clientY-rect.top;
@@ -5782,6 +5844,20 @@
                     }
                 });
             });
+
+            // Stop direct videos when they leave the visible detail area.
+            if ('IntersectionObserver' in window) {
+                const io=new IntersectionObserver(entries=>{
+                    entries.forEach(entry=>{
+                        if(!entry.isIntersecting || entry.intersectionRatio < 0.2){
+                            const v=entry.target;
+                            if(!v.paused) { try{v.pause();}catch(e){} }
+                        }
+                    });
+                },{threshold:[0,.2,.5]});
+                root.querySelectorAll('.portfolio-direct-video').forEach(v=>io.observe(v));
+            }
+
             carousels.forEach(car=>{
                 if(car.dataset.bound==='1') return; car.dataset.bound='1';
                 const items=()=>Array.from(car.querySelectorAll('.portfolio-media-item'));
@@ -5808,7 +5884,8 @@
                     if(sel){ const item=sel.closest('.portfolio-media-item'); const v=item && item.querySelector('video'); if(v) v.playbackRate=Number(sel.value)||1; }
                 });
                 car.addEventListener('click',e=>{
-                    const v=e.target.closest('video'); if(v){ root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} }); }
+                    const v=e.target.closest('video');
+                    if(v){ root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} }); }
                     const img=e.target.closest('img.portfolio-media-image');
                     if(img){
                         const imageItems=Array.from(car.querySelectorAll('.portfolio-media-item')).filter(it=>it.querySelector('img.portfolio-media-image'));
