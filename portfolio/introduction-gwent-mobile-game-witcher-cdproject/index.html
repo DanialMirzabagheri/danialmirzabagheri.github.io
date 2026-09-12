@@ -2776,17 +2776,22 @@
         .portfolio-card .subtitle { color:#aaa; font-size:.82rem; font-style:italic; display:block; margin:4px 0 8px; line-height:1.7; }
         .portfolio-card-tags { display:flex; flex-wrap:wrap; gap:4px; }
         .portfolio-card-tags span { background:rgba(240,165,0,.12); color:#f0a500; padding:2px 9px; border-radius:30px; font-size:.65rem; font-weight:600; }
-        .portfolio-detail-header { text-align:center; }
+        .portfolio-detail-header { text-align:right; }
         .portfolio-detail-cover { width:100%; max-width:100%; max-height:520px; object-fit:contain; display:block; margin:0 auto 24px; border-radius:18px; background:#0a0a0f; }
         .portfolio-detail-category { display:inline-block; color:#f0a500; background:rgba(240,165,0,.08); border:1px solid rgba(240,165,0,.15); border-radius:30px; padding:5px 13px; font-size:.75rem; font-weight:700; margin-bottom:10px; }
         .portfolio-detail-header .subtitle { color:#aaa; font-size:.95rem; line-height:1.8; margin:0 0 10px; }
         .portfolio-media-shell { position:relative; display:flex; align-items:center; gap:8px; }
-        .portfolio-media-carousel { display:flex !important; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; gap:14px; width:100%; padding:4px 2px 12px; }
+        .portfolio-media-single { width:100%; display:flex; justify-content:center; padding:8px 4px 18px; }
+        .portfolio-media-single .portfolio-media-item { flex:0 1 88%; }
+        .portfolio-media-single .portfolio-media-item img { cursor:zoom-in; }
+        .portfolio-media-carousel { display:flex !important; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; gap:14px; width:100%; padding:8px 4px 18px; overscroll-behavior-x:contain; }
         .portfolio-media-carousel::-webkit-scrollbar { display:none; }
-        .portfolio-media-item { flex:0 0 88%; scroll-snap-align:center; border-radius:16px; overflow:hidden; background:#08080c; border:1px solid rgba(255,255,255,.07); }
-        .portfolio-media-item img, .portfolio-media-item video { width:100%; height:auto; max-height:620px; min-height:300px; object-fit:contain; display:block; background:#08080c; }
-        .portfolio-video-frame { width:100%; aspect-ratio:16/9; background:#000; }
-        .portfolio-video-frame iframe, .portfolio-video-frame video { width:100%; height:100%; border:0; object-fit:contain; }
+        .portfolio-media-item { flex:0 0 88%; scroll-snap-align:center; border-radius:18px; overflow:hidden; background:#08080c; border:1px solid rgba(255,255,255,.07); box-shadow:0 12px 35px rgba(0,0,0,.22); transition:transform .35s ease, box-shadow .35s ease; }
+        .portfolio-media-item:hover { transform:translateY(-3px); box-shadow:0 18px 42px rgba(0,0,0,.3); }
+        .portfolio-media-item img, .portfolio-media-item video { width:100%; height:auto; max-width:100%; object-fit:contain; display:block; background:#08080c; }
+        .portfolio-video-frame { width:100%; background:#000; display:flex; justify-content:center; align-items:center; overflow:hidden; }
+        .portfolio-video-frame iframe { width:100%; aspect-ratio:16/9; height:auto; min-height:0; border:0; display:block; }
+        .portfolio-video-frame video { width:100%; height:auto; max-width:100%; border:0; display:block; background:#000; }
         .portfolio-media-item .caption { padding:9px 12px; color:#aaa; font-size:.8rem; line-height:1.7; }
         .portfolio-media-prev, .portfolio-media-next { flex:0 0 42px; width:42px; height:42px; border-radius:50%; border:1px solid rgba(240,165,0,.2); background:rgba(18,18,26,.9); color:#f0a500; font-size:1.8rem; cursor:pointer; z-index:2; }
         .portfolio-media-prev:hover, .portfolio-media-next:hover { background:rgba(240,165,0,.12); }
@@ -2814,7 +2819,7 @@
             #portfolioCategoryFilters .filter-btn { padding:7px 11px; font-size:.72rem; }
             .portfolio-detail-cover { max-height:420px; border-radius:14px; }
             .portfolio-media-item { flex-basis:88%; }
-            .portfolio-media-item img { min-height:0; max-height:420px; }
+            .portfolio-media-item img { min-height:0; }
             .portfolio-media-prev, .portfolio-media-next { width:36px; height:36px; flex-basis:36px; font-size:1.4rem; }
             .portfolio-media-add { grid-template-columns:1fr; }
             .portfolio-links { grid-template-columns:1fr; }
@@ -2822,7 +2827,7 @@
         @media(max-width:480px){
             .portfolio-detail-cover { max-height:330px; }
             .portfolio-media-item { flex-basis:92%; }
-            .portfolio-media-carousel { gap:10px; }
+            .portfolio-media-carousel { gap:10px; padding-bottom:14px; }
         }
 
         .portfolio-video-speed { display:flex; align-items:center; justify-content:flex-end; gap:7px; padding:7px 10px; background:#0b0b10; color:#888; font-size:.72rem; }
@@ -4408,7 +4413,7 @@
             if (latestPortfolio.length) {
                 html += `<div class="latest-section"><h3 class="section-title">📁 آخرین پروژه‌ها</h3><div class="latest-grid">`;
                 latestPortfolio.forEach(p => {
-                    const img = p.gallery && p.gallery.length ? p.gallery[0].url : '';
+                    const img = p.cover || (p.media && p.media.length && p.media[0].type === 'image' ? p.media[0].url : '') || (p.gallery && p.gallery.length ? p.gallery[0].url : '');
                     html += `<div class="latest-item" onclick="openDetail('portfolio','${p.id}')">
                         ${img ? `<img loading="lazy" decoding="async" src="${img}" alt="${p.title}">` : `<div style="height:120px;background:#1a1a2e;"></div>`}
                         <div class="info"><h4>${p.title}</h4><div class="meta">${p.tags.slice(0,2).join(', ')}</div></div>
@@ -4653,20 +4658,23 @@
                 </div><div class="detail-body portfolio-detail-body">`;
                 if (p.desc) html += `<div class="block"><h3>توضیحات</h3><div class="block-text">${nl2br(p.desc)}</div></div>`;
                 if (media.length) {
-                    html += `<div class="block"><h3>مدیای پروژه</h3><div class="portfolio-media-shell"><button class="portfolio-media-prev" type="button" aria-label="قبلی">‹</button><div class="portfolio-gallery portfolio-media-carousel">`;
-                    media.forEach((m, i) => {
+                    const mediaItemsHtml = media.map((m, i) => {
                         const rawUrl = String(m.url || '').trim();
                         const type = m.type || detectPortfolioMediaType(rawUrl);
                         if (type === 'youtube') {
                             const yt = getYouTubeEmbedUrl(rawUrl);
-                            html += `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame"><iframe class="portfolio-youtube" src="${yt}" title="${p.title} - ویدیو ${i+1}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                            const ytRatio = /youtube\.com\/shorts\//i.test(rawUrl) ? '9/16' : '16/9';
+                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame" style="aspect-ratio:${ytRatio}"><iframe class="portfolio-youtube" src="${yt}" title="${p.title} - ویدیو ${i+1}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         } else if (type === 'video') {
-                            html += `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame"><video class="portfolio-direct-video" controls preload="metadata" playsinline><source src="${rawUrl}"></video></div><div class="portfolio-video-speed"><label>سرعت</label><select class="portfolio-speed-select"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
-                        } else {
-                            html += `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><img loading="lazy" decoding="async" src="${rawUrl}" alt="${m.caption || p.title}" class="portfolio-media-image">${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame portfolio-direct-frame"><video class="portfolio-direct-video" controls preload="metadata" playsinline><source src="${rawUrl}"></video></div><div class="portfolio-video-speed"><label>سرعت</label><select class="portfolio-speed-select"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         }
-                    });
-                    html += `</div><button class="portfolio-media-next" type="button" aria-label="بعدی">›</button></div></div>`;
+                        return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><img loading="lazy" decoding="async" src="${rawUrl}" alt="${m.caption || p.title}" class="portfolio-media-image">${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                    }).join('');
+                    if (media.length === 1) {
+                        html += `<div class="block"><h3>مدیای پروژه</h3><div class="portfolio-media-single">${mediaItemsHtml}</div></div>`;
+                    } else {
+                        html += `<div class="block"><h3>مدیای پروژه</h3><div class="portfolio-media-shell"><button class="portfolio-media-prev" type="button" aria-label="قبلی">‹</button><div class="portfolio-gallery portfolio-media-carousel">${mediaItemsHtml}</div><button class="portfolio-media-next" type="button" aria-label="بعدی">›</button></div></div>`;
+                    }
                 }
                 if (p.links && p.links.length) {
                     html += `<div class="block"><h3>لینک‌های مرتبط</h3><div class="portfolio-links">`;
@@ -5713,8 +5721,41 @@
                     car.querySelectorAll('iframe.portfolio-youtube').forEach(f=>{ try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*');}catch(e){} });
                 });
             };
+            root.querySelectorAll('.portfolio-media-single img.portfolio-media-image').forEach(img=>{
+                img.addEventListener('click',()=>openLightbox([{type:'image',url:img.src,caption:img.alt}],0));
+                img.style.cursor='zoom-in';
+            });
+            root.querySelectorAll('.portfolio-direct-video').forEach(v=>{
+                v.addEventListener('loadedmetadata',()=>{
+                    if(v.videoWidth && v.videoHeight){
+                        const frame=v.closest('.portfolio-direct-frame');
+                        if(frame) frame.style.aspectRatio=`${v.videoWidth}/${v.videoHeight}`;
+                    }
+                },{once:true});
+                v.addEventListener('play',()=>{
+                    root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} });
+                });
+            });
             carousels.forEach(car=>{
                 if(car.dataset.bound==='1') return; car.dataset.bound='1';
+                const items=()=>Array.from(car.querySelectorAll('.portfolio-media-item'));
+                const getIndex=()=>{
+                    const list=items();
+                    if(!list.length) return 0;
+                    const center=car.scrollLeft + car.clientWidth/2;
+                    let best=0, dist=Infinity;
+                    list.forEach((it,i)=>{ const d=Math.abs((it.offsetLeft+it.offsetWidth/2)-center); if(d<dist){dist=d;best=i;} });
+                    return best;
+                };
+                const goTo=(index)=>{
+                    const list=items(); if(!list.length) return;
+                    pauseAll();
+                    const count=list.length;
+                    let target=index;
+                    if(target>=count) target=0;
+                    if(target<0) target=count-1;
+                    list[target].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+                };
                 car.addEventListener('scroll',()=>pauseAll(),{passive:true});
                 car.addEventListener('change',e=>{
                     const sel=e.target.closest('.portfolio-speed-select');
@@ -5722,19 +5763,18 @@
                 });
                 car.addEventListener('click',e=>{
                     const v=e.target.closest('video'); if(v){ root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} }); }
-                    const item=e.target.closest('.portfolio-media-item'); if(item){
-                        const imgs=item.querySelectorAll('img'); if(imgs.length && e.target.closest('img')) openLightbox(Array.from(car.querySelectorAll('img')).map(img=>({type:'image',url:img.src,caption:img.alt})), Math.max(0,Array.from(car.querySelectorAll('img')).indexOf(e.target)));
+                    const img=e.target.closest('img.portfolio-media-image');
+                    if(img){
+                        const imageItems=Array.from(car.querySelectorAll('.portfolio-media-item')).filter(it=>it.querySelector('img.portfolio-media-image'));
+                        const idx=Math.max(0,imageItems.indexOf(img.closest('.portfolio-media-item')));
+                        openLightbox(imageItems.map(it=>{const im=it.querySelector('img');return {type:'image',url:im.src,caption:im.alt};}),idx);
                     }
                 });
                 const wrapper=car.parentElement;
-                const prev=wrapper && wrapper.querySelector('.portfolio-media-prev'); const next=wrapper && wrapper.querySelector('.portfolio-media-next');
-                const step=()=>Math.max(1,car.clientWidth*0.88);
-                if(prev) prev.onclick=()=>{pauseAll();car.scrollBy({left:-step(),behavior:'smooth'});};
-                if(next) next.onclick=()=>{pauseAll();car.scrollBy({left:step(),behavior:'smooth'});};
-                if('IntersectionObserver' in window){
-                    const obs=new IntersectionObserver(entries=>entries.forEach(en=>{if(!en.isIntersecting) { const v=en.target.querySelector('video'); if(v) try{v.pause()}catch(_){} const f=en.target.querySelector('iframe.portfolio-youtube'); if(f) try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*')}catch(_){} }}),{threshold:.25});
-                    car.querySelectorAll('.portfolio-media-item').forEach(it=>obs.observe(it));
-                }
+                const prev=wrapper && wrapper.querySelector('.portfolio-media-prev');
+                const next=wrapper && wrapper.querySelector('.portfolio-media-next');
+                if(prev) prev.onclick=()=>goTo(getIndex()-1);
+                if(next) next.onclick=()=>goTo(getIndex()+1);
             });
         }
 
