@@ -3978,6 +3978,56 @@
             if (e.key === 'ArrowRight') changeLightbox(1);
         });
 
+        document.addEventListener('click', function(e) {
+            const target = e.target;
+            let galleryContainer = null;
+            let item = null;
+
+            if (target.tagName === 'IMG' && target.closest('.section-gallery')) {
+                galleryContainer = target.closest('.section-gallery');
+                item = target;
+            } else if (target.tagName === 'IMG' && target.closest('.article-gallery')) {
+                galleryContainer = target.closest('.article-gallery');
+                item = target;
+            } else if (target.tagName === 'IMG' && target.closest('.portfolio-media-image')) {
+                galleryContainer = target.closest('.portfolio-media-track');
+                item = target;
+            } else if ((target.tagName === 'IMG' || target.tagName === 'VIDEO') && target.closest('.portfolio-gallery') && !target.closest('.portfolio-media-item')) {
+                galleryContainer = target.closest('.portfolio-gallery');
+                item = target;
+            }
+
+            if (!galleryContainer || !item) return;
+
+            e.preventDefault();
+
+            const items = [];
+            const allMedia = galleryContainer.querySelectorAll('img, video');
+            allMedia.forEach(el => {
+                let type = 'image';
+                let url = '';
+                let caption = '';
+                if (el.tagName === 'VIDEO') {
+                    type = 'video';
+                    url = el.src;
+                } else {
+                    type = 'image';
+                    url = el.src;
+                    caption = el.alt || '';
+                }
+                if (url) {
+                    items.push({ type, url, caption });
+                }
+            });
+
+            if (items.length === 0) return;
+
+            const index = items.findIndex(it => it.url === (item.src || item.currentSrc));
+            if (index === -1) return;
+
+            openLightbox(items, index);
+        });
+
         // ============================================================
         // SOCIAL MODAL
         // ============================================================
