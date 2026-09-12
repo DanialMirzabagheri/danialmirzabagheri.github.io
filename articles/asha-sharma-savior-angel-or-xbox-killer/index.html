@@ -4538,6 +4538,10 @@
 
         function navigate(page) {
             // خروج از هر مطلب/صفحه جزئیات باید URL را به ریشه اصلی سایت برگرداند.
+            // اگر Portfolio Detail فعال است، هر ویدیوی در حال پخش را قبل از
+            // مخفی شدن صفحه متوقف کن تا پخش در پس‌زمینه ادامه پیدا نکند.
+            const activeDetail = document.getElementById('detail-page');
+            if (activeDetail) pauseAllPortfolioMedia(activeDetail);
             history.replaceState({}, '', '/');
             lastPage = page;
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
@@ -5832,17 +5836,10 @@
                     showFeedback(true);
                 });
                 v.addEventListener('pause',()=>showFeedback(false));
-                v.addEventListener('click',e=>{
-                    const rect=v.getBoundingClientRect();
-                    const y=e.clientY-rect.top;
-                    if (y >= rect.height - 58) return;
-                    if (v.paused) {
-                        root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} });
-                        v.play().catch(()=>{});
-                    } else {
-                        v.pause();
-                    }
-                });
+                // Do not manually toggle playback on click. Native HTML5 controls already
+                // handle play/pause (including fullscreen); manually toggling here would
+                // receive the same click event after the browser toggles the video and
+                // immediately reverse the state.
             });
 
             // Stop direct videos when they leave the visible detail area.
