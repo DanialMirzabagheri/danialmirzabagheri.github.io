@@ -6276,6 +6276,14 @@
                         const entering=!frame.classList.contains('mobile-fullscreen');
                         if(entering){
                             frame.dataset.mobileFsScrollY=String(window.scrollY);
+                            /* Move the frame to <body> while in mobile fullscreen.
+                               Its normal ancestors include overflow-hidden carousel/media
+                               containers; keeping it there can clip the video completely. */
+                            frame.dataset.mobileFsParentId = frame.parentElement && frame.parentElement.id ? frame.parentElement.id : '';
+                            frame.dataset.mobileFsNextSibling = frame.nextElementSibling ? '1' : '0';
+                            frame._mobileFsParent = frame.parentElement;
+                            frame._mobileFsNextSibling = frame.nextSibling;
+                            document.body.appendChild(frame);
                             frame.classList.add('mobile-fullscreen');
                             document.body.classList.add('portfolio-mobile-fullscreen-open');
                             document.body.style.overflow='hidden';
@@ -6284,6 +6292,14 @@
                             frame.classList.remove('mobile-fullscreen');
                             document.body.classList.remove('portfolio-mobile-fullscreen-open');
                             document.body.style.overflow='';
+                            const parent=frame._mobileFsParent;
+                            const next=frame._mobileFsNextSibling;
+                            if(parent && parent.isConnected){
+                                if(next && next.parentNode===parent) parent.insertBefore(frame,next);
+                                else parent.appendChild(frame);
+                            }
+                            frame._mobileFsParent=null;
+                            frame._mobileFsNextSibling=null;
                             requestAnimationFrame(()=>window.scrollTo({top:restoreY,behavior:'auto'}));
                         }
                         updateFs();
