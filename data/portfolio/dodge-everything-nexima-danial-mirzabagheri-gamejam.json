@@ -14,8 +14,16 @@
     "Game Design"
   ],
   "links": [
-    "صفحه‌ی گیم‌جم بازی|fa-itch.io|itch.io/jam/gamecraft-5/rate/3949955",
-    "دانلود نسخه‌ی نهایی بازی|fa-download|https://cdn.imgurl.ir/uploads/i61910_Dodge_Everything.rar"
+    {
+      "label": "صفحه‌ی گیم‌جم بازی",
+      "url": "https://itch.io/jam/gamecraft-5/rate/3949955",
+      "logo": ""
+    },
+    {
+      "label": "دانلود نسخه‌ی نهایی بازی",
+      "url": "https://cdn.imgurl.ir/uploads/i61910_Dodge_Everything.rar",
+      "logo": "download"
+    }
   ],
   "media": [
     {

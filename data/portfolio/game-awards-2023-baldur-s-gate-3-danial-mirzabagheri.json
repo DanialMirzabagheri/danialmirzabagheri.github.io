@@ -14,7 +14,11 @@
     "Game Awards"
   ],
   "links": [
-    "لینک ویدیو یوتیوب|fa-youtube|https://youtu.be/1szM8AgFeKs?si=LNYK1Ltk7VJReKmyp"
+    {
+      "label": "لینک ویدیو یوتیوب",
+      "url": "https://youtu.be/1szM8AgFeKs?si=mivcD7gocTu8r1aM",
+      "logo": ""
+    }
   ],
   "media": [
     {
