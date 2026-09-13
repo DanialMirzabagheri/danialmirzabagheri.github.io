@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2772,13 +2773,17 @@
            PORTFOLIO-ONLY V19 LAYER
            No article/review/general UI rules are changed here.
         ============================================================ */
-        .portfolio-card .portfolio-card-category { color:#f0a500; font-size:.72rem; font-weight:700; margin-bottom:6px; opacity:.9; }
+        .portfolio-card .portfolio-card-category { display:inline-block; font-size:.72rem; font-weight:700; margin-bottom:6px; padding:4px 10px; border-radius:30px; border:1px solid transparent; line-height:1.4; }
+        .portfolio-card .portfolio-card-category.video-content { color:#58b8ff; background:rgba(88,184,255,.12); border-color:rgba(88,184,255,.22); }
+        .portfolio-card .portfolio-card-category.game-dev { color:#c48cff; background:rgba(196,140,255,.12); border-color:rgba(196,140,255,.22); }
         .portfolio-card .subtitle { color:#aaa; font-size:.82rem; font-style:italic; display:block; margin:4px 0 8px; line-height:1.7; }
         .portfolio-card-tags { display:flex; flex-wrap:wrap; gap:4px; }
         .portfolio-card-tags span { background:rgba(240,165,0,.12); color:#f0a500; padding:2px 9px; border-radius:30px; font-size:.65rem; font-weight:600; }
         .portfolio-detail-header { text-align:right; }
         .portfolio-detail-cover { width:100%; max-width:100%; max-height:520px; object-fit:contain; display:block; margin:0 auto 24px; border-radius:18px; background:#0a0a0f; }
-        .portfolio-detail-category { display:inline-block; color:#f0a500; background:rgba(240,165,0,.08); border:1px solid rgba(240,165,0,.15); border-radius:30px; padding:5px 13px; font-size:.75rem; font-weight:700; margin-bottom:10px; }
+        .portfolio-detail-category { display:inline-block; border-radius:30px; padding:5px 13px; font-size:.75rem; font-weight:700; margin-bottom:10px; border:1px solid transparent; }
+        .portfolio-detail-category.video-content { color:#58b8ff; background:rgba(88,184,255,.12); border-color:rgba(88,184,255,.22); }
+        .portfolio-detail-category.game-dev { color:#c48cff; background:rgba(196,140,255,.12); border-color:rgba(196,140,255,.22); }
         .portfolio-detail-header .subtitle { color:#aaa; font-size:.95rem; line-height:1.8; margin:0 0 10px; }
         .portfolio-media-shell { position:relative; display:flex; align-items:center; gap:8px; }
         .portfolio-media-single { width:100%; display:flex; justify-content:center; padding:8px 4px 18px; }
@@ -2796,10 +2801,11 @@
         .portfolio-media-prev, .portfolio-media-next { flex:0 0 42px; width:42px; height:42px; border-radius:50%; border:1px solid rgba(240,165,0,.2); background:rgba(18,18,26,.9); color:#f0a500; font-size:1.8rem; cursor:pointer; z-index:2; }
         .portfolio-media-prev:hover, .portfolio-media-next:hover { background:rgba(240,165,0,.12); }
         .portfolio-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
-        .portfolio-link-card { display:flex !important; align-items:center; gap:12px; min-height:70px; padding:12px 14px !important; border:1px solid rgba(255,255,255,.07) !important; border-radius:16px !important; background:rgba(255,255,255,.035) !important; color:#fff !important; text-decoration:none !important; transform:none !important; }
+        .portfolio-link-card { display:flex !important; flex-direction:row; direction:ltr !important; align-items:center; gap:12px; min-height:70px; padding:12px 14px !important; border:1px solid rgba(255,255,255,.07) !important; border-radius:16px !important; background:rgba(255,255,255,.035) !important; color:#fff !important; text-decoration:none !important; transform:none !important; }
         .portfolio-link-card:hover { border-color:rgba(240,165,0,.35) !important; background:rgba(240,165,0,.08) !important; transform:translateY(-2px) !important; }
         .portfolio-link-icon { width:42px; height:42px; flex:0 0 42px; display:grid; place-items:center; border-radius:12px; background:rgba(240,165,0,.1); color:#f0a500; font-size:1.15rem; }
-        .portfolio-link-copy { min-width:0; flex:1; display:flex; flex-direction:column; text-align:right; }
+        .portfolio-link-logo { width:24px; height:24px; object-fit:contain; display:block; border-radius:5px; }
+        .portfolio-link-copy { min-width:0; flex:1; display:flex; flex-direction:column; text-align:right; direction:rtl; }
         .portfolio-link-copy strong { color:#fff; font-size:.9rem; }
         .portfolio-link-copy small { color:#777; font-size:.68rem; margin-top:2px; direction:ltr; text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
         .portfolio-link-arrow { color:#777; font-size:.75rem; }
@@ -2832,6 +2838,25 @@
 
         .portfolio-video-speed { display:flex; align-items:center; justify-content:flex-end; gap:7px; padding:7px 10px; background:#0b0b10; color:#888; font-size:.72rem; }
         .portfolio-video-speed select { background:#15151d; color:#ddd; border:1px solid #292934; border-radius:8px; padding:4px 7px; font:inherit; }
+        .latest-grid { direction:rtl; }
+        .latest-more-btn { display:block; margin:14px auto 0; padding:9px 17px; border:1px solid rgba(240,165,0,.22); border-radius:30px; background:rgba(240,165,0,.06); color:#f0a500; font:inherit; font-size:.78rem; cursor:pointer; transition:all .25s ease; }
+        .latest-more-btn:hover { background:rgba(240,165,0,.12); transform:translateY(-1px); }
+        .portfolio-direct-frame { position:relative; aspect-ratio:16/9; background:#000; }
+        .portfolio-direct-frame:fullscreen { width:100vw; height:100vh; max-width:none; max-height:none; aspect-ratio:auto; background:#000; display:flex; align-items:center; justify-content:center; }
+        .portfolio-direct-frame:-webkit-full-screen { width:100vw; height:100vh; max-width:none; max-height:none; aspect-ratio:auto; background:#000; display:flex; align-items:center; justify-content:center; }
+        .portfolio-direct-frame:fullscreen .portfolio-direct-video, .portfolio-direct-frame:-webkit-full-screen .portfolio-direct-video { width:100% !important; height:100% !important; max-width:none !important; max-height:none !important; object-fit:contain !important; }
+        .portfolio-direct-video { width:100% !important; height:100% !important; max-width:none !important; max-height:none !important; object-fit:contain !important; display:block; background:#000; }
+        .portfolio-video-controls { position:absolute; left:10px; right:10px; bottom:10px; z-index:8; display:flex; flex-direction:row; direction:ltr !important; align-items:center; justify-content:flex-start; gap:7px; padding:8px 10px; border:1px solid rgba(255,255,255,.1); border-radius:14px; background:rgba(10,10,15,.78); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); opacity:0; transform:translateY(5px); transition:opacity .22s ease, transform .22s ease; }
+        .portfolio-direct-frame:hover .portfolio-video-controls, .portfolio-direct-frame:focus-within .portfolio-video-controls, .portfolio-direct-frame.is-playing .portfolio-video-controls, .portfolio-direct-frame:not(.is-playing) .portfolio-video-controls { opacity:1; transform:translateY(0); }
+        .portfolio-direct-frame:fullscreen .portfolio-video-controls, .portfolio-direct-frame:-webkit-full-screen .portfolio-video-controls { opacity:1; left:24px; right:24px; bottom:22px; }
+        .portfolio-video-control-btn { position:relative; width:34px; height:34px; flex:0 0 34px; border:0; border-radius:9px; background:transparent; color:#eee; display:grid; place-items:center; cursor:pointer; font-size:.9rem; }
+        .portfolio-video-control-btn:hover { background:rgba(255,255,255,.1); }
+        .portfolio-video-time { color:#bbb; font-size:.68rem; min-width:76px; direction:ltr !important; text-align:center; }
+        .portfolio-video-progress { flex:1; min-width:60px; accent-color:#f0a500; cursor:pointer; }
+        .portfolio-video-volume { width:72px; accent-color:#f0a500; cursor:pointer; }
+        .portfolio-video-speed-inline { color:#ddd; background:transparent; border:0; font:inherit; font-size:.7rem; cursor:pointer; padding:5px 2px; direction:ltr !important; text-align:left; }
+        .portfolio-play-feedback { pointer-events:none; }
+        @media(max-width:768px){ .portfolio-video-controls { left:6px; right:6px; bottom:6px; padding:6px; gap:3px; border-radius:11px; } .portfolio-video-time { min-width:64px; font-size:.62rem; } .portfolio-video-volume { width:52px; } .portfolio-video-control-btn { width:31px; height:31px; flex-basis:31px; } .portfolio-direct-frame:fullscreen .portfolio-video-controls, .portfolio-direct-frame:-webkit-full-screen .portfolio-video-controls { left:8px; right:8px; bottom:8px; } }
 
         /* ============================================================
            PORTFOLIO-ONLY V22 REFINEMENTS
@@ -2996,10 +3021,6 @@
                         <button class="filter-btn" data-portfolio-category="video-content" onclick="filterPortfolio('video-content')">تولید محتوای ویدیویی</button>
                         <button class="filter-btn" data-portfolio-category="game-dev" onclick="filterPortfolio('game-dev')">بازی‌سازی و پروژه‌ها</button>
                     </div>
-                    <select class="sort-select" id="portfolioSort" onchange="applyPortfolioSort()">
-                        <option value="newest">جدیدترین</option>
-                        <option value="oldest">قدیمی‌ترین</option>
-                    </select>
                 </div>
                 <div id="portfolioContainer" class="portfolio-grid"></div>
                 <button class="load-more-btn" id="portfolioLoadMore" onclick="loadMorePortfolio()">بارگذاری بیشتر</button>
@@ -3233,6 +3254,8 @@
             <label>یا آپلود کاور:</label><input type="file" id="pCoverFile" accept="image/*">
             <div id="pCoverPreview" class="portfolio-cover-preview"></div>
             <label>زیرعنوان کوتاه (حدود یک خط):</label><input type="text" id="pSubtitle" placeholder="توضیح کوتاه برای کارت پروژه...">
+            <label>اولویت‌بندی:</label><input type="number" id="pPriority" min="1" step="1" inputmode="numeric" placeholder="۱ = بالاترین اولویت">
+            <small style="display:block;color:#777;font-size:.72rem;line-height:1.7;margin-top:3px;">عدد ۱ بالاترین اولویت است؛ هرچه عدد بیشتر باشد، پروژه پایین‌تر قرار می‌گیرد. این عدد به مخاطب نمایش داده نمی‌شود.</small>
             <label style="margin:10px 0 4px;color:#aaa;font-size:0.9rem;">وضعیت انتشار:</label>
             <div class="publish-toggle" id="pDraftToggle">
                 <button type="button" data-value="published" onclick="setDraftState('pDraft', false)">● منتشر شود</button>
@@ -3400,6 +3423,12 @@
         let portfolioPage = 0;
         const PER_PAGE = 6;
         let lastPage = 'home';
+        let lastPortfolioCategory = 'all';
+        let detailReturnPage = 'home';
+        let detailReturnPortfolioCategory = 'all';
+        let reviewContinuationOffset = 0;
+        let articleContinuationOffset = 0;
+        let portfolioContinuationOffset = 0;
 
         function nl2br(text) {
             if (!text) return '';
@@ -3503,6 +3532,58 @@
 
         function publicPortfolioList() {
             return (data && data.portfolio ? data.portfolio : []).filter(p => !p.draft);
+        }
+
+        function portfolioPriorityValue(p) {
+            const n = Number(p && p.priority);
+            return Number.isFinite(n) && n >= 1 ? Math.floor(n) : 999999;
+        }
+
+        function portfolioUploadTimestamp(p) {
+            const m = String(p && p.id || '').match(/(\d{10,})$/);
+            return m ? Number(m[1]) : 0;
+        }
+
+        function portfolioPriorityList(items) {
+            return items.map((p,i)=>({p,i})).sort((a,b) => {
+                const pa = portfolioPriorityValue(a.p), pb = portfolioPriorityValue(b.p);
+                if (pa !== pb) return pa - pb;
+                // Same priority: newest upload wins, but only within the same category.
+                return b.i - a.i;
+            }).map(x=>x.p);
+        }
+
+        function portfolioNewestList(items) {
+            // Latest Portfolio is intentionally independent from manual priority.
+            return [...items].reverse();
+        }
+
+        function applyPortfolioPriorityInsert(targetId, priority, isNewItem) {
+            if (!data || !Array.isArray(data.portfolio)) return;
+            const p = Math.max(1, Math.floor(Number(priority) || 999999));
+            const target = data.portfolio.find(x => x.id === targetId);
+            if (!target) return;
+            const targetCategory = target.category || 'game-dev';
+            const old = portfolioPriorityValue(target);
+            const sameCategory = x => x.id !== targetId && (x.category || 'game-dev') === targetCategory;
+            if (isNewItem) {
+                data.portfolio.forEach(x => {
+                    if (sameCategory(x) && portfolioPriorityValue(x) >= p) x.priority = portfolioPriorityValue(x) + 1;
+                });
+            } else if (old !== p) {
+                if (p < old) {
+                    data.portfolio.forEach(x => {
+                        const n = portfolioPriorityValue(x);
+                        if (sameCategory(x) && n >= p && n < old) x.priority = n + 1;
+                    });
+                } else {
+                    data.portfolio.forEach(x => {
+                        const n = portfolioPriorityValue(x);
+                        if (sameCategory(x) && n > old && n <= p) x.priority = n - 1;
+                    });
+                }
+            }
+            target.priority = p;
         }
 
         function setDraftState(inputId, isDraft) {
@@ -3686,6 +3767,8 @@
                 if (!p.gallery) p.gallery = p.media;
                 if (!p.tags) p.tags = [];
                 if (!p.links) p.links = [];
+                if (p.priority === undefined || p.priority === null || Number(p.priority) < 1 || !Number.isFinite(Number(p.priority))) p.priority = 999999;
+                p.priority = Math.max(1, Math.floor(Number(p.priority)));
                 return p;
             });
             if (!data.about) data.about = { bio: '', social: [] };
@@ -4339,7 +4422,7 @@
             if (sort === 'newest') list.sort((a,b) => new Date(b.date) - new Date(a.date) || b.id.localeCompare(a.id));
             else if (sort === 'oldest') list.sort((a,b) => new Date(a.date) - new Date(b.date) || a.id.localeCompare(b.id));
             else if (sort === 'highest') list.sort((a,b) => b.finalScore - a.finalScore);
-            const start = 0, end = (reviewPage + 1) * PER_PAGE;
+            const start = reviewContinuationOffset || 0, end = start + (reviewPage + 1) * PER_PAGE;
             const shown = list.slice(start, end);
             c.innerHTML = shown.map(r => {
                 const stats = (optimizedDataMode && r.wordCount !== undefined && r.readTime !== undefined)
@@ -4376,7 +4459,7 @@
             const sort = document.getElementById('articleSort').value;
             if (sort === 'newest') list.sort((a,b) => new Date(b.date) - new Date(a.date) || b.id.localeCompare(a.id));
             else list.sort((a,b) => new Date(a.date) - new Date(b.date) || a.id.localeCompare(b.id));
-            const start = 0, end = (articlePage + 1) * PER_PAGE;
+            const start = articleContinuationOffset || 0, end = start + (articlePage + 1) * PER_PAGE;
             const shown = list.slice(start, end);
             c.innerHTML = shown.map(a => {
                 const stats = (optimizedDataMode && a.wordCount !== undefined && a.readTime !== undefined)
@@ -4413,20 +4496,18 @@
         function renderPortfolio() {
             const c = document.getElementById('portfolioContainer');
             if (!c || !data) return;
-            const sort = document.getElementById('portfolioSort').value;
             let list = [...publicPortfolioList()];
             if (currentPortfolioCategory !== 'all') list = list.filter(p => (p.category || 'game-dev') === currentPortfolioCategory);
-            if (sort === 'newest') list.sort((a,b) => String(b.id).localeCompare(String(a.id)));
-            else list.sort((a,b) => String(a.id).localeCompare(String(b.id)));
-            const end = (portfolioPage + 1) * PER_PAGE;
-            const shown = list.slice(0, end);
+            list = portfolioPriorityList(list);
+            const start = portfolioContinuationOffset || 0, end = start + (portfolioPage + 1) * PER_PAGE;
+            const shown = list.slice(start, end);
             c.innerHTML = shown.map(p => {
                 const cover = p.cover || (p.media && p.media[0] && p.media[0].type === 'image' ? p.media[0].url : '') || (p.gallery && p.gallery[0] ? p.gallery[0].url : '');
                 return `
                 <div class="portfolio-card" onclick="openDetail('portfolio','${p.id}')">
                     ${cover ? `<img loading="lazy" decoding="async" src="${cover}" alt="${p.title}">` : `<div style="height:180px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;color:#666;">بدون کاور</div>`}
                     <div class="info">
-                        <div class="portfolio-card-category">${portfolioCategoryLabel(p.category)}</div>
+                        <div class="portfolio-card-category ${p.category === 'video-content' ? 'video-content' : 'game-dev'}">${portfolioCategoryLabel(p.category)}</div>
                         <h3>${p.title}</h3>
                         ${p.subtitle ? `<span class="subtitle">${p.subtitle}</span>` : ''}
                         <div class="portfolio-card-tags">${(p.tags || []).map(t=>`<span>${t}</span>`).join('')}</div>
@@ -4440,6 +4521,8 @@
         function filterPortfolio(cat) {
             currentPortfolioCategory = cat;
             portfolioPage = 0;
+            portfolioContinuationOffset = 0;
+            lastPortfolioCategory = cat;
             document.querySelectorAll('#portfolioCategoryFilters .filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.portfolioCategory === cat));
             renderPortfolio();
         }
@@ -4461,9 +4544,12 @@
         function renderLatest() {
             const c = document.getElementById('latestContent');
             if (!c || !data) return;
-            const latestReviews = publicReviewList().slice(0, 4);
-            const latestArticles = publicArticleList().slice(0, 4);
-            const latestPortfolio = publicPortfolioList().slice(0, 4);
+            const latestReviews = publicReviewList().slice().sort((a,b) => new Date(b.date) - new Date(a.date) || String(b.id).localeCompare(String(a.id))).slice(0, 4);
+            const latestArticles = publicArticleList().slice().sort((a,b) => new Date(b.date) - new Date(a.date) || String(b.id).localeCompare(String(a.id))).slice(0, 4);
+            const latestPortfolio = portfolioNewestList(publicPortfolioList()).slice(0, 4);
+            const reviewHasMore = publicReviewList().length > 4;
+            const articleHasMore = publicArticleList().length > 4;
+            const portfolioHasMore = publicPortfolioList().length > 4;
             let html = '';
             if (latestReviews.length) {
                 html += `<div class="latest-section"><h3 class="section-title">📝 آخرین نقدها</h3><div class="latest-grid">`;
@@ -4472,7 +4558,7 @@
                         <img loading="lazy" decoding="async" src="${r.cover}" alt="${r.title}"><div class="info"><h4>${r.title}</h4><div class="meta">${r.date}</div></div>
                     </div>`;
                 });
-                html += `</div></div>`;
+                html += `</div>${reviewHasMore ? `<button class="latest-more-btn" type="button" onclick="showLatestContinuation('reviews')">مشاهده ادامه نقدها <i class="fas fa-arrow-left"></i></button>` : ''}</div>`;
             }
             if (latestArticles.length) {
                 html += `<div class="latest-section"><h3 class="section-title">📄 آخرین مقالات</h3><div class="latest-grid">`;
@@ -4481,7 +4567,7 @@
                         <img loading="lazy" decoding="async" src="${a.cover}" alt="${a.title}"><div class="info"><h4>${a.title}</h4><div class="meta">${a.date}</div></div>
                     </div>`;
                 });
-                html += `</div></div>`;
+                html += `</div>${articleHasMore ? `<button class="latest-more-btn" type="button" onclick="showLatestContinuation('articles')">مشاهده ادامه مقالات <i class="fas fa-arrow-left"></i></button>` : ''}</div>`;
             }
             if (latestPortfolio.length) {
                 html += `<div class="latest-section"><h3 class="section-title">📁 آخرین پروژه‌ها</h3><div class="latest-grid">`;
@@ -4489,13 +4575,35 @@
                     const img = p.cover || (p.media && p.media.length && p.media[0].type === 'image' ? p.media[0].url : '') || (p.gallery && p.gallery.length ? p.gallery[0].url : '');
                     html += `<div class="latest-item" onclick="openDetail('portfolio','${p.id}')">
                         ${img ? `<img loading="lazy" decoding="async" src="${img}" alt="${p.title}">` : `<div style="height:120px;background:#1a1a2e;"></div>`}
-                        <div class="info"><h4>${p.title}</h4><div class="meta">${p.tags.slice(0,2).join(', ')}</div></div>
+                        <div class="info"><h4>${p.title}</h4><div class="meta">${(p.tags || []).slice(0,2).join(', ')}</div></div>
                     </div>`;
                 });
-                html += `</div></div>`;
+                html += `</div>${portfolioHasMore ? `<button class="latest-more-btn" type="button" onclick="showLatestContinuation('portfolio')">مشاهده ادامه پروژه‌ها <i class="fas fa-arrow-left"></i></button>` : ''}</div>`;
             }
             c.innerHTML = html || '<p style="color:#888;text-align:center;">هنوز محتوایی منتشر نشده است.</p>';
             setupMediaPreloading(c);
+        }
+
+        function showLatestContinuation(type) {
+            if (type === 'reviews') {
+                reviewContinuationOffset = 4;
+                reviewPage = 0;
+                navigate('reviews');
+                reviewContinuationOffset = 4;
+                renderReviews();
+            } else if (type === 'articles') {
+                articleContinuationOffset = 4;
+                articlePage = 0;
+                navigate('articles');
+                articleContinuationOffset = 4;
+                renderArticles(currentCategory);
+            } else if (type === 'portfolio') {
+                portfolioContinuationOffset = 4;
+                portfolioPage = 0;
+                navigate('portfolio');
+                portfolioContinuationOffset = 4;
+                renderPortfolio();
+            }
         }
 
         function renderAdminLists() {
@@ -4551,9 +4659,9 @@
                 document.getElementById('latestSection').style.display = '';
             } else {
                 document.getElementById('latestSection').style.display = 'none';
-                if (page === 'reviews') { document.getElementById('reviews').style.display = ''; reviewPage = 0; renderReviews(); }
-                else if (page === 'articles') { document.getElementById('articles').style.display = ''; articlePage = 0; renderArticles(); }
-                else if (page === 'portfolio') { document.getElementById('portfolio').style.display = ''; portfolioPage = 0; renderPortfolio(); }
+                if (page === 'reviews') { document.getElementById('reviews').style.display = ''; reviewPage = 0; reviewContinuationOffset = 0; renderReviews(); }
+                else if (page === 'articles') { document.getElementById('articles').style.display = ''; articlePage = 0; articleContinuationOffset = 0; renderArticles(); }
+                else if (page === 'portfolio') { document.getElementById('portfolio').style.display = ''; portfolioPage = 0; portfolioContinuationOffset = 0; renderPortfolio(); }
                 else if (page === 'about') { document.getElementById('about').style.display = ''; renderAbout(); }
             }
             document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
@@ -4623,7 +4731,10 @@
                 catch (e) { console.error(e); alert('❌ محتوای کامل این مورد بارگیری نشد.'); return; }
             }
 
-            lastPage = type + 's';
+            detailReturnPage = type === 'portfolio' ? 'portfolio' : type + 's';
+            detailReturnPortfolioCategory = currentPortfolioCategory;
+            lastPage = detailReturnPage;
+            if (type === 'portfolio') lastPortfolioCategory = currentPortfolioCategory;
 
             document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
             const navEl = document.querySelector(`nav ul li a[data-page="${type}s"]`);
@@ -4733,7 +4844,7 @@
                 const media = (p.media && p.media.length) ? p.media : (p.gallery || []);
                 html = `<div class="detail-header portfolio-detail-header">
                     ${p.cover ? `<img class="portfolio-detail-cover" src="${p.cover}" alt="${p.title}" loading="eager" fetchpriority="high" decoding="async">` : ''}
-                    <div class="portfolio-detail-category">${categoryLabel}</div>
+                    <div class="portfolio-detail-category ${p.category === 'video-content' ? 'video-content' : 'game-dev'}">${categoryLabel}</div>
                     <h2>${p.title}</h2>
                     ${p.subtitle ? `<div class="subtitle">${p.subtitle}</div>` : ''}
                     <div class="detail-meta">${(p.tags || []).map(t=>`<span style="background:rgba(240,165,0,0.12);color:#f0a500;padding:2px 10px;border-radius:30px;font-size:0.7rem;font-weight:600;margin:0 4px;">${t}</span>`).join('')}</div>
@@ -4746,9 +4857,9 @@
                         if (type === 'youtube') {
                             const yt = getYouTubeEmbedUrl(rawUrl);
                             const ytRatio = /youtube\.com\/shorts\//i.test(rawUrl) ? '9/16' : '16/9';
-                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame" style="aspect-ratio:${ytRatio}"><iframe class="portfolio-youtube" src="${yt}" title="${p.title} - ویدیو ${i+1}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame" style="aspect-ratio:${ytRatio}"><iframe class="portfolio-youtube" src="${yt}" title="${p.title} - ویدیو ${i+1}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         } else if (type === 'video') {
-                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame portfolio-direct-frame"><video class="portfolio-direct-video" controls preload="metadata" playsinline><source src="${rawUrl}"></video><div class="portfolio-play-feedback" aria-hidden="true"><i class="fas fa-play"></i></div></div><div class="portfolio-video-speed"><label>سرعت</label><select class="portfolio-speed-select"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
+                            return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><div class="portfolio-video-frame portfolio-direct-frame"><video class="portfolio-direct-video" preload="metadata" playsinline><source src="${rawUrl}"></video><div class="portfolio-play-feedback" aria-hidden="true"><i class="fas fa-play"></i></div><div class="portfolio-video-controls" aria-label="کنترل‌های ویدیو"><button type="button" class="portfolio-video-control-btn portfolio-play-btn" aria-label="پخش/توقف"><i class="fas fa-play"></i></button><button type="button" class="portfolio-video-control-btn portfolio-back10" aria-label="۱۰ ثانیه عقب"><i class="fas fa-rotate-left"></i><span style="font-size:.52rem;position:absolute;transform:translateY(1px);">10</span></button><input type="range" class="portfolio-video-progress" min="0" max="1000" value="0" step="1" aria-label="نوار زمان"><button type="button" class="portfolio-video-control-btn portfolio-forward10" aria-label="۱۰ ثانیه جلو"><i class="fas fa-rotate-right"></i><span style="font-size:.52rem;position:absolute;transform:translateY(1px);">10</span></button><span class="portfolio-video-time">0:00 / 0:00</span><button type="button" class="portfolio-video-control-btn portfolio-mute-btn" aria-label="صدا"><i class="fas fa-volume-high"></i></button><input type="range" class="portfolio-video-volume" min="0" max="1" value="1" step="0.01" aria-label="تنظیم صدا"><select class="portfolio-video-speed-inline" aria-label="سرعت"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select><button type="button" class="portfolio-video-control-btn portfolio-pip-btn" aria-label="تصویر در تصویر" title="تصویر در تصویر"><i class="fas fa-up-right-and-down-left-from-center"></i></button><button type="button" class="portfolio-video-control-btn portfolio-fullscreen-btn" aria-label="تمام‌صفحه"><i class="fas fa-expand"></i></button></div></div>${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                         }
                         return `<div class="gallery-item portfolio-media-item" data-media-index="${i}"><img loading="lazy" decoding="async" src="${rawUrl}" alt="${m.caption || p.title}" class="portfolio-media-image">${m.caption ? `<div class="caption">${m.caption}</div>` : ''}</div>`;
                     }).join('');
@@ -4765,7 +4876,7 @@
                         const label = (parts[0] || 'لینک').trim();
                         const url = (parts[1] || '#').trim();
                         const icon = (parts[2] || portfolioLinkIcon(url)).trim();
-                        html += `<a class="portfolio-link-card" href="${url}" target="_blank" rel="noopener noreferrer"><span class="portfolio-link-icon"><i class="${icon.startsWith('fa') ? 'fab' : 'fas'} ${icon}"></i></span><span class="portfolio-link-copy"><strong>${label}</strong><small>${portfolioLinkDomain(url)}</small></span><i class="fas fa-arrow-up-right-from-square portfolio-link-arrow"></i></a>`;
+                        const domain = portfolioLinkDomain(url); const logoUrl = portfolioLinkLogoUrl(url); const fallbackIcon = icon.startsWith('fa') ? `${icon.includes('github')||icon.includes('youtube')||icon.includes('linkedin')||icon.includes('discord')||icon.includes('itch') ? 'fab' : 'fas'} ${icon}` : `fas ${icon}`; html += `<a class="portfolio-link-card" href="${url}" target="_blank" rel="noopener noreferrer"><span class="portfolio-link-icon"><img class="portfolio-link-logo" src="${logoUrl}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block';"><i class="${fallbackIcon}" style="display:none;"></i></span><span class="portfolio-link-copy"><strong>${label}</strong><small>${domain}</small></span><i class="fas fa-arrow-up-right-from-square portfolio-link-arrow"></i></a>`;
                     });
                     html += `</div></div>`;
                 }
@@ -4828,12 +4939,14 @@
             document.title = 'دانیال میرزاباقری | توسعه‌دهنده بازی و منتقد';
             document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
             document.getElementById('latestSection').style.display = 'none';
-            if (lastPage === 'reviews' || lastPage === 'review') {
+            const returnPage = detailReturnPage || lastPage;
+            if (returnPage === 'reviews' || returnPage === 'review') {
                 navigate('reviews');
-            } else if (lastPage === 'articles' || lastPage === 'article') {
+            } else if (returnPage === 'articles' || returnPage === 'article') {
                 navigate('articles');
-            } else if (lastPage === 'portfolio') {
+            } else if (returnPage === 'portfolio') {
                 navigate('portfolio');
+                filterPortfolio(detailReturnPortfolioCategory || lastPortfolioCategory || 'all');
             } else {
                 navigate('home');
             }
@@ -4853,7 +4966,6 @@
         }
         function applyReviewSort() { reviewPage = 0; renderReviews(); }
         function applyArticleSort() { articlePage = 0; renderArticles(currentCategory); }
-        function applyPortfolioSort() { portfolioPage = 0; renderPortfolio(); }
         function loadMoreReviews() { reviewPage++; renderReviews(); }
         function loadMoreArticles() { articlePage++; renderArticles(currentCategory); }
         function loadMorePortfolio() { portfolioPage++; renderPortfolio(); }
@@ -5665,6 +5777,7 @@
             document.getElementById('pCategory').value = p.category || 'game-dev';
             document.getElementById('pCover').value = p.cover || '';
             document.getElementById('pSubtitle').value = p.subtitle || '';
+            document.getElementById('pPriority').value = (p.priority && Number(p.priority) >= 1) ? Math.floor(Number(p.priority)) : 999999;
             document.getElementById('pDraft').checked = !!p.draft;
             syncDraftToggle('pDraft');
             document.getElementById('pDesc').value = p.desc || '';
@@ -5676,9 +5789,10 @@
         }
 
         function clearPortfolioForm() {
-            ['pTitle','pSlug','pCover','pSubtitle','pDesc','pTags','pLinks','pEditId'].forEach(id => document.getElementById(id).value = '');
+            ['pTitle','pSlug','pCover','pSubtitle','pPriority','pDesc','pTags','pLinks','pEditId'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('pCategory').value = 'game-dev';
             document.getElementById('pDraft').checked = false;
+            document.getElementById('pPriority').value = '999999';
             document.getElementById('pCoverFile').value = '';
             updatePortfolioCoverPreview('');
             syncDraftToggle('pDraft');
@@ -5703,12 +5817,14 @@
             const enteredSlug = document.getElementById('pSlug').value.trim();
             const cover = document.getElementById('pCover').value.trim();
             const media = getPortfolioMediaItems();
+            const requestedPriority = Math.max(1, Math.floor(Number(document.getElementById('pPriority').value) || 999999));
             const newP = {
                 id, title,
                 slug: slugify(enteredSlug || title),
                 category: document.getElementById('pCategory').value || 'game-dev',
                 cover,
                 subtitle: document.getElementById('pSubtitle').value.trim() || '',
+                priority: requestedPriority,
                 draft: document.getElementById('pDraft').checked,
                 desc: document.getElementById('pDesc').value.trim() || '',
                 tags: document.getElementById('pTags').value.split(',').map(s => s.trim()).filter(Boolean),
@@ -5719,6 +5835,7 @@
             const existing = data.portfolio.findIndex(p => p.id === id);
             if (existing >= 0) data.portfolio[existing] = newP;
             else data.portfolio.push(newP);
+            applyPortfolioPriorityInsert(id, requestedPriority, existing < 0);
             if (await saveAppData()) {
                 renderAll();
                 closeModal('portfolioModal');
@@ -5742,7 +5859,7 @@
         }
         function getYouTubeEmbedUrl(url) {
             const id = getYouTubeId(url);
-            return id ? `https://www.youtube.com/embed/${id}?enablejsapi=1&rel=0&playsinline=1` : url;
+            return id ? `https://www.youtube.com/embed/${id}?enablejsapi=1&origin=https%3A%2F%2Fdanialmirzabagheri.github.io&widget_referrer=https%3A%2F%2Fdanialmirzabagheri.github.io&rel=0&playsinline=1&cc_load_policy=0&cc_lang_pref=fa` : url;
         }
         function portfolioLinkIcon(url) {
             const u=String(url||'').toLowerCase();
@@ -5756,6 +5873,12 @@
         }
         function portfolioLinkDomain(url) {
             try { return new URL(url).hostname.replace(/^www\./,''); } catch(e) { return 'لینک مرتبط'; }
+        }
+        function portfolioLinkLogoUrl(url) {
+            try {
+                const u = new URL(url);
+                return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(u.hostname)}&sz=128`;
+            } catch(e) { return ''; }
         }
         function updatePortfolioCoverPreview(url) {
             const c=document.getElementById('pCoverPreview'); if(!c) return;
@@ -5808,6 +5931,13 @@
             if (!root) return;
             const carousels=root.querySelectorAll('.portfolio-media-carousel');
             const pauseAll=()=>pauseAllPortfolioMedia(root);
+            const fmtTime=(seconds)=>{
+                if(!Number.isFinite(seconds) || seconds<0) return '0:00';
+                const s=Math.floor(seconds%60).toString().padStart(2,'0');
+                const m=Math.floor(seconds/60);
+                const h=Math.floor(seconds/3600);
+                return h ? `${h}:${String(Math.floor((seconds%3600)/60)).padStart(2,'0')}:${s}` : `${m}:${s}`;
+            };
 
             root.querySelectorAll('.portfolio-media-single img.portfolio-media-image').forEach(img=>{
                 img.addEventListener('click',()=>openLightbox([{type:'image',url:img.src,caption:img.alt}],0));
@@ -5818,40 +5948,99 @@
                 v.preload = 'metadata';
                 const frame=v.closest('.portfolio-direct-frame');
                 const feedback=frame && frame.querySelector('.portfolio-play-feedback');
+                const controls=frame && frame.querySelector('.portfolio-video-controls');
+                const playBtn=controls && controls.querySelector('.portfolio-play-btn');
+                const progress=controls && controls.querySelector('.portfolio-video-progress');
+                const time=controls && controls.querySelector('.portfolio-video-time');
+                const volume=controls && controls.querySelector('.portfolio-video-volume');
+                const muteBtn=controls && controls.querySelector('.portfolio-mute-btn');
+                const speed=controls && controls.querySelector('.portfolio-video-speed-inline');
+                const pipBtn=controls && controls.querySelector('.portfolio-pip-btn');
+                const fsBtn=controls && controls.querySelector('.portfolio-fullscreen-btn');
                 const showFeedback=(isPlaying)=>{
                     if(!feedback) return;
                     const icon=feedback.querySelector('i');
                     if(icon) icon.className=isPlaying ? 'fas fa-play' : 'fas fa-pause';
-                    feedback.classList.remove('show');
-                    void feedback.offsetWidth;
-                    feedback.classList.add('show');
+                    feedback.classList.remove('show'); void feedback.offsetWidth; feedback.classList.add('show');
+                };
+                const sync=()=>{
+                    if(progress && Number.isFinite(v.duration) && v.duration>0) progress.value=Math.round((v.currentTime/v.duration)*1000);
+                    if(time) time.textContent=`${fmtTime(v.currentTime)} / ${fmtTime(v.duration)}`;
+                    if(playBtn){ const i=playBtn.querySelector('i'); if(i) i.className=v.paused ? 'fas fa-play' : 'fas fa-pause'; }
+                    if(muteBtn){ const i=muteBtn.querySelector('i'); if(i) i.className=(v.muted || v.volume===0) ? 'fas fa-volume-xmark' : 'fas fa-volume-high'; }
+                    if(frame) frame.classList.toggle('is-playing', !v.paused);
                 };
                 v.addEventListener('loadedmetadata',()=>{
-                    if(v.videoWidth && v.videoHeight){
-                        if(frame) frame.dataset.mediaRatio=`${v.videoWidth}/${v.videoHeight}`;
-                    }
+                    if(v.videoWidth && v.videoHeight && frame) frame.dataset.mediaRatio=`${v.videoWidth}/${v.videoHeight}`;
+                    sync();
                 },{once:true});
+                v.addEventListener('timeupdate',sync);
+                v.addEventListener('durationchange',sync);
+                v.addEventListener('volumechange',sync);
                 v.addEventListener('play',()=>{
                     root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} });
-                    showFeedback(true);
+                    v.preload='auto';
+                    showFeedback(true); sync();
                 });
-                v.addEventListener('pause',()=>showFeedback(false));
-                // Do not manually toggle playback on click. Native HTML5 controls already
-                // handle play/pause (including fullscreen); manually toggling here would
-                // receive the same click event after the browser toggles the video and
-                // immediately reverse the state.
+                v.addEventListener('pause',()=>{showFeedback(false); sync();});
+                v.addEventListener('ended',sync);
+                v.addEventListener('waiting',()=>{ if(frame) frame.classList.add('is-buffering'); });
+                v.addEventListener('canplay',()=>{ if(frame) frame.classList.remove('is-buffering'); });
+
+                if(playBtn) playBtn.onclick=(e)=>{e.stopPropagation(); if(v.paused) v.play().catch(()=>{}); else v.pause();};
+                const back=controls && controls.querySelector('.portfolio-back10');
+                const forward=controls && controls.querySelector('.portfolio-forward10');
+                if(back) back.onclick=(e)=>{e.stopPropagation(); v.currentTime=Math.max(0,(v.currentTime||0)-10); sync();};
+                if(forward) forward.onclick=(e)=>{e.stopPropagation(); v.currentTime=Math.min(v.duration||Infinity,(v.currentTime||0)+10); sync();};
+                if(progress) progress.oninput=(e)=>{e.stopPropagation(); if(Number.isFinite(v.duration)) v.currentTime=(Number(progress.value)/1000)*v.duration;};
+                if(volume) volume.oninput=(e)=>{e.stopPropagation(); v.volume=Number(volume.value); v.muted=v.volume===0;};
+                if(muteBtn) muteBtn.onclick=(e)=>{e.stopPropagation(); v.muted=!v.muted; sync();};
+                if(speed) speed.onchange=(e)=>{e.stopPropagation(); v.playbackRate=Number(speed.value)||1;};
+                if(pipBtn) pipBtn.onclick=async(e)=>{
+                    e.stopPropagation();
+                    try{
+                        if(document.pictureInPictureElement) await document.exitPictureInPicture();
+                        else if(document.pictureInPictureEnabled && v.requestPictureInPicture) await v.requestPictureInPicture();
+                    }catch(_){ }
+                };
+                const updateFs=()=>{
+                    if(!fsBtn) return;
+                    const i=fsBtn.querySelector('i');
+                    if(i) i.className=document.fullscreenElement===frame ? 'fas fa-compress' : 'fas fa-expand';
+                };
+                if(fsBtn) fsBtn.onclick=async(e)=>{
+                    e.stopPropagation();
+                    try{
+                        if(document.fullscreenElement===frame){ await document.exitFullscreen(); }
+                        else if(frame && frame.requestFullscreen){ await frame.requestFullscreen(); }
+                    }catch(_){ }
+                    updateFs();
+                };
+                document.addEventListener('fullscreenchange',updateFs);
+                frame.addEventListener('keydown',(e)=>{
+                    if(e.target.closest('.portfolio-video-controls')) return;
+                    if(e.key === ' '){ e.preventDefault(); if(v.paused) v.play().catch(()=>{}); else v.pause(); }
+                    else if(e.key === 'ArrowLeft') v.currentTime=Math.max(0,(v.currentTime||0)-5);
+                    else if(e.key === 'ArrowRight') v.currentTime=Math.min(v.duration||Infinity,(v.currentTime||0)+5);
+                    else if(e.key.toLowerCase() === 'm'){ v.muted=!v.muted; sync(); }
+                });
+                if(frame) frame.tabIndex=0;
+                sync();
             });
 
-            // Stop direct videos when they leave the visible detail area.
+            // Pre-buffer direct videos only when they approach the viewport. This keeps
+            // the initial page light while giving the active/nearby video a head start.
             if ('IntersectionObserver' in window) {
                 const io=new IntersectionObserver(entries=>{
                     entries.forEach(entry=>{
-                        if(!entry.isIntersecting || entry.intersectionRatio < 0.2){
-                            const v=entry.target;
-                            if(!v.paused) { try{v.pause();}catch(e){} }
+                        const v=entry.target;
+                        if(entry.isIntersecting){
+                            v.preload='auto';
+                        } else if(entry.intersectionRatio < 0.05 && !v.paused){
+                            try{v.pause();}catch(e){}
                         }
                     });
-                },{threshold:[0,.2,.5]});
+                },{threshold:[0,.05,.2],rootMargin:'1000px 0px'});
                 root.querySelectorAll('.portfolio-direct-video').forEach(v=>io.observe(v));
             }
 
@@ -5859,30 +6048,17 @@
                 if(car.dataset.bound==='1') return; car.dataset.bound='1';
                 const items=()=>Array.from(car.querySelectorAll('.portfolio-media-item'));
                 const getIndex=()=>{
-                    const list=items();
-                    if(!list.length) return 0;
-                    const center=car.scrollLeft + car.clientWidth/2;
-                    let best=0, dist=Infinity;
-                    list.forEach((it,i)=>{ const d=Math.abs((it.offsetLeft+it.offsetWidth/2)-center); if(d<dist){dist=d;best=i;} });
-                    return best;
+                    const list=items(); if(!list.length) return 0;
+                    const center=car.scrollLeft + car.clientWidth/2; let best=0,dist=Infinity;
+                    list.forEach((it,i)=>{const d=Math.abs((it.offsetLeft+it.offsetWidth/2)-center);if(d<dist){dist=d;best=i;}}); return best;
                 };
                 const goTo=(index)=>{
-                    const list=items(); if(!list.length) return;
-                    pauseAll();
-                    const count=list.length;
-                    let target=index;
-                    if(target>=count) target=0;
-                    if(target<0) target=count-1;
+                    const list=items(); if(!list.length) return; pauseAll();
+                    let target=index; if(target>=list.length) target=0; if(target<0) target=list.length-1;
                     list[target].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
                 };
                 car.addEventListener('scroll',()=>pauseAll(),{passive:true});
-                car.addEventListener('change',e=>{
-                    const sel=e.target.closest('.portfolio-speed-select');
-                    if(sel){ const item=sel.closest('.portfolio-media-item'); const v=item && item.querySelector('video'); if(v) v.playbackRate=Number(sel.value)||1; }
-                });
                 car.addEventListener('click',e=>{
-                    const v=e.target.closest('video');
-                    if(v){ root.querySelectorAll('.portfolio-direct-video').forEach(other=>{if(other!==v) try{other.pause()}catch(_){} }); }
                     const img=e.target.closest('img.portfolio-media-image');
                     if(img){
                         const imageItems=Array.from(car.querySelectorAll('.portfolio-media-item')).filter(it=>it.querySelector('img.portfolio-media-image'));
@@ -5959,6 +6135,8 @@
                         imported.portfolio = imported.portfolio.map(p => {
                             if (p.draft === undefined) p.draft = false;
                             if (!p.slug) p.slug = slugify(p.title || p.id);
+                            if (p.priority === undefined || p.priority === null || Number(p.priority) < 1 || !Number.isFinite(Number(p.priority))) p.priority = 999999;
+                            p.priority = Math.max(1, Math.floor(Number(p.priority)));
                             return p;
                         });
                     }
