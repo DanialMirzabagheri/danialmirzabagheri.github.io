@@ -3,8 +3,9 @@
   "title": "برنده‌ی Game Awards 2023 - شاهکاری تکرار نشدنی به‌نام Baldur's Gate 3",
   "slug": "game-awards-2023-baldur-s-gate-3-danial-mirzabagheri",
   "category": "video-content",
-  "cover": "https://cdn.imgurl.ir/uploads/a52975_Game_Awards_2023_Cover.jpg",
+  "cover": "https://cdn.imgurl.ir/uploads/u799133_Game_Awards_2023_Cover.jpg",
   "subtitle": "چرا بازی Baldur's Gate 3 باید بهترین بازی سال 2023 می‌شد ؟",
+  "priority": 2,
   "draft": false,
   "desc": "مشارکت در یک ویدیوی تحلیلی درباره انتخاب Baldur’s Gate 3 به‌عنوان بازی سال ۲۰۲۳ در The Game Awards.\n\nدر این ویدیو به‌عنوان مهمان در شروع چنل یوتیوب TechMech، درباره انتخاب بازی سال، نقاط قوت Baldur’s Gate 3 و دلایل دفاع از این انتخاب صحبت کردم و دیدگاه خودم را درباره یکی از بحث‌های مهم آن دوره از دنیای بازی‌های ویدیویی ارائه دادم.\n\nاین ویدیو یکی از تجربه‌های ابتدایی من در تولید و ارائه محتوای ویدیویی درباره بازی‌های ویدیویی است.\nبه همین علت، به عنوان اولین تجربه و در زمان ضبط ویدیو، از روی بی‌تجربگی و ناپختگی نظراتم، ممکن است بعضی مواقع داخل ویدیو تندروی کرده باشم و به بعضی موضوعات درست نپرداخته و واضح بیان نکرده باشم. بعد از گذشت این مدت زمان نسبتا طولانی از ویدیو، با وجود اینکه همچنان برروی اصل محتوا و کانسپت پافشاری می‌کنم، اما می‌توانم کمی پخته‌تر و با دانش بیشتری، راجع‌به این موضوع و مسائل اشاره شده در آن صحبت کنم.\nاین بحث به خاطر این نیست که Baldur's Gate 3 جزو بازی‌های برتر زندگی من است، بلکه همچنان صنعت نتوانسته اثری به کاملی و بی‌نقص بودن این عنوان به خود ببیند، که قطعا تاثیر زیادی بر صنعت گذاشته و خواهد گذاشت.\n\n\nچرا بالدرز گیت 3 بهترین بازی سال شد؟ 🤔\nبرای دانستن این موضوع تا اخر ویدیو همراه ما باشید\nدر این ویدیو به بازی های بالدرز گیت 3 ، اسپایدرمن 2 ، الن ویک 2 ، زلدا و رزیدنت اویل پرداخته شده است",
   "tags": [
@@ -13,21 +14,20 @@
     "Game Awards"
   ],
   "links": [
-    "لینک ویدیو یوتیوب | fa-youtube | https://youtu.be/1szM8AgFeKs?si=LNYK1Ltk7VJReKmyp"
+    "لینک ویدیو یوتیوب|fa-youtube|https://youtu.be/1szM8AgFeKs?si=LNYK1Ltk7VJReKmyp"
   ],
   "media": [
     {
       "type": "youtube",
-      "url": "https://youtu.be/1szM8AgFeKs?si=LNYK1Ltk7VJReKmyp",
+      "url": "https://youtu.be/1szM8AgFeKs?si=mivcD7gocTu8r1aM",
       "caption": ""
     }
   ],
   "gallery": [
     {
       "type": "youtube",
-      "url": "https://youtu.be/1szM8AgFeKs?si=LNYK1Ltk7VJReKmyp",
+      "url": "https://youtu.be/1szM8AgFeKs?si=mivcD7gocTu8r1aM",
       "caption": ""
     }
-  ],
-  "priority": 999999
+  ]
 }
