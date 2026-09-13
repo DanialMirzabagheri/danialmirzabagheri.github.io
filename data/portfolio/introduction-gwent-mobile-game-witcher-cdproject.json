@@ -12,7 +12,13 @@
     "Video Conent",
     "Game Introduction"
   ],
-  "links": [],
+  "links": [
+    {
+      "label": "دانلود ویدیو",
+      "url": "https://cdn.imgurl.ir/uploads/9102_Gwent.mp4",
+      "logo": "download"
+    }
+  ],
   "media": [
     {
       "type": "video",
